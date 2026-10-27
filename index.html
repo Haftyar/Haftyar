@@ -1,0 +1,2073 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>هفت‌یار | پلنر هفتگی</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&display=swap');
+:root{--bg:#f4f6fb;--panel:#fff;--text:#182033;--muted:#718096;--line:#e5e9f2;--accent:#6558e8;--accent2:#8c82ff;--green:#16a085;--red:#e56b6f;--shadow:0 12px 34px rgba(31,41,75,.08)}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:"Vazirmatn","IRANSansX","Segoe UI",Tahoma,sans-serif;transition:.2s}
+body.dark{--bg:#111522;--panel:#1b2132;--text:#edf0fa;--muted:#a1abc2;--line:#30384d;--accent:#9b91ff;--accent2:#776bf4;--green:#4dd4ad;--shadow:0 12px 34px rgba(0,0,0,.18)}
+button,input,select{font:inherit}button{cursor:pointer;border:0;border-radius:12px;padding:10px 14px;background:var(--accent);color:white;font-weight:700}button.secondary{background:var(--bg);color:var(--text);border:1px solid var(--line)}button.danger{background:#fff0f0;color:#b83240}
+.app{max-width:1440px;margin:auto;padding:24px}.top{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:22px}.brand{display:flex;align-items:center;gap:12px}.logo{width:48px;height:48px;border-radius:16px;background:linear-gradient(135deg,var(--accent),var(--accent2));display:grid;place-items:center;color:#fff;font-size:24px}.brand h1{font-size:24px;margin:0 0 4px}.brand p{margin:0;color:var(--muted);font-size:13px}.top-actions{display:flex;gap:8px;flex-wrap:wrap}.welcome{background:linear-gradient(120deg,#5e54dc,#8a7df6);color:#fff;border-radius:22px;padding:24px;margin-bottom:20px;display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;box-shadow:var(--shadow)}.welcome h2{margin:0 0 8px;font-size:23px}.welcome p{margin:0;color:#eeedff}.today-pill{background:#ffffff25;border:1px solid #ffffff40;border-radius:14px;padding:12px 16px;line-height:1.9;font-size:13px}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-bottom:20px}.stat,.panel{background:var(--panel);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow)}.stat{padding:18px}.stat .label{font-size:13px;color:var(--muted);margin-bottom:12px}.stat .value{font-size:27px;font-weight:800}.stat .hint{font-size:12px;color:var(--muted);margin-top:7px}.layout{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(300px,1fr);gap:18px}.panel{padding:20px;margin-bottom:18px}.panel-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:16px}.panel h3{font-size:17px;margin:0}.muted{color:var(--muted);font-size:13px}.week-controls{display:flex;align-items:center;gap:8px}.week-title{font-weight:700;min-width:145px;text-align:center;font-size:13px}.week-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:8px}.day{border:1px solid var(--line);background:var(--bg);border-radius:14px;text-align:center;padding:12px 4px;min-height:106px;cursor:pointer;transition:.15s}.day:hover{border-color:var(--accent)}.day.selected{background:var(--accent);border-color:var(--accent);color:#fff}.day.today:not(.selected){outline:2px solid var(--accent);outline-offset:1px}.day .weekday{font-size:12px;font-weight:700;margin-bottom:9px}.day .jalali{font-size:20px;font-weight:800;margin-bottom:4px}.day .greg{font-size:10px;opacity:.8;direction:ltr}.day .dot{width:6px;height:6px;border-radius:50%;background:var(--green);display:inline-block;margin-top:8px}.day.selected .dot{background:#fff}
+.add-row{display:flex;gap:8px;margin-bottom:15px}.add-row input{flex:1;min-width:0}.field{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:12px;color:var(--text);outline:none;width:100%}.field:focus{border-color:var(--accent)}.task-list{display:flex;flex-direction:column;gap:9px}.task{display:flex;align-items:center;gap:11px;padding:13px;border:1px solid var(--line);border-radius:13px;background:var(--panel)}.task input[type=checkbox]{width:20px;height:20px;accent-color:var(--accent);flex-shrink:0}.task-name{flex:1;min-width:0;overflow-wrap:anywhere}.task-name.done{text-decoration:line-through;color:var(--muted)}.task-meta{font-size:11px;color:var(--muted);margin-top:5px}.task-streak{font-size:12px;color:var(--green);white-space:nowrap;font-weight:700}.icon-btn{background:transparent;color:var(--muted);padding:4px 7px;font-size:17px}.empty{text-align:center;padding:28px 12px;color:var(--muted);border:1px dashed var(--line);border-radius:14px;font-size:13px}.progress-line{height:9px;border-radius:99px;background:var(--line);overflow:hidden;margin-top:12px}.progress-line span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:99px;transition:width .25s}.chart-wrap{height:230px;position:relative}.chart-wrap canvas{width:100%;height:100%}.habit-row{padding:13px 0;border-bottom:1px solid var(--line)}.habit-row:last-child{border-bottom:0}.habit-top{display:flex;align-items:center;justify-content:space-between;gap:10px}.habit-top strong{font-size:13px}.habit-top span{font-size:12px;color:var(--green);font-weight:700}.mini-progress{height:6px;background:var(--line);border-radius:99px;overflow:hidden;margin-top:9px}.mini-progress span{display:block;height:100%;background:var(--green);border-radius:99px}.calendar-note{font-size:12px;color:var(--muted);line-height:1.9;margin-top:12px}.footer{text-align:center;color:var(--muted);font-size:11px;padding:14px}
+@media(max-width:900px){.layout{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.app{padding:14px}.panel{padding:15px}.week-grid{gap:5px}.day{padding:10px 2px;min-height:98px}.day .weekday{font-size:10px}.day .jalali{font-size:17px}.day .greg{font-size:9px}}
+@media(max-width:430px){.brand h1{font-size:20px}.welcome{padding:18px}.welcome h2{font-size:19px}.stat{padding:13px}.stat .value{font-size:23px}.week-grid{gap:3px}.day{border-radius:10px;min-height:89px}.day .weekday{font-size:9px;margin-bottom:7px}.day .jalali{font-size:15px}.day .greg{font-size:8px}.day .dot{margin-top:5px}.week-title{min-width:115px;font-size:11px}.task-streak{font-size:10px}}
+
+/* Layout refresh */
+.welcome{display:none}
+.date-bar{display:flex;justify-content:center;margin:0 0 16px}
+.date-bar .today-pill{background:var(--panel);color:var(--text);border:1px solid var(--line);box-shadow:var(--shadow);padding:8px 18px;border-radius:14px;text-align:center;line-height:1.6;font-size:12px;min-width:190px}
+.layout{direction:ltr;grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-areas:"main aside";align-items:start;gap:14px}
+.layout main{grid-area:main;direction:rtl;min-width:0}
+.layout aside{grid-area:aside;direction:rtl;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-items:start;gap:10px;min-width:0}
+.layout aside .panel:nth-child(3){grid-column:1/-1}
+.layout aside .panel{padding:13px;margin-bottom:0}
+.layout aside .panel-head{margin-bottom:8px;gap:6px}
+.layout aside .panel h3{font-size:14px}
+.layout aside .muted{font-size:11px}
+.layout aside .chart-wrap{height:145px}
+.layout aside #habitStats{max-height:220px;overflow:auto}
+.layout aside .habit-row{padding:8px 0}
+.layout aside .habit-top strong{font-size:12px}
+.layout aside .calendar-note{font-size:11px;line-height:1.7;margin-top:8px}
+@media(max-width:900px){.layout{grid-template-columns:1fr;grid-template-areas:"aside" "main"}.layout aside{grid-template-columns:repeat(2,minmax(0,1fr))}.layout aside .panel:first-child{grid-column:1}.layout aside .panel:nth-child(2){grid-column:2}.layout aside .panel:nth-child(3){grid-column:1/-1}}
+@media(max-width:560px){.layout aside{grid-template-columns:1fr}.layout aside .panel:first-child,.layout aside .panel:nth-child(2),.layout aside .panel:nth-child(3){grid-column:1}.date-bar .today-pill{min-width:160px;padding:7px 12px}}
+
+/* Final aligned dashboard layout */
+.top{direction:rtl;justify-content:space-between}
+.brand{margin-right:0;flex-shrink:0}
+/* Four compact stat cards: equal size and aligned with the two dashboard cards */
+.stats{grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(2,minmax(0,1fr));gap:9px;margin-bottom:14px;height:190px;}
+.stat{padding:8px 10px;border-radius:14px;min-width:0;min-height:0;display:flex;flex-direction:column;justify-content:center;overflow:hidden}
+.stat .label{font-size:11px;margin-bottom:7px;line-height:1.5}
+.stat .value{font-size:22px}
+.stat .hint{font-size:10px;line-height:1.5;margin-top:4px}
+.layout{grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-areas:"main aside";align-items:start}
+.layout aside{grid-template-columns:repeat(2,minmax(0,1fr));align-items:stretch}
+/* Swap the two cards: habit streaks on the right, progress chart immediately to its left */
+.layout aside .panel:first-child{grid-column:1;grid-row:1}
+.layout aside .panel:nth-child(2){grid-column:2;grid-row:1}
+.layout aside .panel:nth-child(3){grid-column:1/-1;grid-row:2}
+.layout aside .panel:first-child,.layout aside .panel:nth-child(2){height:190px;min-height:190px;display:flex;flex-direction:column}
+.layout aside .chart-wrap{height:112px;min-height:112px;flex:1}
+.layout aside #habitStats{max-height:135px;overflow-y:auto;overscroll-behavior:contain;padding-left:3px}
+.layout aside #habitStats::-webkit-scrollbar{width:5px}
+.layout aside #habitStats::-webkit-scrollbar-thumb{background:var(--line);border-radius:8px}
+.layout aside .habit-row{padding:7px 0}
+#themeBtn{min-width:44px;padding:9px 12px;font-size:18px;line-height:1}
+@media(max-width:900px){.stats{grid-template-columns:repeat(2,minmax(0,1fr));height:190px}.layout{grid-template-columns:1fr;grid-template-areas:"aside" "main"}.layout aside{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){.stats{height:auto;grid-auto-rows:minmax(100px,auto)}.layout aside{grid-template-columns:1fr}.layout aside .panel:first-child,.layout aside .panel:nth-child(2),.layout aside .panel:nth-child(3){grid-column:1;grid-row:auto}.layout aside .panel:first-child,.layout aside .panel:nth-child(2){height:auto;min-height:0}.layout aside .chart-wrap{height:112px;min-height:112px}.stat .value{font-size:20px}}
+/* Requested Windows desktop refinements: account shortcut, info pages and softer light buttons */
+.hy-account-shortcut{display:flex!important;align-items:center;gap:9px;background:var(--panel)!important;color:var(--text)!important;border:1px solid var(--line)!important}
+.hy-top-avatar{width:28px;height:28px;display:grid;place-items:center;border-radius:50%;background:linear-gradient(135deg,#7666ee,#a995ff);color:#fff;font-weight:800;font-size:13px}
+.hy-info-backdrop{position:fixed;inset:0;background:#11182770;backdrop-filter:blur(4px);z-index:1000}
+.hy-info-modal{position:fixed;z-index:1001;left:50%;top:50%;transform:translate(-50%,-50%);width:min(620px,calc(100vw - 32px));max-height:min(80vh,760px);overflow:auto;padding:24px;border:1px solid var(--line);border-radius:24px;background:var(--panel);color:var(--text);box-shadow:0 28px 90px #10172b40}
+.hy-info-head{display:flex;align-items:center;justify-content:space-between;gap:14px;padding-bottom:16px;border-bottom:1px solid var(--line);margin-bottom:16px}
+.hy-info-head>div{display:flex;align-items:center;gap:12px}
+.hy-info-icon{width:44px;height:44px;display:grid;place-items:center;border-radius:15px;background:#eeeaff;color:#6558e8;font-weight:900;font-size:22px}
+.hy-info-head h2{margin:0 0 3px;font-size:20px}.hy-info-head p{margin:0;color:var(--muted);font-size:12px}
+.hy-info-body{line-height:1.9;font-size:14px}.hy-info-item{padding:13px 14px;border:1px solid var(--line);border-radius:14px;margin:10px 0;background:var(--bg)}
+.hy-info-item h3{font-size:14px;margin:0 0 4px}.hy-info-item p{margin:0;color:var(--muted);font-size:13px}
+body:not(.dark) #plannerApp .secondary,body:not(.dark) #plannerApp .hy-nav{background:#eef1f6;color:#3e4657;border-color:#d4dae5}
+body:not(.dark) #plannerApp .secondary:hover,body:not(.dark) #plannerApp .hy-nav:hover{background:#e2e7ef;color:#252d3d;border-color:#c5ccda}
+body:not(.dark) #plannerApp #langBtn{background:#eef1f6;color:#3e4657;border-color:#d4dae5}
+body:not(.dark) #plannerApp #themeBtn{background:transparent;color:var(--text);border-color:transparent}
+body:not(.dark) #plannerApp #themeBtn .theme-switch{background:#e2e6ee;border-color:#b8c0cf}
+body:not(.dark) #plannerApp #themeBtn .theme-switch i{background:linear-gradient(135deg,#fff,#cfd5e0)}
+body.dark .hy-info-icon{background:#30295a;color:#c4baff}
+@media(max-width:767px){.hy-info-modal{padding:18px;border-radius:20px}.hy-account-shortcut{display:none!important}}
+[hidden]{display:none!important}.auth-screen{min-height:100vh;display:grid;grid-template-columns:minmax(360px,520px) minmax(300px,1fr);align-items:center;justify-content:center;gap:clamp(28px,6vw,100px);padding:clamp(22px,5vw,70px);position:relative;overflow:hidden;background:radial-gradient(ellipse at 18% 10%,#ddd8ff 0,transparent 36%),radial-gradient(ellipse at 90% 85%,#c8f5e8 0,transparent 32%),#f6f7fc;color:#192038;direction:rtl}.auth-orb{position:absolute;border-radius:50%;filter:blur(1px);pointer-events:none}.orb-one{width:240px;height:240px;border:1px solid #a79aff55;top:-100px;right:36%}.orb-two{width:150px;height:150px;background:#a99cff18;bottom:7%;left:2%}.auth-card{position:relative;z-index:1;background:#ffffffdb;backdrop-filter:blur(18px);border:1px solid #ffffff;border-radius:30px;padding:clamp(24px,4vw,42px);box-shadow:0 30px 90px #363c6817;max-width:520px;width:100%;margin:auto}.auth-brand{display:flex;align-items:center;gap:13px;margin-bottom:28px}.auth-logo{width:54px;height:54px;display:grid;place-items:center;color:#fff;font-size:27px;font-weight:900;border-radius:18px;background:linear-gradient(140deg,#6558e8,#a18aff);box-shadow:0 10px 25px #7566ed45}.auth-name{font-size:26px;font-weight:900;letter-spacing:-1px}.auth-dot{color:#7967f0}.auth-tag{font-size:12px;color:#8289a1;margin-top:3px}.auth-chip{display:inline-flex;align-items:center;gap:8px;background:#f0efff;color:#6659d8;padding:8px 12px;border-radius:99px;font-size:12px;font-weight:700;margin-bottom:18px}.live-dot{width:7px;height:7px;background:#38bd96;border-radius:50%;box-shadow:0 0 0 4px #38bd9620}.auth-card h1{font-size:clamp(24px,3vw,34px);letter-spacing:-.8px;line-height:1.45;margin:0 0 10px}.auth-desc{font-size:13px;color:#777f98;line-height:1.9;margin:0 0 24px}.auth-tabs{display:grid;grid-template-columns:1fr 1fr;gap:5px;padding:5px;border-radius:14px;background:#f0f1f8;margin-bottom:20px}.auth-tab{background:transparent;color:#777f98;padding:11px;border-radius:10px}.auth-tab.active{background:#fff;color:#5e53d9;box-shadow:0 3px 12px #262a4610}.auth-form{display:flex;flex-direction:column;gap:9px}.auth-label{font-size:12px;font-weight:700;color:#434a62;margin-top:4px}.auth-input{width:100%;border:1px solid #e3e6f0;background:#fff;color:#20263c;border-radius:13px;padding:14px 15px;outline:none;transition:.2s}.auth-input:focus{border-color:#8274f4;box-shadow:0 0 0 4px #8274f41c}.auth-submit{display:flex;align-items:center;justify-content:space-between;margin-top:8px;padding:15px 17px;border-radius:14px;background:linear-gradient(115deg,#6256df,#8d7cf6);box-shadow:0 10px 25px #7566ed35}.auth-arrow{font-size:20px}.auth-message{display:none;margin:0;font-size:12px;line-height:1.7;color:#c03950}.auth-message.show{display:block}.auth-message.ok{color:#16866a}.auth-bottom{border-top:1px solid #eceef5;margin-top:23px;padding-top:17px;display:flex;align-items:center;justify-content:space-between;gap:10px;color:#888fa4;font-size:11px}.auth-bottom button{background:transparent;color:#6256df;padding:5px;font-size:12px}.auth-local-note{font-size:10px;color:#9aa0b1;line-height:1.7;margin:16px 0 0}.auth-side-copy{position:relative;z-index:1;max-width:500px}.auth-side-copy>span{font-size:11px;font-weight:800;letter-spacing:3px;color:#7568e6}.auth-side-copy h2{font-size:clamp(30px,4vw,52px);line-height:1.5;letter-spacing:-1.5px;margin:18px 0 12px}.auth-side-copy p{color:#7b8299;line-height:2;font-size:15px}.auth-mini-stats{display:flex;gap:12px;margin-top:35px}.auth-mini-stats div{display:flex;flex-direction:column;gap:8px;min-width:105px;padding:16px;border:1px solid #ffffff;background:#ffffff8a;border-radius:16px}.auth-mini-stats strong{font-size:23px;color:#7568e6}.auth-mini-stats span{font-size:12px;color:#6e7690}@media(max-width:900px){.auth-screen{grid-template-columns:minmax(0,520px);padding:22px;gap:25px}.auth-side-copy{display:none}.auth-card{padding:26px;width:100%}}@media(max-width:420px){.auth-screen{padding:12px}.auth-card{border-radius:22px;padding:22px}.auth-card h1{font-size:25px}.auth-bottom{align-items:flex-start}}
+
+
+/* Modern animated login polish */
+.auth-screen:before,.auth-screen:after{content:"";position:absolute;border-radius:50%;pointer-events:none;filter:blur(2px);animation:floatGlow 12s ease-in-out infinite alternate}
+.auth-screen:before{width:330px;height:330px;right:5%;top:12%;background:linear-gradient(135deg,#8e7cff28,#5eead428)}
+.auth-screen:after{width:260px;height:260px;left:8%;bottom:3%;background:linear-gradient(135deg,#5eead425,#a78bfa25);animation-delay:-5s}
+.auth-orb.orb-one{animation:orbit 20s linear infinite}.auth-orb.orb-two{animation:floatGlow 8s ease-in-out infinite alternate}
+.auth-card{animation:cardEnter .8s cubic-bezier(.2,.8,.2,1) both;transition:transform .3s,box-shadow .3s;border-color:#ffffffc9}
+.auth-card:hover{box-shadow:0 35px 100px #363c6825;transform:translateY(-3px)}
+.auth-logo{animation:logoPulse 4s ease-in-out infinite;position:relative;overflow:hidden}.auth-logo:after{content:"";position:absolute;inset:-50%;background:linear-gradient(110deg,transparent 35%,#ffffff80 50%,transparent 65%);transform:translateX(-120%);animation:shine 5s ease-in-out infinite}
+.auth-chip{box-shadow:0 8px 22px #7566ed0b}.live-dot{animation:dotPulse 2s infinite}
+.auth-side-copy{animation:sideEnter 1s .12s both}.auth-mini-stats div{transition:transform .25s,box-shadow .25s}.auth-mini-stats div:hover{transform:translateY(-5px);box-shadow:0 14px 30px #5548c51a}
+.auth-input{transition:border-color .2s,box-shadow .2s,transform .2s}.auth-input:focus{transform:translateY(-1px)}
+.auth-submit{transition:transform .2s,box-shadow .2s;position:relative;overflow:hidden}.auth-submit:hover{transform:translateY(-2px);box-shadow:0 14px 32px #7566ed55}.auth-arrow{transition:transform .2s}.auth-submit:hover .auth-arrow{transform:translate(3px,-3px)}
+@keyframes floatGlow{from{transform:translate3d(0,0,0) scale(1)}to{transform:translate3d(22px,-24px,0) scale(1.08)}}
+@keyframes orbit{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+@keyframes cardEnter{from{opacity:0;transform:translateY(22px) scale(.985)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes sideEnter{from{opacity:0;transform:translateX(-18px)}to{opacity:1;transform:translateX(0)}}
+@keyframes logoPulse{0%,100%{box-shadow:0 10px 25px #7566ed45}50%{box-shadow:0 12px 34px #7566ed70}}
+@keyframes shine{0%,65%,100%{transform:translateX(-120%)}35%{transform:translateX(120%)}}
+@keyframes dotPulse{0%,100%{box-shadow:0 0 0 4px #38bd9620}50%{box-shadow:0 0 0 8px #38bd9610}}
+@media(max-width:560px){.top-actions{width:100%;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.top-actions button{width:100%;padding:9px 10px;font-size:12px}#langBtn,#themeBtn{min-width:0}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}
+
+
+/* Account, admin and compact weekly layout */
+[hidden]{display:none!important}
+#plannerApp.admin-mode #plannerContent{display:none}
+#plannerApp.admin-mode #adminPanel{display:block}
+.admin-panel{margin:8px 0 22px;padding:20px}
+.admin-account{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 14px;border:1px solid var(--line);border-radius:13px;margin-top:9px;background:var(--bg);flex-wrap:wrap}
+.admin-account small{display:block;color:var(--muted);margin-top:4px}
+.admin-empty{padding:22px;text-align:center;color:var(--muted);border:1px dashed var(--line);border-radius:13px}
+.weekly-wide{max-width:1320px;margin:0 auto 14px}
+.weekly-wide .panel{padding:14px 18px;margin-bottom:12px}
+.weekly-wide .panel-head{margin-bottom:8px}
+.weekly-wide .day{min-height:72px;padding:7px 4px}
+.weekly-wide .day .weekday{margin-bottom:4px}
+.weekly-wide .day .jalali{font-size:18px;margin-bottom:2px}
+.weekly-wide .day .dot{margin-top:3px}
+.layout{grid-template-columns:minmax(0,1.25fr) minmax(0,1fr)}
+.layout main{display:flex;flex-direction:column}
+.layout main .stats{order:0}
+.layout main #dailyTasksPanel{order:1}
+.layout aside{grid-template-columns:1fr}
+.layout aside .panel:nth-child(3){display:none}
+@media(max-width:900px){.weekly-wide .day{min-height:64px}.weekly-wide .day .jalali{font-size:16px}.layout{grid-template-columns:1fr}.layout aside{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){.weekly-wide{margin-bottom:10px}.weekly-wide .panel{padding:10px 7px}.weekly-wide .week-grid{gap:3px}.weekly-wide .day{min-height:61px;padding:6px 1px}.weekly-wide .day .weekday{font-size:9px;margin-bottom:3px}.weekly-wide .day .jalali{font-size:14px}.weekly-wide .day .greg{font-size:8px}.layout aside{grid-template-columns:1fr}}
+
+
+/* Weekly calendar placed below the four summary cards, progress chart, and consistency panel */
+.weekly-wide{width:100%;max-width:none;margin:14px 0 0;}
+.weekly-wide>.panel{width:100%;}
+.weekly-wide .week-grid{grid-template-columns:repeat(7,minmax(0,1fr));}
+@media(max-width:560px){.weekly-wide .week-grid{grid-template-columns:repeat(7,minmax(0,1fr));gap:3px}.weekly-wide>.panel{padding:12px}}
+
+
+/* Balanced desktop layout: full daily-plan card on the left, weekly calendar on the right */
+.layout{display:grid;grid-template-columns:minmax(0,1.18fr) minmax(390px,.82fr);grid-template-areas:"main aside";gap:16px;align-items:start}
+.layout main{grid-area:main;min-width:0;display:flex;flex-direction:column}
+.layout main .stats{order:0;width:100%;grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(2,minmax(88px,auto));height:auto;}
+.layout main #dailyTasksPanel{order:1;width:100%;min-width:0}
+.layout aside{grid-area:aside;display:flex;flex-direction:column;gap:12px;min-width:0;width:100%}
+.layout aside>.weekly-wide{order:0;width:100%;max-width:none;margin:0}
+.layout aside>.weekly-wide>.panel{width:100%;margin:0;padding:14px 12px}
+.layout aside .panel{width:100%;min-width:0}
+.layout aside .panel:first-child:not(.weekly-wide .panel),.layout aside .panel:nth-child(2){height:auto;min-height:0}
+.layout aside .weekly-wide .week-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px}
+.layout aside .weekly-wide .day{min-width:0;min-height:78px;padding:7px 1px;border-radius:9px}
+.layout aside .weekly-wide .day .weekday{font-size:clamp(8px,.72vw,11px);white-space:normal;overflow-wrap:anywhere;margin-bottom:5px}
+.layout aside .weekly-wide .day .jalali{font-size:clamp(13px,1.2vw,18px)}
+.layout aside .weekly-wide .day .greg{font-size:9px}
+.layout aside .weekly-wide .week-title{min-width:0;font-size:11px;text-align:center}
+.layout aside .weekly-wide .week-controls{gap:4px}
+.layout aside .weekly-wide .week-controls button{min-width:30px;padding:7px 9px}
+.layout aside .chart-wrap{height:125px;min-height:125px;flex:none}
+.layout aside #habitStats{max-height:210px;overflow:auto}
+#dailyTasksPanel .add-row{display:flex;align-items:center;gap:8px;flex-wrap:nowrap}
+#dailyTasksPanel .add-row .field{min-width:0}
+#dailyTasksPanel #repeatSelect{max-width:150px;flex:0 0 150px}
+#dailyTasksPanel .add-row button{flex:0 0 auto;white-space:nowrap;min-height:42px;padding:10px 13px}
+#dailyTasksPanel .task{width:100%;min-width:0}
+@media(max-width:1000px){.layout{grid-template-columns:minmax(0,1fr) minmax(320px,.8fr);gap:12px}.layout main .stats{gap:7px}.layout aside .weekly-wide .day{min-height:72px}.layout aside .weekly-wide .day .weekday{font-size:8px}}
+@media(max-width:760px){.layout{display:flex;flex-direction:column}.layout main,.layout aside{width:100%}.layout aside{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-items:start}.layout aside>.weekly-wide{grid-column:1/-1;grid-row:1}.layout aside>.panel:not(.weekly-wide .panel){height:auto;min-height:0}.layout aside .weekly-wide .day{min-height:82px}.layout aside .weekly-wide .day .weekday{font-size:10px}}
+@media(max-width:560px){.layout main .stats{grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(2,minmax(94px,auto));height:auto}.layout aside{grid-template-columns:1fr}.layout aside>.weekly-wide{grid-column:1}.layout aside .weekly-wide .panel{padding:10px 6px}.layout aside .weekly-wide .week-grid{gap:3px}.layout aside .weekly-wide .day{min-height:66px;padding:5px 1px}.layout aside .weekly-wide .day .weekday{font-size:8px;line-height:1.3}.layout aside .weekly-wide .day .jalali{font-size:14px}.layout aside .weekly-wide .day .greg{font-size:8px}.layout aside .weekly-wide .week-title{font-size:10px}.layout aside .weekly-wide .week-controls button{min-width:26px;padding:6px 7px}#dailyTasksPanel .add-row{flex-wrap:wrap}#dailyTasksPanel .add-row #taskInput{flex:1 1 100%}#dailyTasksPanel #repeatSelect{flex:1 1 55%;max-width:none}#dailyTasksPanel .add-row button{flex:1 1 auto}}
+
+
+/* Dashboard refinement: compact stats, wide analytics, daily plan beside weekly calendar */
+@media(min-width:761px){
+  .layout{display:grid;direction:ltr;grid-template-columns:repeat(12,minmax(0,1fr));grid-template-areas:"stats stats stats stats stats stats stats stats stats stats stats stats" "daily daily daily daily daily daily daily weekly weekly weekly weekly weekly" "chart chart chart chart chart chart habit habit habit habit habit habit";gap:14px;align-items:stretch}
+  .layout main,.layout aside{display:contents}
+  .layout main .stats{grid-area:stats;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-template-rows:1fr;height:116px;gap:10px;margin:0;direction:rtl}
+  .layout main .stats .stat{padding:9px 12px;min-height:0;border-radius:14px}
+  .layout main .stats .stat .label{font-size:11px;margin-bottom:4px}
+  .layout main .stats .stat .value{font-size:21px;line-height:1.25}
+  .layout main .stats .stat .hint{font-size:10px;line-height:1.35;margin-top:3px}
+  .layout main #dailyTasksPanel{grid-area:daily;margin:0;min-width:0;min-height:240px;padding:16px;direction:rtl}
+  .layout aside>.weekly-wide{grid-area:weekly;min-width:0;margin:0;width:100%;direction:rtl}
+  .layout aside>.weekly-wide>.panel{margin:0;width:100%;height:100%;padding:15px 12px}
+  .layout aside>.panel:nth-of-type(1){grid-area:chart;min-width:0;margin:0;direction:rtl;padding:16px;height:190px;min-height:190px;display:flex;flex-direction:column}
+  .layout aside>.panel:nth-of-type(2){grid-area:habit;min-width:0;margin:0;direction:rtl;padding:16px;height:190px;min-height:190px;display:flex;flex-direction:column}
+  /* Match the weekly progress and consistency cards to the reference dashboard */
+  .layout aside .chart-wrap{height:112px;min-height:112px;flex:1}
+  .layout aside #habitStats{max-height:135px;overflow-y:auto;overscroll-behavior:contain;padding-left:3px}
+  .layout aside #habitStats::-webkit-scrollbar{width:5px}
+  .layout aside #habitStats::-webkit-scrollbar-thumb{background:var(--line);border-radius:8px}
+  .layout aside .habit-row{padding:7px 0}
+  .layout aside .weekly-wide .week-grid{gap:5px}
+  .layout aside .weekly-wide .day{min-height:78px;padding:8px 2px}
+  .layout aside .weekly-wide .day .weekday{font-size:clamp(9px,.75vw,12px);white-space:normal;overflow-wrap:anywhere}
+  .layout aside .weekly-wide .day .jalali{font-size:clamp(14px,1.2vw,19px)}
+  .layout aside .weekly-wide .day .greg{font-size:9px}
+  #dailyTasksPanel .add-row{flex-wrap:nowrap}
+}
+@media(max-width:760px){
+  .layout{display:flex;flex-direction:column;gap:12px}
+  .layout main,.layout aside{display:flex;width:100%;flex-direction:column;gap:12px}
+  .layout main .stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:auto;height:auto;gap:8px;margin:0}
+  .layout main .stats .stat{padding:10px;min-height:90px}
+  .layout main .stats .stat .value{font-size:21px}
+  .layout main #dailyTasksPanel{order:1;width:100%;margin:0}
+  .layout aside>.weekly-wide{order:0;width:100%;margin:0}
+  .layout aside>.panel{width:100%;margin:0}
+  .layout aside>.panel:nth-of-type(1),.layout aside>.panel:nth-of-type(2){height:auto;min-height:0}
+  .layout aside .chart-wrap{height:180px;min-height:180px;flex:none}
+  .layout aside #habitStats{max-height:none}
+}
+@media(max-width:560px){
+  .layout main .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .layout main .stats .stat{min-height:86px;padding:9px}
+  .layout main .stats .stat .label{font-size:10px}
+  .layout main .stats .stat .hint{font-size:9px}
+  .layout main #dailyTasksPanel{padding:12px}
+  .layout aside .weekly-wide>.panel{padding:11px 7px}
+  .layout aside .weekly-wide .day{min-height:64px;padding:5px 1px}
+  .layout aside .weekly-wide .day .weekday{font-size:8px;line-height:1.3}
+  .layout aside .weekly-wide .day .jalali{font-size:14px}
+  .layout aside .weekly-wide .day .greg{font-size:8px}
+  #dailyTasksPanel .add-row{flex-wrap:wrap}
+  #dailyTasksPanel .add-row #taskInput{flex:1 1 100%}
+  #dailyTasksPanel #repeatSelect{flex:1 1 55%;max-width:none}
+  #dailyTasksPanel .add-row button{flex:1 1 auto}
+}
+
+
+/* Final requested layout: daily plans slightly narrower, weekly planner beside it on the right */
+@media(min-width:761px){
+  .layout{
+    grid-template-columns:repeat(14,minmax(0,1fr)) !important;
+    grid-template-areas:
+      "stats stats stats stats stats stats habit habit habit habit chart chart chart chart"
+      "daily daily daily daily daily weekly weekly weekly weekly weekly weekly weekly weekly weekly" !important;
+    gap:14px;
+    align-items:stretch;
+  }
+  /* چهار کارت آماری کوچک در سمت چپ؛ نمودار و مداومت در بالای سمت راست */
+  .layout main .stats{
+    grid-area:stats !important;
+    display:grid !important;
+    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+    grid-template-rows:repeat(2,minmax(0,1fr)) !important;
+    height:190px !important;
+    gap:8px !important;
+    margin:0 !important;
+    min-width:0;
+  }
+  .layout main .stats .stat{padding:8px 9px !important;min-width:0;overflow:hidden}
+  .layout main .stats .stat .label{font-size:10px !important;margin-bottom:3px !important}
+  .layout main .stats .stat .value{font-size:18px !important;line-height:1.2 !important}
+  .layout main .stats .stat .hint{font-size:9px !important;line-height:1.3 !important;margin-top:2px !important}
+  .layout aside>.panel:nth-of-type(1){grid-area:chart !important;box-sizing:border-box;width:100%;height:190px;min-height:190px}
+  .layout aside>.panel:nth-of-type(2){grid-area:habit !important;box-sizing:border-box;width:100%;height:190px;min-height:190px}
+  .layout main #dailyTasksPanel{min-width:0;padding:14px}
+  .layout aside>.weekly-wide{min-width:0}
+  .layout aside>.weekly-wide>.panel{padding:13px 10px}
+  .layout aside .weekly-wide .week-grid{gap:4px}
+  .layout aside .weekly-wide .day{padding:7px 1px;min-height:74px}
+  #dailyTasksPanel .add-row{gap:6px}
+  #dailyTasksPanel #repeatSelect{flex:0 1 125px;max-width:125px}
+  #dailyTasksPanel .add-row button{padding:9px 10px}
+}
+
+/* Numbered checkboxes aligned directly below each weekday */
+.week-check-grid{display:grid;grid-template-columns:22px repeat(7,minmax(0,1fr));gap:5px;margin-top:8px;direction:rtl;align-items:center}
+.week-check-number{display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:var(--muted);min-height:30px}
+.week-check-cell{display:flex;align-items:center;justify-content:center;min-height:30px;border:1px solid var(--line);border-radius:8px;background:var(--bg)}
+.week-check-cell input{width:19px;height:19px;accent-color:var(--accent);cursor:pointer;margin:0}.week-check-cell input:disabled{cursor:default;opacity:.35}
+.week-check-empty{border-color:transparent;background:transparent}
+.task-number{font-weight:800;color:var(--accent);min-width:18px;text-align:center;flex-shrink:0}
+@media(max-width:560px){.week-check-grid{grid-template-columns:18px repeat(7,minmax(0,1fr));gap:3px}.week-check-cell{min-height:27px}.week-check-cell input{width:16px;height:16px}}
+
+
+
+/* Mobile-first dashboard polish: keep the desktop structure readable on phones */
+@media(max-width:760px){
+  .app{padding:12px;max-width:100%;overflow-x:hidden}
+  .top{gap:10px;margin-bottom:14px;align-items:flex-start}
+  .brand{gap:9px}
+  .logo{width:40px;height:40px;border-radius:13px;font-size:21px}
+  .brand h1{font-size:20px}
+  .brand p{font-size:11px;line-height:1.5}
+  .top-actions{width:100%;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}
+  .top-actions button{min-width:0;padding:10px 7px;font-size:12px;white-space:normal}
+  .date-bar{margin-bottom:12px}
+  .layout{display:grid;grid-template-columns:minmax(0,1fr);grid-template-areas:"stats" "chart" "habit" "daily" "weekly";gap:12px;direction:rtl}
+  .layout main,.layout aside{display:contents}
+  .layout main .stats{grid-area:stats;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(2,minmax(82px,auto));height:auto;gap:8px;margin:0}
+  .layout main .stats .stat{padding:10px;min-width:0;min-height:82px;border-radius:14px;overflow:hidden}
+  .layout main .stats .stat .label{font-size:10px;line-height:1.45;margin-bottom:5px}
+  .layout main .stats .stat .value{font-size:20px;line-height:1.3;overflow-wrap:anywhere}
+  .layout main .stats .stat .hint{font-size:9px;line-height:1.4}
+  .layout main #dailyTasksPanel{grid-area:daily;width:100%;margin:0;padding:13px;min-width:0}
+  .layout aside>.weekly-wide{grid-area:weekly;width:100%;max-width:none;margin:0;min-width:0}
+  .layout aside>.weekly-wide>.panel{padding:12px 8px;margin:0;width:100%}
+  .layout aside>.panel:nth-of-type(1){grid-area:analytics}
+  .layout aside>.panel:nth-of-type(2){grid-area:analytics}
+  /* Analytics share one row on medium phones/tablets; equal card sizes */
+  .layout aside>.panel:nth-of-type(1),.layout aside>.panel:nth-of-type(2){height:190px;min-height:190px;padding:11px 9px;min-width:0;overflow:hidden;grid-column:1;grid-row:auto}
+  .layout aside>.panel:nth-of-type(1){grid-area:chart}
+  .layout aside>.panel:nth-of-type(2){grid-area:habit}
+  .layout aside .panel-head{gap:5px;align-items:flex-start}
+  .layout aside .panel h3{font-size:12px;line-height:1.5}
+  .layout aside .muted{font-size:9px;line-height:1.4}
+  .layout aside .chart-wrap{height:120px;min-height:120px;flex:none}
+  .layout aside #habitStats{max-height:135px;overflow-y:auto}
+  .layout aside .habit-row{padding:7px 0}
+  .layout aside .habit-top{align-items:flex-start;gap:4px;flex-wrap:wrap}
+  .layout aside .habit-top strong{font-size:10px;overflow-wrap:anywhere}
+  .layout aside .habit-top span{font-size:9px;white-space:normal}
+  .layout aside .weekly-wide .week-grid{grid-template-columns:repeat(7,minmax(0,1fr));gap:3px}
+  .layout aside .weekly-wide .day{min-width:0;min-height:64px;padding:5px 1px;border-radius:9px}
+  .layout aside .weekly-wide .day .weekday{font-size:8px;line-height:1.3;white-space:normal;overflow-wrap:anywhere;margin-bottom:4px}
+  .layout aside .weekly-wide .day .jalali{font-size:14px}
+  .layout aside .weekly-wide .day .greg{font-size:7px}
+  .layout aside .weekly-wide .week-title{min-width:0;font-size:10px}
+  .layout aside .weekly-wide .week-controls{gap:3px}
+  .layout aside .weekly-wide .week-controls button{min-width:27px;padding:6px 7px}
+  .week-check-grid{grid-template-columns:17px repeat(7,minmax(0,1fr));gap:3px;margin-top:6px}
+  .week-check-number{font-size:10px;min-height:26px}
+  .week-check-cell{min-height:26px;border-radius:6px}
+  .week-check-cell input{width:15px;height:15px}
+  #dailyTasksPanel .panel-head{align-items:flex-start;gap:6px}
+  #dailyTasksPanel .panel h3{font-size:15px}
+  #dailyTasksPanel .add-row{display:flex;flex-wrap:nowrap;gap:7px;margin-bottom:12px}
+  #dailyTasksPanel .add-row #taskInput{flex:1 1 auto;width:0;min-width:0;font-size:12px;padding:11px 9px}
+  #dailyTasksPanel .add-row button{flex:0 0 auto;padding:10px 11px;font-size:12px;min-height:42px}
+  #dailyTasksPanel .task{gap:8px;padding:10px;min-width:0}
+  #dailyTasksPanel .task-name{font-size:13px;line-height:1.6}
+  #dailyTasksPanel .task-number{min-width:16px;font-size:12px}
+  #dailyTasksPanel .task-meta{font-size:10px;line-height:1.5}
+}
+@media(max-width:430px){
+  .app{padding:9px}
+  .top-actions{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .layout aside>.panel:nth-of-type(1),.layout aside>.panel:nth-of-type(2){height:auto;min-height:0}
+  .layout aside .chart-wrap{height:150px;min-height:150px}
+  .layout aside #habitStats{max-height:none}
+  .layout aside .habit-top{flex-wrap:nowrap}
+  .layout aside .habit-top strong{font-size:12px}
+  .layout aside .habit-top span{font-size:10px;white-space:nowrap}
+  .layout aside .weekly-wide .day{min-height:60px}
+  #dailyTasksPanel .add-row button{padding:9px 9px}
+}
+
+
+/* Final mobile alignment: weekly task checkboxes stay directly under their weekday */
+@media(max-width:760px){
+  .layout{grid-template-columns:minmax(0,1fr);grid-template-areas:"stats" "chart" "habit" "weekly" "daily";gap:12px}
+  .layout main,.layout aside{display:contents}
+  .layout main .stats{grid-area:stats}
+  .layout aside>.panel:nth-of-type(1){grid-area:chart}
+  .layout aside>.panel:nth-of-type(2){grid-area:habit}
+  .layout aside>.weekly-wide{grid-area:weekly;min-width:0;width:100%}
+  .layout main #dailyTasksPanel{grid-area:daily}
+  .week-check-grid{
+    width:100%; grid-template-columns:20px repeat(7,minmax(0,1fr));
+    gap:3px; direction:rtl; align-items:stretch; margin-top:7px;
+  }
+  .week-check-number,.week-check-cell{min-width:0;width:100%;min-height:34px}
+  .week-check-number{font-size:11px}
+  .week-check-cell{padding:0;border-radius:7px}
+  .week-check-cell input{display:block;width:18px;height:18px;max-width:100%;margin:0;accent-color:var(--accent)}
+  .week-check-empty{pointer-events:none}
+  .layout aside .weekly-wide .week-grid{width:100%;grid-template-columns:repeat(7,minmax(0,1fr));direction:rtl;gap:3px}
+  .layout aside .weekly-wide .day{width:100%;min-width:0;overflow:hidden}
+  #dailyTasksPanel .task{display:flex;align-items:center;gap:8px}
+  #dailyTasksPanel .task input[type=checkbox]{width:20px;height:20px;min-width:20px;margin:0;flex-shrink:0}
+  #dailyTasksPanel .task-number{min-width:20px}
+}
+@media(max-width:430px){
+  .week-check-grid{grid-template-columns:17px repeat(7,minmax(0,1fr));gap:2px}
+  .week-check-number{font-size:10px;min-height:31px}
+  .week-check-cell{min-height:31px}
+  .week-check-cell input{width:16px;height:16px}
+  .layout aside .weekly-wide .day{padding-inline:0}
+  #dailyTasksPanel .task{padding:10px 8px;gap:7px}
+}
+
+/* Habit tracker table inspired by the reference image */
+.layout aside .weekly-wide>.panel{overflow:hidden}
+.habit-table-scroll{width:100%;overflow-x:auto;overscroll-behavior-x:contain}
+.habit-table{display:flex;flex-direction:column;gap:0;width:100%;min-width:620px;direction:ltr;border-top:1px solid var(--line);border-right:1px solid var(--line);font-size:12px}
+.habit-table-row{display:grid;grid-template-columns:minmax(145px,1.7fr) repeat(7,minmax(42px,1fr));gap:0;min-height:43px;direction:ltr}
+.habit-table-head{position:sticky;top:0;z-index:1}
+.habit-table-name,.habit-table-check,.habit-day-head{border-left:1px solid var(--line);border-bottom:1px solid var(--line);min-width:0}
+.habit-table-name{direction:rtl;text-align:right;display:flex;align-items:center;gap:8px;padding:8px 10px;background:var(--panel);font-weight:600;line-height:1.55;overflow-wrap:anywhere}
+.habit-table-head .habit-table-name{background:var(--bg);font-weight:800}
+.habit-index{display:inline-flex;align-items:center;justify-content:center;flex:0 0 20px;width:20px;height:20px;border-radius:5px;background:var(--bg);color:var(--muted);font-size:10px}
+.habit-label{min-width:0}
+.habit-day-head{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;background:var(--bg);color:var(--text);border-radius:0;padding:5px 2px;min-height:54px;font-weight:700}
+.habit-day-head.selected{background:var(--accent);color:#fff}
+.habit-day-head.today:not(.selected){box-shadow:inset 0 -2px var(--accent)}
+.habit-weekday{font-size:11px;line-height:1.35;white-space:nowrap;font-weight:700}
+.habit-date{font-size:10px;font-weight:700;line-height:1.4;white-space:nowrap;direction:ltr;unicode-bidi:isolate;letter-spacing:.1px;opacity:.9}
+.habit-table-check{display:flex;align-items:center;justify-content:center;background:var(--panel);min-height:43px;padding:0}
+.habit-table-check input{appearance:none;-webkit-appearance:none;width:17px;height:17px;min-width:17px;margin:0;border:1.4px solid #c9ced8;border-radius:3px;background:transparent;cursor:pointer;display:grid;place-items:center}
+.habit-table-check input:checked{background:var(--accent);border-color:var(--accent)}
+.habit-table-check input:checked:after{content:"";width:7px;height:4px;border-left:2px solid white;border-bottom:2px solid white;transform:rotate(-45deg);margin-top:-2px}
+.habit-table-check.blank{background:var(--bg);opacity:.42}
+.habit-table-empty .habit-table-name{color:var(--muted);font-weight:500}
+@media(max-width:760px){
+ .layout aside .weekly-wide>.panel{padding:12px 8px}
+ .habit-table{min-width:600px}
+ .habit-table-row{grid-template-columns:minmax(138px,1.7fr) repeat(7,minmax(40px,1fr));min-height:39px}
+ .habit-table-name{padding:7px 8px;font-size:11px}
+ .habit-day-head{min-height:48px}
+ .habit-weekday{font-size:10px;line-height:1.3}
+ .habit-date{font-size:9px;line-height:1.35}
+ .habit-table-check{min-height:39px}
+ .habit-table-check input{width:16px;height:16px;min-width:16px}
+}
+
+
+/* Modern controls, clearer themes and subtle motion */
+.top-actions{align-items:center;gap:9px}
+.top-actions button{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:42px;border-radius:14px;padding:10px 14px;box-shadow:0 3px 10px #1820330b;transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease,background .2s ease}
+.top-actions button:hover{transform:translateY(-2px);box-shadow:0 8px 20px #6558e822;border-color:var(--accent)}
+.top-actions button:active{transform:scale(.97)}
+#langBtn{min-width:112px;justify-content:space-between;padding:6px 8px 6px 12px;direction:ltr;gap:10px;border:1.5px solid #7770d8;background:var(--panel)}
+#langBtn .lang-track{width:44px;height:26px;border-radius:99px;background:linear-gradient(135deg,#d8d5ff,#b8b1ff);position:relative;display:inline-block;flex-shrink:0;box-shadow:inset 0 1px 3px #332a6630}
+#langBtn .lang-knob{position:absolute;width:20px;height:20px;top:3px;left:3px;border-radius:50%;background:#fff;box-shadow:0 2px 6px #20204440;transition:transform .25s cubic-bezier(.2,.8,.2,1)}
+#langBtn[data-lang="en"] .lang-knob{transform:translateX(18px)}
+#langBtn .lang-label{font-size:12px;font-weight:800;white-space:nowrap}
+#themeBtn{min-width:112px;border:1.5px solid var(--line);background:var(--panel);box-shadow:0 2px 10px #1820330a}
+body.dark .top-actions button.secondary{border-color:#58617a;background:#20283b;color:#f4f6ff}
+body.dark #langBtn{border-color:#9d94ff;background:#20283b}
+body.dark #langBtn .lang-track{background:linear-gradient(135deg,#5147a7,#7569ed)}
+body.dark .field,body.dark input,body.dark select{border-color:#59627a}
+.field{border-color:#c7cedd;transition:border-color .2s,box-shadow .2s}
+.field:focus{border-color:var(--accent)!important;box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 18%,transparent)}
+.stat,.panel,.task,.day{transition:border-color .2s,box-shadow .2s,transform .2s}
+.stat:hover{transform:translateY(-2px);border-color:color-mix(in srgb,var(--accent) 48%,var(--line))}
+.task{animation:taskIn .28s ease both}.habit-row{animation:taskIn .3s ease both}
+@keyframes taskIn{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:560px){.top-actions{width:100%;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.top-actions button{width:100%;padding:9px 10px;font-size:12px}#langBtn,#themeBtn{min-width:0}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}
+
+/* HaftYar dashboard inspired by the supplied reference */
+:root{--hy-navy:#080f25;--hy-navy2:#101a37;--hy-violet:#6553f5;--hy-cyan:#48c6d7}
+body.dark{--bg:#070d20;--panel:#0d1731;--text:#eef2ff;--muted:#a4b1d2;--line:#26365c;--accent:#715cff;--accent2:#9b80ff;--shadow:0 12px 35px #0005}
+body.dark .stat,body.dark .panel{background:linear-gradient(145deg,#0d1731,#0a132a);border-color:#263b69}
+button,.panel,.stat,.task,.day{transition:background .25s,border-color .25s,transform .22s,box-shadow .22s}
+button:hover{filter:brightness(1.08);transform:translateY(-1px)}
+.panel{animation:hyFadeIn .45s ease both}
+@keyframes hyFadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.hy-sidebar{position:fixed;z-index:30;left:0;top:0;bottom:0;width:194px;padding:22px 13px;background:linear-gradient(180deg,#08112a,#070d1e);border-right:1px solid #26345a;display:flex;flex-direction:column;gap:9px;color:#eaf0ff;box-shadow:12px 0 35px #0002}
+.hy-side-brand{display:flex;align-items:center;gap:11px;font-size:22px;font-weight:900;padding:0 9px 23px;letter-spacing:-.5px}
+.hy-logo{display:grid;place-items:center;width:40px;height:40px;border-radius:13px;background:linear-gradient(135deg,#6757ff,#3ab7d6);box-shadow:0 6px 22px #6857ff55;color:white}
+.hy-nav{display:flex;align-items:center;gap:12px;text-align:left;width:100%;padding:13px 12px;border:1px solid transparent;background:transparent;color:#b9c7e8;border-radius:13px;font-weight:500}
+.hy-nav span{font-size:21px;width:25px;text-align:center}.hy-nav b{font-size:12px;font-weight:600}.hy-nav.active,.hy-nav:hover{background:linear-gradient(100deg,#6048f1,#292f78);color:#fff;border-color:#806eff;box-shadow:0 5px 18px #5647f14a}
+.hy-side-note{margin-top:auto;border:1px solid #2b3b68;border-radius:17px;padding:15px 12px;display:flex;flex-direction:column;gap:7px;background:radial-gradient(ellipse at top,#4c59a7,#111a37 70%);font-size:12px}.hy-mountain{font-size:36px;color:#a99aff}.hy-side-note span{font-size:10px;color:#aab8d8;line-height:1.7}
+#plannerApp.app{max-width:none;margin-left:194px;padding:20px 24px;min-height:100vh}
+#plannerApp .top{padding:5px 0 17px;border-bottom:1px solid var(--line);margin-bottom:17px}
+#plannerApp .top-actions{gap:9px}#plannerApp .top-actions button{border-radius:13px}
+#langBtn{min-width:95px;background:linear-gradient(110deg,#5d4be9,#8b68f5);color:#fff;border:0}
+#themeBtn{min-width:105px;border:1px solid #6b72a1;background:var(--panel);color:var(--text)}
+.hy-drawer-backdrop{position:fixed;inset:0;background:#0206179c;backdrop-filter:blur(3px);z-index:50;opacity:0;visibility:hidden;transition:.28s}
+.hy-settings-drawer{position:fixed;z-index:51;top:0;right:0;bottom:0;width:min(355px,92vw);padding:22px 21px;background:linear-gradient(180deg,#0d1732,#080f23);border-left:1px solid #2b3c68;color:#eef2ff;box-shadow:-20px 0 65px #0005;transform:translateX(105%);visibility:hidden;transition:transform .32s cubic-bezier(.2,.8,.2,1),visibility .32s;overflow-y:auto}
+.hy-settings-drawer.open{transform:translateX(0);visibility:visible}.hy-drawer-backdrop.open{opacity:1;visibility:visible}
+.hy-drawer-head{display:flex;justify-content:space-between;align-items:center;padding-bottom:20px;border-bottom:1px solid #26365c}.hy-drawer-head>div{display:flex;align-items:center;gap:12px;font-size:20px}.hy-gear{font-size:25px;color:#a99aff}.hy-close{background:#1b2848;color:#dbe5ff;font-size:24px;padding:2px 11px;border:1px solid #33456f}
+.hy-setting-section{padding:20px 0;border-bottom:1px solid #26365c}.hy-setting-section>label{display:block;font-size:13px;font-weight:800;margin-bottom:13px}.hy-setting-section p{font-size:11px;line-height:1.9;color:#a4b1d2;margin:0}.hy-language-switch{display:grid;grid-template-columns:1fr 1fr;gap:7px;padding:5px;border-radius:14px;background:#172343}.hy-language-switch button{background:transparent;color:#bdc9e6;padding:12px 7px;border:1px solid transparent}.hy-language-switch button.active{background:linear-gradient(110deg,#594cf0,#8059f4);color:white;box-shadow:0 5px 16px #5748e955}
+.hy-theme-options{display:grid;grid-template-columns:1fr 1fr;gap:9px}.hy-theme-options button{display:flex;flex-direction:column;align-items:center;gap:8px;padding:13px;background:#172343;color:#d8e1fa;border:1px solid #26365c}.hy-theme-options button span{font-size:24px}.hy-theme-options button.active{border-color:#8b72ff;box-shadow:inset 0 0 0 1px #8b72ff;background:#22285a}.hy-setting-link{display:flex;align-items:center;gap:12px}.hy-setting-link>span:first-child{font-size:22px;background:#1b294a;border-radius:50%;width:40px;height:40px;display:grid;place-items:center}.hy-setting-link div{display:flex;flex-direction:column;gap:5px;flex:1}.hy-setting-link strong{font-size:12px}.hy-setting-link small{font-size:10px;color:#a4b1d2}.hy-logout{width:100%;margin-top:23px;padding:13px;background:linear-gradient(110deg,#514cf0,#8a52ef);border-radius:13px}
+@media(max-width:760px){.hy-sidebar{position:relative;left:auto;top:auto;bottom:auto;width:auto;margin:-12px -12px 15px;padding:12px;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:5px;border-right:0;border-bottom:1px solid #26345a}.hy-side-brand,.hy-side-note{display:none}.hy-nav{flex-direction:column;justify-content:center;text-align:center;gap:3px;padding:8px 3px;border-radius:11px}.hy-nav span{font-size:19px}.hy-nav b{font-size:9px;white-space:normal}#plannerApp.app{margin-left:0;padding:12px}.hy-settings-drawer{width:min(355px,92vw)}#plannerApp .top{gap:10px}.brand h1{font-size:20px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+
+
+/* Final reference-matching pass: dark dashboard, vivid cards, and clear interactive checkmarks */
+:root{--bg:#070d20;--panel:#0d1731;--text:#eef2ff;--muted:#a4b1d2;--line:#26365c;--accent:#715cff;--accent2:#9b80ff;--shadow:0 12px 35px #0005}
+body{background:radial-gradient(ellipse at 50% -20%,#182858 0,transparent 48%),#070d20;color:var(--text)}
+body:not(.dark){background:var(--bg);color:var(--text)}
+#plannerApp .top{display:flex;align-items:center;justify-content:space-between;gap:14px;border:0;margin-bottom:14px}
+#plannerApp .brand{gap:11px}#plannerApp .brand .logo{background:linear-gradient(135deg,#6856ff,#35bad4);box-shadow:0 5px 20px #6553f555}
+#plannerApp .welcome{min-height:150px;border:1px solid #2a3c6a;border-radius:20px;padding:24px;background:linear-gradient(100deg,#0c1530f5 0%,#111d3ce8 44%,#1c2450 100%);box-shadow:0 12px 35px #0003;position:relative;overflow:hidden}
+#plannerApp .welcome:after{content:'HOLLYWOOD  ✦  ✦  ✦';position:absolute;right:20px;bottom:15px;width:44%;height:100%;display:flex;align-items:flex-end;justify-content:center;padding-bottom:26px;box-sizing:border-box;color:#c5c9ff;font-weight:900;font-size:clamp(14px,2vw,24px);letter-spacing:2px;text-shadow:0 0 22px #7c72ff;opacity:.85;background:linear-gradient(180deg,transparent 38%,#17224b99),radial-gradient(ellipse at 70% 75%,#6753f555,transparent 60%);pointer-events:none}
+#plannerApp .welcome>div:first-child{position:relative;z-index:1;max-width:55%}#plannerApp .welcome h2{font-size:clamp(20px,2vw,28px);color:#fff}#plannerApp .welcome p{color:#c1cbea}
+#plannerApp .today-pill{background:#17264a;border:1px solid #344a7b;color:#e8edff;border-radius:14px;padding:12px 16px;position:relative;z-index:2}
+#plannerApp .stat,#plannerApp .panel{background:linear-gradient(145deg,#0e1934,#0a132a);border:1px solid #263b69;border-radius:18px;color:#eef2ff;box-shadow:0 10px 28px #0002}
+#plannerApp .stat .label,#plannerApp .panel h3,#plannerApp .panel h2{color:#f0f3ff}#plannerApp .muted,#plannerApp .calendar-note,#plannerApp .stat .hint{color:#a4b1d2}
+#plannerApp .field{background:#111e3c;color:#f0f3ff;border-color:#354772;border-radius:12px}
+#plannerApp .field::placeholder{color:#8798bd}#plannerApp select.field{color:#f0f3ff}
+#plannerApp .task{background:linear-gradient(100deg,#14244a,#101b37);border:1px solid #253961;border-radius:13px;color:#eef2ff}
+#plannerApp .task input[type=checkbox]{appearance:none;-webkit-appearance:none;width:22px;height:22px;border:1.5px solid #6475a6;border-radius:50%;background:#0c1731;display:grid;place-items:center;cursor:pointer;transition:.2s}
+#plannerApp .task input[type=checkbox]:checked{background:linear-gradient(135deg,#6857ff,#a06dff);border-color:#a99aff;box-shadow:0 0 12px #745dff70}
+#plannerApp .task input[type=checkbox]:checked:after{content:'✓';color:white;font-size:14px;font-weight:900}
+#plannerApp .habit-table{border-color:#26365c;background:#0c1630;border-radius:12px;overflow:hidden}
+#plannerApp .habit-table-name,#plannerApp .habit-table-check{background:#0e1934;border-color:#26365c;color:#e9efff}
+#plannerApp .habit-table-head .habit-table-name,#plannerApp .habit-day-head{background:#152345;color:#dce5ff;border-color:#30436d}
+#plannerApp .habit-day-head.selected{background:linear-gradient(135deg,#5e4cf1,#8b5ff4);color:#fff}
+#plannerApp .habit-day-head.today:not(.selected){box-shadow:inset 0 -3px #8b72ff}
+#plannerApp .habit-table-check input{width:19px;height:19px;min-width:19px;border:1.5px solid #586b9b;border-radius:6px;background:#0a142c;transition:all .18s}
+#plannerApp .habit-table-check input:checked{background:linear-gradient(135deg,#6654ff,#9a66f7);border-color:#a79aff;box-shadow:0 0 10px #6553f544}
+#plannerApp .habit-table-check input:checked:after{width:8px;height:4px;border-left:2px solid #fff;border-bottom:2px solid #fff}
+#plannerApp .habit-table-check.blank{background:#0a1329;opacity:.55}
+#plannerApp .progress-line,#plannerApp .mini-progress{background:#202d4d}#plannerApp .progress-line span{background:linear-gradient(90deg,#6251f4,#a06dff)}#plannerApp .mini-progress span{background:linear-gradient(90deg,#27b9ce,#6558f5)}
+#plannerApp .hy-nav{color:#b9c7e8}#plannerApp .hy-nav.active{background:linear-gradient(100deg,#6048f1,#292f78)}
+#plannerApp button{border-radius:12px}#plannerApp .secondary{background:#121f3d;color:#e2eaff;border-color:#30436d}
+#plannerApp .empty{border-color:#354772;color:#a4b1d2;background:#0c1630}
+#plannerApp .footer{color:#8192b8}
+/* Light mode remains a real option with readable borders and controls. */
+body:not(.dark) #plannerApp .stat,body:not(.dark) #plannerApp .panel{background:#fff;color:#182033;border-color:#b9c3d7}
+body:not(.dark) #plannerApp .panel h3,body:not(.dark) #plannerApp .panel h2,body:not(.dark) #plannerApp .stat .label{color:#182033}
+body:not(.dark) #plannerApp .task{background:#f8f9ff;color:#182033;border-color:#c4cddd}
+body:not(.dark) #plannerApp .habit-table-name,body:not(.dark) #plannerApp .habit-table-check{background:#fff;color:#182033;border-color:#c4cddd}
+body:not(.dark) #plannerApp .habit-table-head .habit-table-name,body:not(.dark) #plannerApp .habit-day-head{background:#edf0fa;color:#182033}
+body:not(.dark) #plannerApp .field{background:#fff;color:#182033;border-color:#aeb9ce}
+@media(max-width:760px){#plannerApp .welcome{padding:18px;min-height:130px}#plannerApp .welcome:after{width:38%;font-size:12px;letter-spacing:0}#plannerApp .welcome>div:first-child{max-width:68%}#plannerApp .top{flex-wrap:wrap}#plannerApp .brand{min-width:0}}
+
+
+/* Header controls styled like the reference: compact language segmented pill and light switch. */
+#plannerApp .top-actions{display:flex;align-items:center;gap:14px;flex-wrap:nowrap}
+#plannerApp #todayBtn,#plannerApp #logoutBtn{display:none!important}
+#plannerApp #langBtn{display:flex;align-items:center;justify-content:center;gap:2px;min-width:92px;padding:5px;border-radius:999px;background:#101a35;border:1px solid #26365c;color:#c8d3f1;box-shadow:none}
+#plannerApp #langBtn .lang-choice{display:grid;place-items:center;min-width:37px;height:30px;border-radius:999px;font-size:12px;font-weight:700;transition:all .22s ease}
+#plannerApp #langBtn .lang-choice.active{background:linear-gradient(120deg,#6048f1,#8b5ff4);color:#fff;box-shadow:0 3px 12px #6048f155}
+#plannerApp #themeBtn{display:flex;align-items:center;justify-content:center;gap:10px;min-width:0;padding:5px 9px;background:transparent;border:0;box-shadow:none;color:var(--text)}
+#plannerApp #themeBtn .sun-icon{font-size:23px;line-height:1;color:#e6a928;display:inline-block;min-width:24px;text-align:center;transition:transform .25s ease,color .25s ease}\nbody.dark #plannerApp #themeBtn .sun-icon{color:#c6c9ff;transform:rotate(-18deg)}
+#plannerApp #themeBtn .theme-switch{width:54px;height:31px;border-radius:99px;padding:3px;display:flex;align-items:center;justify-content:flex-start;direction:ltr;background:#e4e9f5;border:2px solid #7b86a4;box-sizing:border-box;transition:background .25s ease,border-color .25s ease}
+#plannerApp #themeBtn .theme-switch i{display:block;width:21px;height:21px;flex:0 0 21px;border-radius:50%;background:linear-gradient(135deg,#fff,#d8deed);box-shadow:0 1px 5px #11182735;transform:translateX(0);transition:transform .25s ease}
+#plannerApp #themeBtn .theme-switch.on{background:#27205b;border-color:#7767ff}
+#plannerApp #themeBtn .theme-switch.on i{transform:translateX(23px);background:linear-gradient(135deg,#fff,#bcb5ff);box-shadow:0 0 10px #8b72ff88}
+body:not(.dark) #plannerApp #themeBtn .sun-icon{color:#e0a21b}
+body.dark #plannerApp #themeBtn .sun-icon{color:#aeb9db}
+@media(max-width:760px){#plannerApp .top-actions{width:auto;display:flex;gap:5px;flex-wrap:wrap}#plannerApp .top-actions button{width:auto}#plannerApp #langBtn{min-width:84px}#plannerApp #themeBtn{padding:4px}}
+
+/* ---- v3 desktop additions ---- */
+.range-seg{display:inline-flex;gap:4px;padding:4px;border-radius:12px;background:var(--panel2,rgba(127,127,160,.12));border:1px solid var(--line)}
+.range-seg button{padding:6px 14px;border-radius:9px;background:transparent;color:var(--muted);font-weight:700;font-size:13px;border:0;cursor:pointer;transition:background .2s,color .2s}
+.range-seg button.on{background:var(--accent);color:#fff;box-shadow:0 4px 12px rgba(120,100,255,.35)}
+.chart-note{display:block;margin-top:2px;font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.task-icon{font-size:18px;margin-inline-end:6px;vertical-align:middle}
+.icon-field{flex:0 0 64px;width:64px;text-align:center;font-size:18px;padding-inline:4px}
+#chartPanel .panel-head{flex-wrap:nowrap;gap:8px;align-items:flex-start}
+#chartPanel .panel-head h3{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:15px}
+#chartPanel .range-seg{flex:0 0 auto;padding:3px;gap:2px}
+#chartPanel .range-seg button{padding:4px 9px;font-size:12px}
+#chartPanel .chart-wrap{height:112px;min-height:112px}
+@media(max-width:1100px){#chartPanel .panel-head{flex-wrap:wrap}#chartPanel .range-seg{margin-top:6px}#chartPanel{height:auto!important;min-height:0!important}#chartPanel .chart-wrap{height:130px;min-height:130px}}
+/* ---- v3 account panel ---- */
+.acc-backdrop{position:fixed;inset:0;background:rgba(5,8,20,.55);opacity:0;pointer-events:none;transition:opacity .2s;z-index:80}
+.acc-backdrop.open{opacity:1;pointer-events:auto}
+.acc-modal{position:fixed;z-index:81;left:50%;top:50%;transform:translate(-50%,-50%);width:min(440px,calc(100vw - 32px));max-height:calc(100vh - 48px);overflow:auto;background:var(--panel);color:var(--text);border:1px solid var(--line);border-radius:20px;box-shadow:0 24px 60px rgba(0,0,0,.35);padding:22px;box-sizing:border-box}
+.acc-modal[hidden]{display:none}
+.acc-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:14px}
+.acc-head h2{margin:0;font-size:19px;color:var(--text)}
+.acc-sub{margin:3px 0 0;font-size:12.5px;color:var(--muted)}
+.acc-profile{display:flex;align-items:center;gap:12px;padding:14px;border-radius:16px;background:rgba(127,127,190,.1);border:1px solid var(--line);margin-bottom:14px}
+.acc-avatar{width:52px;height:52px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,#6a55ff,#9b6bff);color:#fff;font-size:22px;font-weight:800;flex:0 0 52px}
+.acc-who{display:flex;flex-direction:column;min-width:0}
+.acc-who strong{font-size:16px;color:var(--text)}
+.acc-who small{color:var(--muted);font-size:12.5px}
+.acc-tabs{display:flex;gap:6px;padding:4px;border-radius:14px;background:rgba(127,127,190,.1);border:1px solid var(--line);margin-bottom:14px}
+.acc-tab{flex:1;padding:9px 6px;border-radius:10px;border:0;background:transparent;color:var(--muted);font-weight:700;font-size:12.5px;cursor:pointer;font-family:inherit}
+.acc-tab.active{background:linear-gradient(135deg,#6a55ff,#9b6bff);color:#fff}
+.acc-form{display:flex;flex-direction:column;gap:12px}
+.acc-form[hidden],.acc-list[hidden]{display:none}
+.acc-field{display:flex;flex-direction:column;gap:6px;font-size:12.5px;font-weight:700;color:var(--text)}
+.acc-field input{padding:11px 12px;border-radius:12px;border:1px solid var(--line);background:rgba(127,127,190,.08);color:var(--text);font-family:inherit;font-size:14px}
+.acc-field input:disabled{opacity:.6}
+.acc-field input:focus{outline:none;border-color:#8b72ff;box-shadow:0 0 0 3px rgba(101,83,245,.25)}
+.acc-primary{padding:12px;border-radius:13px;border:0;background:linear-gradient(135deg,#6a55ff,#9b6bff);color:#fff;font-weight:800;font-size:14px;cursor:pointer;font-family:inherit}
+.acc-msg{margin:0;font-size:12.5px;min-height:16px;color:#e5484d}
+.acc-msg.ok{color:#23875a}
+.acc-list{display:flex;flex-direction:column;gap:8px}
+.acc-row{display:flex;align-items:center;gap:10px;padding:11px 12px;border-radius:13px;border:1px solid var(--line);background:rgba(127,127,190,.06)}
+.acc-row .acc-who{flex:1}
+.acc-row button{padding:7px 12px;border-radius:10px;border:1px solid var(--line);background:transparent;color:var(--text);font-weight:700;font-size:12px;cursor:pointer;font-family:inherit}
+.acc-row .acc-cur{font-size:12px;color:var(--muted);font-weight:700}
+.acc-empty{color:var(--muted);font-size:13px;margin:6px 0}
+.acc-foot{margin-top:16px;padding-top:14px;border-top:1px solid var(--line)}
+.acc-danger{width:100%;padding:12px;border-radius:13px;border:1px solid #ef6b6b66;background:transparent;color:#e5484d;font-weight:800;cursor:pointer;font-family:inherit}
+/* ---- v3 misc ---- */
+#themeBtn .sun-icon{font-family:"Segoe UI Emoji","Apple Color Emoji","Noto Color Emoji",sans-serif;font-size:20px;line-height:1}
+.hy-setting-link{cursor:pointer}
+@media(max-width:760px){.hy-sidebar{grid-template-columns:repeat(3,minmax(0,1fr))}}
+/* ---- v3 theme: one explicit palette per theme (overrides the dark :root defaults) ---- */
+body:not(.dark){--bg:#f3f5fb;--panel:#ffffff;--text:#172033;--muted:#5a6680;--line:#dfe4ee;--accent:#6558e8;--accent2:#8c82ff;--shadow:0 10px 30px rgba(31,41,75,.08)}
+body:not(.dark){background:var(--bg);color:var(--text)}
+body.dark{--bg:#070d20;--panel:#0d1731;--text:#eef2ff;--muted:#a4b1d2;--line:#26365c;--accent:#715cff;--accent2:#9b80ff;--shadow:0 12px 35px #0005}
+body.dark{background:radial-gradient(ellipse at 50% -20%,#182858 0,transparent 48%),#070d20;color:var(--text)}
+/* ---- HaftYar mobile v2 (max-width:767px only) ---- */
+
+/* ===================================================================
+   HaftYar MOBILE UI (≤767px) — refined to match the reference screens.
+   Every rule below is inside the media query, or targets elements that
+   are display:none on desktop. Desktop CSS above this block is unchanged.
+   =================================================================== */
+#mobileRoot{display:none}
+@media (max-width:767px){
+#plannerApp.app{margin:0!important;padding:0!important;max-width:none!important;width:100%;min-height:100vh;min-height:100dvh;overflow-x:hidden}
+#plannerApp.admin-mode{padding:12px!important}
+#plannerApp:not(.admin-mode) .top,#plannerApp:not(.admin-mode) #plannerContent,.hy-sidebar{display:none!important}
+#plannerApp:not(.admin-mode) #mobileRoot{display:block}
+
+/* ---------- shell ---------- */
+#mobileRoot{position:relative;min-height:100dvh;box-sizing:border-box;padding-bottom:calc(88px + env(safe-area-inset-bottom));background:var(--bg);color:var(--text);direction:rtl;overflow-x:hidden;font-family:"Vazirmatn","IRANSansX","Segoe UI",Tahoma,sans-serif}
+#mobileRoot.en{direction:ltr}
+#mobileRoot button:hover{transform:none;filter:none}
+#mobileRoot button{font-family:inherit}
+.m-main{padding:14px 13px 18px;box-sizing:border-box}
+.m-ui{border:0;cursor:pointer;font-weight:700;color:var(--text);background:transparent;padding:0;-webkit-tap-highlight-color:transparent;font-family:inherit;box-sizing:border-box}
+.m-head{display:flex;align-items:center;gap:10px;min-height:44px;margin:4px 0 14px}
+.m-title{flex:1;min-width:0;margin:0;font-size:22px;font-weight:800;color:var(--text)}
+.m-iconbtn{width:40px;height:40px;flex:0 0 40px;border-radius:14px;background:var(--panel);border:1px solid var(--line);display:grid;place-items:center;font-size:20px;line-height:1;color:var(--text)}
+.m-plus{width:42px;height:42px;flex:0 0 42px;border-radius:14px;background:linear-gradient(135deg,#6a55ff,#9b6bff);color:#fff;font-size:26px;line-height:1;box-shadow:0 6px 18px #6553f566}
+.m-linkbtn{font-size:12px;color:var(--muted);font-weight:700}
+.m-hello{margin:4px 0 2px;font-size:20px;font-weight:800;color:var(--text)}
+.m-sub{margin:0 0 14px;font-size:12.5px;color:var(--muted);line-height:1.6}
+.m-topbar{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:14px}
+.m-topgroup{display:flex;align-items:center;gap:8px}
+.m-seg{display:inline-flex;gap:3px;padding:3px;border-radius:12px;background:var(--panel);border:1px solid var(--line)}
+.m-seg button{padding:6px 11px;border-radius:9px;background:transparent;color:var(--muted);font-size:12px;font-weight:700}
+.m-seg button.on{background:linear-gradient(135deg,#6a55ff,#9b6bff);color:#fff}
+.m-seg-wide{display:flex;width:100%;margin-bottom:12px}
+.m-seg-wide button{flex:1;padding:9px 0}
+.m-switch{position:relative;width:54px;height:30px;border-radius:99px;background:var(--panel);border:1px solid var(--line)}
+.m-switch .m-knob{position:absolute;top:3px;left:3px;width:22px;height:22px;border-radius:50%;background:#fff;box-shadow:0 1px 4px #0005;transition:left .2s}
+.m-switch.on{background:linear-gradient(135deg,#3a2f8a,#5b48e0);border-color:#7b66ff}
+.m-switch.on .m-knob{left:27px}
+.m-card{padding:14px;border-radius:18px;border:1px solid var(--line);background:var(--panel);box-sizing:border-box;margin-bottom:12px;box-shadow:0 8px 22px #0002}
+
+/* ---------- dashboard ---------- */
+.m-prog{display:flex;align-items:center;gap:14px}
+.m-ringwrap{position:relative;width:76px;height:76px;flex:0 0 76px}
+.m-ringlg{width:96px;height:96px;flex:0 0 96px}
+.m-ringtxt{position:absolute;inset:0;display:grid;place-items:center;font-size:17px;font-weight:800;color:var(--text)}
+.m-ring{display:block;transform:rotate(-90deg);width:100%;height:100%}
+.m-ring-bg{fill:none;stroke:var(--line)}
+.m-ring-fg{fill:none;stroke:#7b66ff;stroke-linecap:round}
+.m-progtxt{flex:1;min-width:0}
+.m-progtxt h2{margin:0;font-size:15px;font-weight:800}
+.m-progtxt p{margin:3px 0 0;font-size:11px;color:var(--muted)}
+.m-minibars{display:flex;align-items:flex-end;gap:4px;height:34px;margin-top:10px}
+.m-minibars span{flex:1;border-radius:4px;background:linear-gradient(180deg,#8b7bff,#5b48e0);min-height:3px}
+.m-stat2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px}
+.m-stat2i{display:flex;align-items:center;gap:10px;padding:12px;margin:0;min-width:0}
+.m-stat2i .m-ic{width:34px;height:34px;flex:0 0 34px;border-radius:11px;background:var(--bg);display:grid;place-items:center;font-size:16px}
+.m-stat2i small{display:block;font-size:10.5px;color:var(--muted);line-height:1.4}
+.m-stat2i b{display:block;font-size:14px;color:var(--text);margin-top:2px}
+.m-sec{display:flex;justify-content:space-between;align-items:center;margin:6px 2px 10px;font-size:15px;font-weight:800;color:var(--text)}
+
+/* ---------- rows & checkboxes ---------- */
+.m-row{display:flex;align-items:center;gap:12px;padding:12px;border-radius:14px;background:var(--panel);border:1px solid var(--line);margin-bottom:8px;box-sizing:border-box}
+.m-txt{flex:1;min-width:0}
+.m-txt b{display:block;font-size:13.5px;overflow-wrap:anywhere;color:var(--text)}
+.m-txt span{font-size:11px;color:var(--muted)}
+.m-row.done .m-txt b{text-decoration:line-through;color:var(--muted)}
+.m-cb{appearance:none;-webkit-appearance:none;width:22px;height:22px;margin:0;border-radius:7px;border:1.5px solid #5b6b98;background:transparent;display:grid;place-items:center;cursor:pointer;flex:0 0 auto}
+.m-cb:checked{background:linear-gradient(135deg,#6a55ff,#9b6bff);border-color:#a99aff}
+.m-cb:checked::after{content:'✓';color:#fff;font-size:12px;font-weight:900;line-height:1}
+.m-cb:focus-visible{outline:2px solid #8b72ff;outline-offset:2px}
+.m-empty{text-align:center;color:var(--muted);padding:22px 10px;border:1px dashed var(--line);border-radius:14px;font-size:12.5px;line-height:1.7}
+
+/* ---------- week header (habits & plans) ---------- */
+.m-range-row{display:flex;align-items:center;justify-content:center;gap:12px;margin:0 0 10px;font-size:12px;color:var(--muted)}
+.m-arrow{width:28px;height:28px;border-radius:10px;background:var(--panel);border:1px solid var(--line);font-size:16px;line-height:1;display:grid;place-items:center;color:var(--text)}
+.m-wk{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));margin:0 0 12px}
+.m-wk-day{display:flex;flex-direction:column;align-items:center;gap:6px;padding:0;background:none;color:var(--muted);font-size:10px;font-weight:700;min-width:0}
+.m-wk-day.sel .m-wk-name{color:var(--text)}
+.m-wk-name{white-space:nowrap}
+.m-dot{width:24px;height:24px;border-radius:50%;border:1.5px solid var(--line);background:var(--panel);box-sizing:border-box;display:grid;place-items:center;color:#fff;font-size:12px;font-weight:900;line-height:1}
+.m-dot.partial{border-color:#7b66ff}
+.m-dot.full{background:linear-gradient(135deg,#6a55ff,#9b6bff);border-color:#a99aff;box-shadow:0 0 10px #6a55ff55}
+.m-wk-day.sel .m-dot{outline:2px solid #8b72ff;outline-offset:2px}
+
+/* ---------- habit cards ---------- */
+.m-hlist{display:flex;flex-direction:column;gap:10px}
+.m-hcard{padding:12px;border-radius:16px;border:1px solid var(--line);background:var(--panel);box-sizing:border-box;box-shadow:0 8px 22px #0002}
+.m-hrow{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.m-hname{flex:1;min-width:0;font-size:14px;font-weight:800;overflow-wrap:anywhere;color:var(--text)}
+.m-icon{width:38px;height:38px;flex:0 0 38px;border-radius:12px;display:grid;place-items:center;font-size:18px;color:#fff;box-shadow:0 4px 12px #0003}
+.m-hchecks{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));justify-items:center;align-items:center}
+.m-hcell{display:grid;place-items:center;min-height:24px}
+
+/* ---------- weekly plan ---------- */
+.m-tabs{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px;padding:2px 0 12px}
+.m-tab{min-width:0;padding:8px 0 7px;border-radius:12px;background:var(--panel);border:1px solid var(--line);color:var(--muted);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;font-family:inherit}
+.m-tab-name{display:block;max-width:100%;font-size:clamp(8.5px,2.55vw,11px);font-weight:700;line-height:1.3;white-space:nowrap;letter-spacing:0}
+.m-tab-num{font-size:13px;font-weight:800;line-height:1}
+.m-tab.sel .m-tab-num{color:#fff}
+.m-tab.sel{background:linear-gradient(135deg,#6a55ff,#9b6bff);color:#fff;border-color:#a99aff}
+.m-pcard{display:flex;align-items:center;gap:12px;padding:12px 10px 12px 12px;border-radius:14px;background:var(--panel);border:1px solid var(--line);border-inline-start:4px solid var(--c);margin-bottom:10px;box-sizing:border-box}
+.m-pcard .m-txt b.done{text-decoration:line-through;color:var(--muted)}
+.m-chev{width:30px;height:30px;flex:0 0 30px;border-radius:10px;background:transparent;color:var(--muted);font-size:20px;line-height:1}
+.m-fab{position:fixed;bottom:calc(98px + env(safe-area-inset-bottom));inset-inline-end:16px;width:54px;height:54px;border-radius:18px;background:linear-gradient(135deg,#6a55ff,#9b6bff);color:#fff;font-size:28px;line-height:1;z-index:30;box-shadow:0 10px 26px #6553f599}
+
+/* ---------- forms ---------- */
+.m-form{display:flex;flex-direction:column;gap:14px;box-sizing:border-box}
+.m-field{display:flex;flex-direction:column;gap:7px;font-size:12.5px;font-weight:700;color:var(--text)}
+.m-input{width:100%;padding:13px 12px;border-radius:13px;border:1px solid var(--line);background:var(--panel);color:var(--text);font-family:inherit;font-size:14px;outline:none;box-sizing:border-box;min-width:0}
+textarea.m-input{resize:vertical;min-height:84px}
+.m-input:focus{border-color:#8b72ff;box-shadow:0 0 0 3px #6553f533}
+.m-colors{display:flex;gap:12px;flex-wrap:wrap;padding-top:2px}
+.m-colorpick{position:relative;width:36px;height:36px;display:inline-block}
+.m-colorpick input{position:absolute;inset:0;opacity:0;width:100%;height:100%;margin:0;cursor:pointer}
+.m-colorpick span{display:block;width:36px;height:36px;border-radius:50%;border:2px solid transparent;box-sizing:border-box}
+.m-colorpick input:checked + span{border-color:#fff;box-shadow:0 0 0 2px #7b66ff}
+.m-colorpick input:focus-visible + span{outline:2px solid #8b72ff;outline-offset:2px}
+.m-btnpri{width:100%;padding:14px;border-radius:14px;background:linear-gradient(135deg,#6a55ff,#9b6bff);color:#fff;font-size:15px;font-weight:800;box-shadow:0 8px 22px #6553f566}
+.m-btndanger{width:100%;padding:13px;border-radius:14px;background:transparent;color:#ef6b6b;border:1px solid #ef6b6b66;font-size:14px;font-weight:800}
+.m-error{margin:0;font-size:12px;color:#ef6b6b}
+.m-note{font-size:12px;color:var(--muted);line-height:1.7;margin:0}
+
+/* ---------- account, drawer, settings ---------- */
+.m-profile{display:flex;flex-direction:column;align-items:center;gap:4px;margin:6px 0 18px;text-align:center}
+.m-avatar{width:76px;height:76px;border-radius:50%;background:linear-gradient(135deg,#6a55ff,#9b6bff);color:#fff;display:grid;place-items:center;font-size:30px;font-weight:800;margin-bottom:6px;box-shadow:0 10px 28px #6553f580}
+.m-profile h2{margin:0;font-size:18px;color:var(--text)}
+.m-profile p{margin:0;color:var(--muted);font-size:12.5px}
+.m-profile.small{align-items:flex-start;text-align:start;margin:0 0 16px}
+.m-profile.small .m-avatar{width:52px;height:52px;font-size:22px;margin-bottom:4px}
+.m-menu{display:flex;align-items:center;gap:12px;width:100%;padding:13px 14px;border-radius:14px;background:var(--panel);border:1px solid var(--line);margin-bottom:10px;color:var(--text);font-size:14px;font-weight:700;box-sizing:border-box;text-align:start}
+.m-menu .m-mi{width:34px;height:34px;flex:0 0 34px;border-radius:11px;display:grid;place-items:center;background:var(--bg);font-size:15px}
+.m-menu .m-go{margin-inline-start:auto;color:var(--muted);font-size:18px}
+.m-menu.danger{color:#ef6b6b}
+.m-menu.danger .m-mi{color:#ef6b6b}
+.m-sect{margin-bottom:18px}
+.m-sect-t{font-size:12.5px;font-weight:800;color:var(--muted);margin:0 2px 8px}
+.m-desc{font-size:11px;color:var(--muted);line-height:1.6;margin:4px 0 0}
+.m-drawer{position:fixed;inset:0;z-index:60;visibility:hidden;direction:rtl}
+.m-drawer.open{visibility:visible}
+.m-scrim{position:absolute;inset:0;background:#02061799;opacity:0;transition:opacity .25s}
+.m-drawer.open .m-scrim{opacity:1}
+.m-dpanel{position:absolute;top:0;bottom:0;right:0;width:min(320px,84vw);padding:26px 16px calc(20px + env(safe-area-inset-bottom));background:var(--panel);border-inline-start:1px solid var(--line);box-sizing:border-box;overflow-y:auto;transform:translateX(104%);transition:transform .28s cubic-bezier(.2,.8,.2,1)}
+.m-drawer.open .m-dpanel{transform:none}
+#mobileRoot.en .m-dpanel{direction:ltr}
+
+/* ---------- progress ---------- */
+.m-linechart{width:100%;height:auto;display:block;direction:ltr}
+.m-grid{stroke:var(--line);stroke-width:1}
+.m-axis{font-size:9px;fill:var(--muted)}
+.m-line{stroke:#8b72ff;stroke-width:2.5;stroke-linejoin:round;stroke-linecap:round}
+.m-dotc{fill:#8b72ff}
+.m-chartcard{padding:12px 10px 8px}
+.m-rings{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-bottom:12px}
+.m-ringitem{display:flex;flex-direction:column;align-items:center;gap:8px;padding:12px 6px;border-radius:16px;background:var(--panel);border:1px solid var(--line);box-sizing:border-box}
+.m-ringitem span{font-size:11.5px;color:var(--muted);font-weight:700}
+.m-sum h3{margin:0 0 4px;font-size:15px;color:var(--text)}
+.m-sumrow{display:flex;align-items:center;gap:10px;padding:11px 0;border-bottom:1px solid var(--line);font-size:13px;color:var(--text)}
+.m-sumrow:last-child{border-bottom:0}
+.m-sumrow .m-ic{width:30px;height:30px;flex:0 0 30px;border-radius:10px;background:var(--bg);display:grid;place-items:center;font-size:14px}
+.m-sumrow b{margin-inline-start:auto;font-size:13.5px}
+
+/* ---------- bottom navigation ---------- */
+.m-nav{position:fixed;left:0;right:0;bottom:0;z-index:40;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:4px;padding:9px 10px calc(9px + env(safe-area-inset-bottom));background:var(--panel);opacity:.97;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-top:1px solid var(--line);border-radius:22px 22px 0 0;box-shadow:0 -8px 24px #0004;box-sizing:border-box}
+.m-nav-btn{display:flex;flex-direction:column;align-items:center;gap:4px;padding:2px 2px;background:transparent;color:var(--muted);font-size:10.5px;font-weight:700;min-width:0}
+.m-nav-ic{width:50px;height:30px;display:grid;place-items:center;border-radius:12px;font-size:16px;line-height:1}
+.m-nav-btn.active{color:var(--text)}
+.m-nav-btn.active .m-nav-ic{background:linear-gradient(135deg,#6a55ff,#9b6bff);color:#fff;box-shadow:0 4px 14px #6553f566}
+.m-nav-lbl{white-space:nowrap}
+
+}
+
+.m-nav-ic svg{width:22px;height:22px;display:block}
+
+
+/* Final light-theme polish: keep controls soft gray, never black */
+body:not(.dark) #plannerApp button:not(.acc-primary):not(.auth-submit):not(.hy-logout):not(.acc-danger),
+body:not(.dark) #settingsDrawer button,
+body:not(.dark) #infoModal button {
+  background:#eef0f4 !important; color:#343b49 !important; border-color:#d4d9e2 !important; box-shadow:0 1px 3px rgba(28,39,58,.06) !important;
+}
+body:not(.dark) #plannerApp button:hover, body:not(.dark) #settingsDrawer button:hover {background:#e2e6ed !important; border-color:#bdc5d2 !important; color:#252c39 !important;}
+body:not(.dark) #plannerApp .hy-nav {background:transparent !important;color:#515b6d !important;border-color:transparent !important;box-shadow:none !important;}
+body:not(.dark) #plannerApp .hy-nav.active {background:#e7e9f1 !important;color:#4e42bc !important;border-color:#d6d8e8 !important;box-shadow:none !important;}
+body:not(.dark) #plannerApp #themeBtn {background:transparent !important;border-color:transparent !important;box-shadow:none !important;}
+body:not(.dark) #plannerApp .range-seg button.on {background:#dcdff0 !important;color:#4e42bc !important;border-color:#c7cbea !important;}
+body:not(.dark) #plannerApp .acc-primary, body:not(.dark) #plannerApp .hy-logout, body:not(.dark) #plannerApp .auth-submit {background:linear-gradient(115deg,#6256df,#8d7cf6) !important;color:white !important;}
+body:not(.dark) #plannerApp .chart-wrap {min-height:145px;}
+@media(min-width:761px){body:not(.dark) #plannerApp .layout aside>.panel:nth-of-type(1){min-height:210px!important;height:210px!important;} body:not(.dark) #plannerApp .layout aside .chart-wrap{height:135px;min-height:135px;}}
+@media(max-width:760px){#sidebarAccountBtn{grid-column:auto;}}
+
+
+/* Weekly chart weekday labels: compact Persian font, always on one line */
+.layout aside .weekly-wide .day .weekday{
+  font-family: Vazirmatn, Tahoma, Arial, sans-serif !important;
+  font-size: clamp(7px, .58vw, 9px) !important;
+  line-height: 1.25 !important;
+  white-space: nowrap !important;
+  overflow-wrap: normal !important;
+  word-break: keep-all !important;
+  letter-spacing: 0 !important;
+  min-width: 0 !important;
+}
+@media(max-width:760px){
+  .layout aside .weekly-wide .day .weekday{font-size:7px !important;}
+}
+</style>
+</head>
+<body>
+<section id="authScreen" class="auth-screen">
+ <div class="auth-orb orb-one"></div><div class="auth-orb orb-two"></div>
+ <div class="auth-card">
+  <div class="auth-brand"><div class="auth-logo">✓</div><div><div class="auth-name">هفت‌یار<span class="auth-dot">.</span></div><div class="auth-tag" data-fa="فضای شخصی برای رشد روزانه" data-en="Your personal space to grow daily">فضای شخصی برای رشد روزانه</div></div></div>
+  <div class="auth-chip"><span class="live-dot"></span><span data-fa="شروع یک عادت بهتر" data-en="A better habit starts here">شروع یک عادت بهتر</span></div>
+  <h1 id="authTitle" data-fa="به نسخه بهتر خودت خوش اومدی" data-en="Welcome to your better self">به نسخه بهتر خودت خوش اومدی</h1>
+  <p class="auth-desc" id="authDesc" data-fa="برنامه‌هات رو مرتب کن، پیشرفتت رو ببین و هر روز یک قدم جلوتر برو." data-en="Organize your plans, track your progress, and move forward one day at a time.">برنامه‌هات رو مرتب کن، پیشرفتت رو ببین و هر روز یک قدم جلوتر برو.</p>
+  <div class="auth-tabs"><button type="button" id="loginTab" class="auth-tab active" data-fa="ورود" data-en="Log in">ورود</button><button type="button" id="signupTab" class="auth-tab" data-fa="ساخت حساب" data-en="Create account">ساخت حساب</button></div>
+  <form id="authForm" class="auth-form">
+   <label id="nameLabel" class="auth-label" hidden data-fa="نام نمایشی" data-en="Display name">نام نمایشی</label><input id="authName" class="auth-input" autocomplete="name" placeholder="مثلاً سبحان" data-fa-placeholder="مثلاً سبحان" data-en-placeholder="e.g. Alex" hidden>
+   <label class="auth-label" data-fa="نام کاربری" data-en="Username">نام کاربری</label><input id="authUsername" class="auth-input" type="text" autocomplete="username" required minlength="3" maxlength="24" placeholder="مثلاً sobhan" data-fa-placeholder="مثلاً sobhan" data-en-placeholder="e.g. alex_01">
+   <label class="auth-label" data-fa="رمز عبور" data-en="Password">رمز عبور</label><input id="authPassword" class="auth-input" type="password" autocomplete="current-password" minlength="4" required placeholder="••••••••">
+   <p id="authMessage" class="auth-message" aria-live="polite"></p>
+   <button class="auth-submit" id="authSubmit" type="submit"><span data-fa="ورود به هفت‌یار" data-en="Enter HaftYar">ورود به هفت‌یار</span><span class="auth-arrow">↗</span></button>
+  </form>
+  <div class="auth-bottom"><span data-fa="سبک‌تر برنامه‌ریزی کن. بهتر پیش برو." data-en="Plan lighter. Make better progress.">سبک‌تر برنامه‌ریزی کن. بهتر پیش برو.</span><button id="authLang" type="button">English ↗</button></div>
+  <p class="auth-local-note" data-fa="حساب آنلاین با نام کاربری و رمز ساخته می‌شود؛ برای همگام‌سازی، اتصال اینترنت لازم است." data-en="Logging out does not delete your data, and auto-login works in this browser. Cross-device sync requires an online database.">حساب آنلاین با نام کاربری و رمز ساخته می‌شود؛ برای همگام‌سازی، اتصال اینترنت لازم است.</p>
+ </div>
+ <div class="auth-side-copy"><span>HABITS · FOCUS · PROGRESS</span><h2 data-fa="آینده با کارهای کوچیک ساخته می‌شه." data-en="Your future is built one small step at a time.">آینده با کارهای کوچیک ساخته می‌شه.</h2><p data-fa="هر تیک کوچیک، یک قدم به هدف‌هات نزدیک‌ترت می‌کنه." data-en="Every little checkmark brings you closer to your goals.">هر تیک کوچیک، یک قدم به هدف‌هات نزدیک‌ترت می‌کنه.</p><div class="auth-mini-stats"><div><strong>01</strong><span data-fa="برنامه‌ریزی" data-en="Plan">برنامه‌ریزی</span></div><div><strong>02</strong><span data-fa="تمرکز" data-en="Focus">تمرکز</span></div><div><strong>03</strong><span data-fa="پیشرفت" data-en="Progress">پیشرفت</span></div></div></div>
+</section>
+
+
+<div class="app" id="plannerApp" hidden>
+<nav class="hy-sidebar" id="hySidebar" aria-label="Main navigation">
+ <div class="hy-side-brand"><span class="hy-logo">✦</span><span>HaftYar</span></div>
+ <button class="hy-nav active" data-target="dashboard"><span>⌂</span><b data-fa="داشبورد" data-en="Dashboard">داشبورد</b></button>
+    <button class="hy-nav" id="openSettings"><span>⚙</span><b data-fa="تنظیمات" data-en="Settings">تنظیمات</b></button>
+    <button class="hy-nav" id="sidebarAccountBtn"><b data-fa="حساب کاربری" data-en="Account">حساب کاربری</b></button>
+    <button class="hy-nav" id="openHelp"><span>?</span><b data-fa="راهنما" data-en="Help">راهنما</b></button>
+    <button class="hy-nav" id="openAbout"><b data-fa="درباره برنامه" data-en="About">درباره برنامه</b></button>
+ <div class="hy-side-note"><div class="hy-mountain">⌁</div><strong data-fa="عادت‌های بهتر" data-en="Better Habits">عادت‌های بهتر</strong><span data-fa="قدم‌های کوچک، رویاهای بزرگ" data-en="Small steps, bigger dreams">قدم‌های کوچک، رویاهای بزرگ</span></div>
+</nav>
+<div class="acc-backdrop" id="accBackdrop"></div>
+<section class="acc-modal" id="accModal" role="dialog" aria-modal="true" aria-labelledby="accTitle" hidden>
+ <header class="acc-head"><div><h2 id="accTitle">حساب کاربری</h2><p class="acc-sub" id="accSub">پروفایل و امنیت</p></div><button class="hy-close" id="accClose" type="button" aria-label="بستن">×</button></header>
+ <div class="acc-profile"><div class="acc-avatar" id="accAvatar" aria-hidden="true">؟</div><div class="acc-who"><strong id="accName"></strong><small id="accUser"></small></div></div>
+ <div class="acc-tabs" role="tablist">
+  <button type="button" role="tab" class="acc-tab active" data-acc="info" id="accTabInfo">اطلاعات حساب</button>
+  <button type="button" role="tab" class="acc-tab" data-acc="password" id="accTabPass">تغییر رمز عبور</button>
+  <button type="button" role="tab" class="acc-tab" data-acc="accounts" id="accTabList">حساب‌های من</button>
+ </div>
+ <form class="acc-form" id="accInfoForm" novalidate>
+  <label class="acc-field"><span id="accLblName">نام نمایشی</span><input id="accNameInput" name="name" maxlength="60" autocomplete="name"></label>
+  <label class="acc-field"><span id="accLblUser">نام کاربری (قابل تغییر نیست)</span><input id="accUserInput" disabled></label>
+  <p class="acc-msg" id="accInfoMsg" role="status"></p>
+  <button type="submit" class="acc-primary" id="accInfoSave">ذخیره</button>
+ </form>
+ <form class="acc-form" id="accPassForm" novalidate hidden>
+  <label class="acc-field"><span id="accLblOld">رمز فعلی</span><input type="password" name="old" autocomplete="current-password"></label>
+  <label class="acc-field"><span id="accLblNew">رمز جدید (حداقل ۴ نویسه)</span><input type="password" name="next" autocomplete="new-password"></label>
+  <label class="acc-field"><span id="accLblConfirm">تکرار رمز جدید</span><input type="password" name="confirm" autocomplete="new-password"></label>
+  <p class="acc-msg" id="accPassMsg" role="status"></p>
+  <button type="submit" class="acc-primary" id="accPassSave">تغییر رمز</button>
+ </form>
+ <div class="acc-list" id="accListView" hidden></div>
+ <footer class="acc-foot"><button type="button" class="acc-danger" id="accLogout">↗ خروج از حساب</button></footer>
+</section>
+
+<div class="hy-drawer-backdrop" id="settingsBackdrop"></div>
+<aside class="hy-settings-drawer" id="settingsDrawer" aria-label="Settings" aria-hidden="true">
+ <div class="hy-drawer-head"><div><span class="hy-gear">⚙</span><strong data-fa="تنظیمات" data-en="Settings">تنظیمات</strong></div><button class="hy-close" id="closeSettings" aria-label="Close settings">×</button></div>
+ <div class="hy-setting-section"><label data-fa="زبان برنامه" data-en="Language">زبان برنامه</label><div class="hy-language-switch"><button id="drawerFa" type="button">فارسی</button><button id="drawerEn" type="button">English</button></div></div>
+ <div class="hy-setting-section"><label data-fa="پوسته" data-en="Theme">پوسته</label><div class="hy-theme-options"><button id="drawerLight" type="button"><span>☼</span><small data-fa="روشن" data-en="Light">روشن</small></button><button id="drawerDark" type="button"><span>☾</span><small data-fa="تیره" data-en="Dark">تیره</small></button></div></div>
+ <div class="hy-setting-section"><label data-fa="روشنایی و وضوح" data-en="Brightness & contrast">روشنایی و وضوح</label><p data-fa="برای وضوح بهتر، کادرها و مرزها پررنگ‌تر شده‌اند." data-en="Borders are enhanced for clearer panels.">برای وضوح بهتر، کادرها و مرزها پررنگ‌تر شده‌اند.</p></div>
+ <div class="hy-setting-section hy-setting-link"><span>♧</span><div><strong data-fa="داده‌ها و پشتیبان" data-en="Data & backup">داده‌ها و پشتیبان</strong><small data-fa="اطلاعات این مرورگر ذخیره می‌شود" data-en="Saved in this browser">Saved in this browser</small></div><span>›</span></div>
+ <button class="hy-logout" id="drawerLogout" type="button" data-fa="↗  خروج از حساب" data-en="↗  Log out">↗  خروج از حساب</button>
+</aside>
+<div class="hy-info-backdrop" id="infoBackdrop" hidden></div>
+<section class="hy-info-modal" id="infoModal" role="dialog" aria-modal="true" aria-labelledby="infoTitle" hidden>
+ <header class="hy-info-head"><div><span class="hy-info-icon" id="infoIcon">?</span><div><h2 id="infoTitle">راهنما</h2><p id="infoSubtitle">راهنمای استفاده از هفت‌یار</p></div></div><button class="hy-close" id="closeInfo" type="button" aria-label="بستن">×</button></header>
+ <div id="infoBody" class="hy-info-body"></div>
+</section>
+<header class="top">
+ <div class="brand"><div class="logo">✓</div><div><h1>هفت‌یار</h1><p>پلنر هفتگی و پیگیری عادت‌ها</p></div></div>
+ <div class="top-actions"><button class="secondary" id="todayBtn">رفتن به امروز</button><button class="secondary" id="langBtn">English</button><button class="secondary" id="themeBtn">☾ حالت تیره</button><button class="secondary" id="adminBackBtn" hidden>بازگشت به برنامه</button><button class="secondary" id="logoutBtn">خروج از حساب</button></div>
+</header>
+<section id="adminPanel" class="panel admin-panel" hidden>
+ <div class="panel-head"><div><h2 style="margin:0">پنل مدیریت هفت‌یار</h2><p class="muted">حساب‌های ذخیره‌شده در همین مرورگر</p></div><button class="secondary" id="refreshAccountsBtn">به‌روزرسانی فهرست</button></div>
+ <p class="calendar-note">برای حفظ حریم خصوصی، رمزهای عبور در این فهرست نمایش داده نمی‌شوند. این نسخه حساب‌ها را فقط روی همین مرورگر نگه می‌دارد؛ کاربران دستگاه‌ها یا مرورگرهای دیگر اینجا دیده نمی‌شوند.</p>
+ <div id="adminAccountList"></div>
+</section>
+<div id="plannerContent">
+<section class="welcome">
+ <div><h2>قدم‌های کوچک، پیشرفت مداوم ✨</h2><p>برنامه‌ات را بنویس، انجامش بده و روند پیشرفتت را ببین.</p></div>
+ <div class="today-pill" id="todayInfo">امروز<br>در حال بارگذاری تقویم…</div>
+</section>
+<div class="layout">
+ <main>
+  <section class="stats" id="dashboard">
+ <div class="stat"><div class="label">برنامه‌های امروز</div><div class="value" id="todayCount">۰/۰</div><div class="hint">کارهای انجام‌شده از کل کارها</div></div>
+ <div class="stat"><div class="label">درصد انجام امروز</div><div class="value" id="todayPercent">۰٪</div><div class="progress-line"><span id="todayProgress"></span></div></div>
+ <div class="stat"><div class="label">روزهای فعال پیاپی</div><div class="value" id="activeStreak">۰ روز</div><div class="hint">روزهایی که حداقل یک برنامه انجام شده</div></div>
+ <div class="stat"><div class="label">مجموع تیک‌ها</div><div class="value" id="totalChecks">۰</div><div class="hint">تمام برنامه‌ها و روزها</div></div>
+</section>
+  <section class="panel" id="dailyTasksPanel">
+   <div class="panel-head"><div><h3 id="selectedTitle">برنامه‌های امروز</h3><div class="muted" id="selectedSub"></div></div><span class="muted" id="daySummary"></span></div>
+   <form class="add-row" id="addForm"><input class="field" id="taskInput" maxlength="100" placeholder="مثلاً: ۲۰ دقیقه انگلیسی بخوانم…" required><select class="field" id="repeatSelect" style="display:none"><option value="day" selected>فقط این روز</option><option value="every">تمام روزها</option></select><button type="submit">＋ افزودن</button></form>
+   <div class="task-list" id="taskList"></div>
+  </section>
+ </main>
+ <aside>
+  <div class="weekly-wide">
+<section class="panel" id="weeklyPanel">
+   <div class="panel-head"><h3>برنامه هفتگی</h3><div class="week-controls"><button class="secondary" id="prevWeek">‹</button><div class="week-title" id="weekTitle"></div><button class="secondary" id="nextWeek">›</button></div></div>
+   <div class="habit-table-scroll"><div class="week-grid habit-table" id="weekGrid"></div></div>
+   <div class="calendar-note">برای ثبت انجام هر عادت، تیک همان روز را بزن. برای دیدن برنامه‌های یک روز، روی نام روز بالای جدول بزن.</div>
+  </section>
+
+
+  </div>
+  <section class="panel" id="chartPanel"><div class="panel-head"><div><h3 id="chartTitle">نمودار پیشرفت هفته</h3><span class="muted chart-note" id="chartNote"></span></div><div class="range-seg" role="group" aria-label="بازه نمودار"><button type="button" data-range="day">روز</button><button type="button" data-range="week" class="on">هفته</button><button type="button" data-range="month">ماه</button></div></div><div class="chart-wrap"><canvas id="chart"></canvas></div></section>
+  <section class="panel"><div class="panel-head"><h3>مداومت برنامه‌ها</h3><span class="muted">زنجیره روزهای متوالی</span></div><div id="habitStats"></div></section>
+
+ </aside>
+</div>
+
+<div class="footer">هفت‌یار · پلنر شخصی آفلاین</div>
+</div>
+<div id="mobileRoot">
+ <main id="mMain" class="m-main"></main>
+ <div id="mDrawer" class="m-drawer" aria-hidden="true"></div>
+ <nav id="mobileNav" class="m-nav" aria-label="ناوبری اصلی">
+  <button type="button" class="m-ui m-nav-btn" data-nav="dashboard"><span class="m-nav-ic" aria-hidden="true">⌂</span><span class="m-nav-lbl"></span></button>
+  <button type="button" class="m-ui m-nav-btn" data-nav="habits"><span class="m-nav-ic" aria-hidden="true">◎</span><span class="m-nav-lbl"></span></button>
+  <button type="button" class="m-ui m-nav-btn" data-nav="plans"><span class="m-nav-ic" aria-hidden="true">▦</span><span class="m-nav-lbl"></span></button>
+  <button type="button" class="m-ui m-nav-btn" data-nav="slot4"><span class="m-nav-ic" aria-hidden="true">▥</span><span class="m-nav-lbl"></span></button>
+ </nav>
+ <input type="file" id="mImport" accept="application/json,.json" hidden>
+</div>
+
+<script>
+/* ===================================================================
+   HaftYar mobile UI (≤767px). Works on the SAME state as the desktop:
+   data.tasks, data.checks, selectedDate, weekOffset, data.lang/theme and
+   the local accounts store. Uses the shared helpers (setChecked, save,
+   render, tasksForDate, checked, streakForTask, activeStreak, activeOn,
+   weekStart, addDays, keyOf, fromKey, jalali, weekdayIndex, getAccounts,
+   authAccountsKey, currentAccount). Wrapped in an IIFE: no new globals.
+   Optional task fields added on mobile: time ("HH:MM"), note, color.
+   Desktop ignores them; old records without them keep working.
+   =================================================================== */
+(function(){
+'use strict';
+const $m=id=>document.getElementById(id);
+const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const T=(fa,en)=>(data.lang==='en'?en:fa);
+const loc=()=>(data.lang==='en'?'en-US':'fa-IR');
+const num=n=>Number(n).toLocaleString(loc(),{useGrouping:false});
+const pad2=n=>Number(n).toLocaleString(loc(),{minimumIntegerDigits:2,useGrouping:false});
+const two=n=>String(n).padStart(2,'0');
+const jd=d=>{const j=jalali(d.getFullYear(),d.getMonth()+1,d.getDate());return `${num(j.y)}/${pad2(j.m)}/${pad2(j.d)}`};
+const pct=n=>num(n)+T('٪','%');
+const timeTxt=s=>s?String(s).replace(/\d/g,d=>num(d)):'';
+const FA_DAYS=['شنبه','یکشنبه','دوشنبه','سه‌شنبه','چهارشنبه','پنجشنبه','جمعه'];
+const EN_DAYS=['Saturday','Sunday','Monday','Tuesday','Wednesday','Thursday','Friday'];
+const SHORT_EN=['Sat','Sun','Mon','Tue','Wed','Thu','Fri'];
+const LETTERS=['ش','ی','د','س','چ','پ','ج'];
+const JMONTHS=['فروردین','اردیبهشت','خرداد','تیر','مرداد','شهریور','مهر','آبان','آذر','دی','بهمن','اسفند'];
+const JMONTHS_EN=['Farvardin','Ordibehesht','Khordad','Tir','Mordad','Shahrivar','Mehr','Aban','Azar','Dey','Bahman','Esfand'];
+const COLORS=['#7b66ff','#3b82f6','#22c55e','#eab308','#f97316','#ef4444'];
+const NAV_LABEL={dashboard:['داشبورد','Dashboard'],habits:['عادت‌ها','Habits'],plans:['برنامه‌ها','Plans'],progress:['پیشرفت','Progress'],account:['حساب','Account']};
+const SVG_OPEN='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">';
+const NAV_ICON={
+  dashboard:SVG_OPEN+'<rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></svg>',
+  habits:SVG_OPEN+'<circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.5 2.5 4.5-5"/></svg>',
+  plans:SVG_OPEN+'<rect x="3" y="4" width="18" height="17" rx="3"/><path d="M3 9h18M8 2v4M16 2v4"/></svg>',
+  progress:SVG_OPEN+'<rect x="3" y="12" width="4" height="8" rx="1"/><rect x="10" y="6" width="4" height="14" rx="1"/><rect x="17" y="9" width="4" height="11" rx="1"/></svg>',
+  account:SVG_OPEN+'<circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>'
+};
+// Which main section a screen belongs to (drives the bottom-nav highlight).
+const NAV_OF={dashboard:'dashboard',habits:'habits',habitAdd:'habits',plans:'plans',planAdd:'plans',planDetail:'plans',progress:'progress',account:'account',accountInfo:'account',password:'account',accounts:'account',settings:'dashboard',about:'dashboard',help:'dashboard'};
+// Where the back arrow goes.
+const BACK={habitAdd:'habits',planAdd:'plans',planDetail:'plans',account:'dashboard',accountInfo:'account',password:'account',accounts:'account',settings:'dashboard',about:'settings',help:'dashboard'};
+
+const root=$m('mobileRoot'), main=$m('mMain'), drawerEl=$m('mDrawer');
+if(!root||!main||!drawerEl)return;
+let view='dashboard', drawerOpen=false, editId=null, progRange='day';
+const lastNotified={};
+
+/* ---------- helpers ---------- */
+const hashOf=s=>{let h=0;for(const ch of String(s))h=(h*31+ch.codePointAt(0))>>>0;return h};
+const colorOf=t=>t.color||COLORS[hashOf(t.name)%COLORS.length];
+const AUTO_ICONS=[
+ [/ورزش|تمرین|باشگاه|دویدن|پیاده|sport|gym|run|workout|exercise|walk/i,'🏃'],
+ [/مدیت|مراقبه|یوگا|meditat|yoga/i,'🧘'],
+ [/انگلیسی|english/i,'🇬🇧'],
+ [/زبان|لغت|واژ|language|vocab/i,'🗣'],
+ [/کتاب|مطالعه|بخوان|خواندن|read|book/i,'📖'],
+ [/برنامه‌نویسی|برنامه نویسی|کدنویسی|coding|program|python|javascript/i,'💻'],
+ [/آب|water|نوشیدن/i,'💧'],
+ [/خواب|sleep/i,'😴'],
+ [/پول|پس‌انداز|پس انداز|بودجه|مالی|money|budget|saving/i,'💰'],
+ [/غذا|آشپز|پخت|سالاد|میوه|cook|meal|food|fruit|diet/i,'🥗'],
+ [/نوشتن|یادداشت|دفترچه|روزنوشت|journal|diary|write|writing/i,'✍️'],
+ [/موسیقی|آهنگ|گیتار|پیانو|music|guitar|piano/i,'🎵'],
+ [/نقاشی|طراحی|draw|paint|sketch/i,'🎨'],
+ [/جلسه|پروژه|اداری|meeting|work|project|office/i,'💼'],
+ [/خانواده|مادر|پدر|family|parent/i,'👨‍👩‍👧'],
+ [/تماس|زنگ|call|phone/i,'📞'],
+ [/تمیز|نظافت|خانه‌تکانی|clean/i,'🧹'],
+ [/خرید|shop|buy|groceries/i,'🛒'],
+ [/نماز|دعا|قرآن|pray|quran/i,'🙏'],
+ [/دارو|پزشک|دکتر|doctor|medic|vitamin/i,'💊'],
+ [/سفر|travel|trip/i,'✈️'],
+ [/امتحان|درس|تست|exam|study|lesson|course/i,'🎓'],
+ [/گیاه|باغچه|گل|plant|garden/i,'🌱'],
+ [/هدف|goal|target/i,'🎯'],
+ [/قدردانی|شکرگزاری|gratitude|grateful/i,'🌟'],
+];
+const autoIcon=name=>{const s=String(name||'');const hit=AUTO_ICONS.find(([re])=>re.test(s));return hit?hit[1]:'📝'};
+const iconOf=t=>autoIcon(t.name);
+const applies=(t,k)=>t.repeat==='every'||t.date===k;
+const isHabit=t=>t.repeat==='every';
+const byTime=(a,b)=>(a.time||'99:99').localeCompare(b.time||'99:99');
+const dayTasks=k=>tasksForDate(k).sort(byTime);
+const findTask=id=>data.tasks.find(x=>x.id===id);
+const newId=()=>String(Date.now())+Math.random().toString(16).slice(2);
+const curAcc=()=>{const a=getAccounts()[currentAccount]||{};return{name:a.name||currentAccount||'',password:a.password||''}};
+const repeatLabel=t=>isHabit(t)?T('روزانه','Daily'):T('یک‌بار','Once');
+const pctOf=(list,k)=>{const dn=list.filter(t=>checked(t,k)).length;return list.length?Math.round(dn/list.length*100):0};
+function week(){const start=weekStart(fromKey(selectedDate));return Array.from({length:7},(_,i)=>{const d=addDays(start,i);return{d,k:keyOf(d),i}})}
+function weekTasks(days){const out=[];days.forEach(({k})=>data.tasks.forEach(t=>{if(applies(t,k)&&!out.includes(t))out.push(t)}));return out}
+function weekPct(){let tot=0,dn=0;week().forEach(({k})=>{const ts=tasksForDate(k);tot+=ts.length;dn+=ts.filter(t=>checked(t,k)).length});return tot?Math.round(dn/tot*100):0}
+function totalChecks(){let n=0;Object.values(data.checks).forEach(day=>{n+=Object.values(day||{}).filter(Boolean).length});return n}
+function windowPct(end,n,filter){const f=filter||(()=>true);let tot=0,dn=0;for(let i=0;i<n;i++){const k=keyOf(addDays(end,-i));const ts=tasksForDate(k).filter(f);tot+=ts.length;dn+=ts.filter(t=>checked(t,k)).length}return tot?Math.round(dn/tot*100):0}
+function dayVals(n){const today=fromKey(keyOf(new Date()));return Array.from({length:n},(_,i)=>{const d=addDays(today,i-(n-1));const k=keyOf(d);return{d,k,val:pctOf(dayTasks(k),k)}})}
+function rangePoints(range){
+  const today=fromKey(keyOf(new Date()));
+  if(range==='week')return Array.from({length:4},(_,i)=>{const end=addDays(today,-7*(3-i));const j=jalali(end.getFullYear(),end.getMonth()+1,end.getDate());return{label:`${pad2(j.m)}/${pad2(j.d)}`,val:windowPct(end,7)}});
+  if(range==='month')return Array.from({length:6},(_,i)=>{const end=addDays(today,-30*(5-i));const j=jalali(end.getFullYear(),end.getMonth()+1,end.getDate());return{label:T(JMONTHS[j.m-1],JMONTHS_EN[j.m-1]),val:windowPct(end,30)}});
+  return dayVals(7).map(v=>{const wi=weekdayIndex(v.d);return{label:T(LETTERS[wi],SHORT_EN[wi].slice(0,2)),val:v.val}});
+}
+
+/* ---------- small view builders ---------- */
+const emptyMsg=m=>`<div class="m-empty">${esc(m)}</div>`;
+const head=(title,actions)=>`<div class="m-head"><h1 class="m-title">${esc(title)}</h1>${actions||''}</div>`;
+const backBtn=()=>`<button type="button" class="m-ui m-iconbtn" data-back aria-label="${esc(T('بازگشت','Back'))}">‹</button>`;
+const ring=(p,sz,sw)=>{const r=(sz-sw)/2-1,C=2*Math.PI*r;return `<svg class="m-ring" viewBox="0 0 ${sz} ${sz}" aria-hidden="true"><circle cx="${sz/2}" cy="${sz/2}" r="${r}" class="m-ring-bg" stroke-width="${sw}"/><circle cx="${sz/2}" cy="${sz/2}" r="${r}" class="m-ring-fg" stroke-width="${sw}" stroke-dasharray="${(C*p/100).toFixed(2)} ${C.toFixed(2)}"/></svg>`};
+const stat2=(ic,label,val)=>`<div class="m-card m-stat2i"><span class="m-ic" aria-hidden="true">${ic}</span><div><small>${esc(label)}</small><b>${esc(val)}</b></div></div>`;
+const sumRow=(ic,label,val)=>`<div class="m-sumrow"><span class="m-ic" aria-hidden="true">${ic}</span><span>${esc(label)}</span><b>${esc(val)}</b></div>`;
+const ringItem=(p,label,ic)=>`<div class="m-ringitem"><div class="m-ringwrap">${ring(p,76,7)}<div class="m-ringtxt">${pct(p)}</div></div><span>${ic} ${esc(label)}</span></div>`;
+function lineChart(points){
+  const W=300,H=160,L=30,R=12,Tp=10,B=24,n=points.length;
+  const xs=i=>n===1?(L+(W-R))/2:L+i*(W-L-R)/(n-1);
+  const ys=v=>Tp+(100-v)/100*(H-Tp-B);
+  const grid=[0,25,50,75,100].map(v=>`<line x1="${L}" x2="${W-R}" y1="${ys(v)}" y2="${ys(v)}" class="m-grid"/><text x="${L-6}" y="${ys(v)+3}" class="m-axis" text-anchor="end">${num(v)}</text>`).join('');
+  const pts=points.map((p,i)=>`${xs(i)},${ys(p.val)}`).join(' ');
+  const dots=points.map((p,i)=>`<circle cx="${xs(i)}" cy="${ys(p.val)}" r="3.5" class="m-dotc"/><text x="${xs(i)}" y="${H-6}" class="m-axis" text-anchor="middle">${esc(p.label)}</text>`).join('');
+  return `<svg class="m-linechart" viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(T('نمودار پیشرفت','Progress chart'))}">${grid}<polyline points="${pts}" class="m-line" fill="none"/>${dots}</svg>`;
+}
+function todayRow(t,k){
+  const isDone=checked(t,k);
+  return `<div class="m-row${isDone?' done':''}"><input type="checkbox" class="m-cb" data-task="${esc(t.id)}" data-date="${esc(k)}" ${isDone?'checked':''} aria-label="${esc(t.name)}"><div class="m-txt"><b>${esc(iconOf(t))} ${esc(t.name)}</b><span>${esc(timeTxt(t.time)||repeatLabel(t))}</span></div></div>`;
+}
+function planCard(t,k){
+  const isDone=checked(t,k);
+  return `<div class="m-pcard" style="--c:${colorOf(t)}"><input type="checkbox" class="m-cb" data-task="${esc(t.id)}" data-date="${esc(k)}" ${isDone?'checked':''} aria-label="${esc(t.name)}"><div class="m-txt"><b class="${isDone?'done':''}">${esc(iconOf(t))} ${esc(t.name)}</b><span>${t.time?esc(timeTxt(t.time))+' · ':''}${esc(repeatLabel(t))}</span></div><button type="button" class="m-ui m-chev" data-detail="${esc(t.id)}" aria-label="${esc(T('جزئیات','Details'))} · ${esc(t.name)}">‹</button></div>`;
+}
+function weekHeader(days,filter){
+  return `<div class="m-wk" role="group" aria-label="${esc(T('روزهای هفته','Days of the week'))}">${days.map(({d,k,i})=>{
+    const ts=tasksForDate(k).filter(filter), dn=ts.filter(t=>checked(t,k)).length;
+    const st=(ts.length&&dn===ts.length)?'full':(dn?'partial':'');
+    const label=T(FA_DAYS[i],EN_DAYS[i]);
+    return `<button type="button" class="m-ui m-wk-day${k===selectedDate?' sel':''}" data-day="${esc(k)}" aria-pressed="${k===selectedDate}" aria-label="${esc(label)} · ${esc(jd(d))}" title="${esc(label)} · ${esc(jd(d))}"><span class="m-wk-name">${esc(T(FA_DAYS[i],SHORT_EN[i]))}</span><span class="m-dot ${st}" aria-hidden="true">${st==='full'?'✓':''}</span></button>`;
+  }).join('')}</div>`;
+}
+function weekNav(days){
+  return `<div class="m-range-row"><button type="button" class="m-ui m-arrow" data-week="-1" aria-label="${esc(T('هفته قبل','Previous week'))}">›</button><span>${esc(jd(days[0].d))} ${esc(T('تا','to'))} ${esc(jd(days[6].d))}</span><button type="button" class="m-ui m-arrow" data-week="1" aria-label="${esc(T('هفته بعد','Next week'))}">‹</button></div>`;
+}
+
+/* ---------- screens ---------- */
+function renderDashboard(){
+  const today=keyOf(new Date()), all=dayTasks(today);
+  const done=all.filter(t=>checked(t,today)).length;
+  const p=all.length?Math.round(done/all.length*100):0;
+  const habits=all.filter(isHabit), plans=all.filter(t=>!isHabit(t));
+  const hDone=habits.filter(t=>checked(t,today)).length, pDone=plans.filter(t=>checked(t,today)).length;
+  const dark=data.theme==='dark', en=data.lang==='en';
+  const bars=dayVals(7).map(v=>`<span style="height:${Math.max(10,v.val)}%" title="${esc(pct(v.val))}"></span>`).join('');
+  return `<div class="m-topbar">
+    <button type="button" class="m-ui m-iconbtn" data-act="drawer" aria-label="${esc(T('منو','Menu'))}">☰</button>
+    <div class="m-topgroup">
+      <div class="m-seg" role="group" aria-label="${esc(T('زبان','Language'))}"><button type="button" class="m-ui${en?'':' on'}" data-act="set-lang" data-val="fa" aria-pressed="${!en}">فا</button><button type="button" class="m-ui${en?' on':''}" data-act="set-lang" data-val="en" aria-pressed="${en}">EN</button></div>
+    </div>
+  </div>
+  <h1 class="m-hello">${esc(T('سلام','Hi'))} ${esc(curAcc().name)}</h1>
+  <p class="m-sub">${esc(T('امروز، یک قدم بهتر از دیروز بردار!','Today, take one step better than yesterday!'))}</p>
+  <section class="m-card m-prog">
+    <div class="m-ringlg m-ringwrap">${ring(p,96,9)}<div class="m-ringtxt">${pct(p)}</div></div>
+    <div class="m-progtxt"><h2>${esc(T('پیشرفت امروز','Today’s progress'))}</h2><p>${esc(jd(new Date()))}</p><div class="m-minibars" aria-hidden="true">${bars}</div></div>
+  </section>
+  <div class="m-stat2">
+    ${stat2('🌱',T('عادت‌های امروز','Today’s habits'),`${num(hDone)}/${num(habits.length)}`)}
+    ${stat2('📅',T('برنامه‌های امروز','Today’s plans'),`${num(pDone)}/${num(plans.length)}`)}
+    ${stat2('🔥',T('مداومت','Streak'),`${num(activeStreak())} ${T('روز','days')}`)}
+    ${stat2('📈',T('این هفته','This week'),pct(weekPct()))}
+  </div>
+  <div class="m-sec"><span>${esc(T('برنامه امروز','Today’s plan'))}</span><button type="button" class="m-ui m-linkbtn" data-view="plans">${esc(T('همه برنامه‌ها','All plans'))} ‹</button></div>
+  ${all.length?all.map(t=>todayRow(t,today)).join(''):emptyMsg(T('برای امروز هنوز برنامه‌ای نداری.','No plans for today yet.'))}`;
+}
+
+function habitCard(days){
+  return t=>{
+    const cells=days.map(({d,k})=>applies(t,k)
+      ? `<label class="m-hcell"><input type="checkbox" class="m-cb" data-task="${esc(t.id)}" data-date="${esc(k)}" ${checked(t,k)?'checked':''} aria-label="${esc(t.name)} · ${esc(jd(d))}" title="${esc(jd(d))}"></label>`
+      : '<span class="m-hcell" aria-hidden="true"></span>').join('');
+    return `<div class="m-hcard"><div class="m-hrow"><span class="m-icon" style="background:${colorOf(t)}" aria-hidden="true">${esc(iconOf(t))}</span><span class="m-hname">${esc(t.name)}</span></div><div class="m-hchecks">${cells}</div></div>`;
+  };
+}
+function renderHabits(){
+  const days=week(), habits=weekTasks(days).filter(isHabit);
+  return head(T('عادت‌ها','Habits'),`<button type="button" class="m-ui m-plus" data-view="habitAdd" aria-label="${esc(T('افزودن عادت','Add habit'))}">+</button>`)
+    + weekNav(days) + weekHeader(days,isHabit)
+    + `<div class="m-hlist">${habits.length?habits.map(habitCard(days)).join(''):emptyMsg(T('هنوز عادتی نداری. با دکمه + اولین عادتت را اضافه کن.','No habits yet. Tap + to add your first one.'))}</div>`;
+}
+
+function renderPlans(){
+  const days=week(), list=dayTasks(selectedDate).filter(t=>!isHabit(t));
+  const tabs=days.map(({d,k,i})=>`<button type="button" class="m-ui m-tab${k===selectedDate?' sel':''}" data-day="${esc(k)}" aria-pressed="${k===selectedDate}" aria-label="${esc(T(FA_DAYS[i],EN_DAYS[i]))} ${esc(jd(d))}"><span class="m-tab-name">${esc(T(FA_DAYS[i],SHORT_EN[i]))}</span><span class="m-tab-num">${num(jalali(d.getFullYear(),d.getMonth()+1,d.getDate()).d)}</span></button>`).join('');
+  return head(T('برنامه هفتگی','Weekly plan'),backBtn())
+    + weekNav(days)
+    + `<div class="m-tabs" role="group" aria-label="${esc(T('روزهای هفته','Days of the week'))}">${tabs}</div>`
+    + (list.length?list.map(t=>planCard(t,selectedDate)).join(''):emptyMsg(T('برای این روز هنوز برنامه‌ای نداری.','No plans for this day yet.')))
+    + `<button type="button" class="m-ui m-fab" data-view="planAdd" aria-label="${esc(T('افزودن برنامه','Add plan'))}">+</button>`;
+}
+
+function timeField(v){return `<label class="m-field"><span>${esc(T('زمان','Time'))}</span><input class="m-input" type="time" name="time" value="${esc(v||'')}"></label>`}
+function repeatField(v){return `<label class="m-field"><span>${esc(T('تکرار','Repeat'))}</span><select class="m-input" name="repeat"><option value="day"${v!=='every'?' selected':''}>${esc(T('یک‌بار','Once'))}</option><option value="every"${v==='every'?' selected':''}>${esc(T('روزانه','Daily'))}</option></select></label>`}
+function planForm(t){
+  const isEdit=!!t;
+  return head(isEdit?T('ویرایش برنامه','Edit plan'):T('افزودن برنامه','Add plan'),backBtn())
+  + `<form class="m-form" data-form="${isEdit?'planEdit':'plan'}" novalidate>
+      <label class="m-field"><span>${esc(T('نام برنامه','Plan name'))}</span><input class="m-input" name="name" maxlength="100" autocomplete="off" value="${esc(t?t.name:'')}" placeholder="${esc(T('مثال: مطالعه کتاب','e.g. Read a book'))}"></label>
+      ${timeField(t?t.time:'')}
+      ${repeatField(t?t.repeat:'day')}
+      <label class="m-field"><span>${esc(T('توضیحات (اختیاری)','Notes (optional)'))}</span><textarea class="m-input" name="note" rows="3" maxlength="300" placeholder="${esc(T('مثال: فصل اول، ۳۰ صفحه','e.g. Chapter 1, 30 pages'))}">${esc(t?t.note||'':'')}</textarea></label>
+      <p class="m-error" hidden></p>
+      <button type="submit" class="m-ui m-btnpri">${esc(isEdit?T('ذخیره تغییرات','Save changes'):T('افزودن','Add'))}</button>
+      ${isEdit?`<button type="button" class="m-ui m-btndanger" data-del="${esc(t.id)}">${esc(T('حذف برنامه','Delete plan'))}</button>`:''}
+    </form>`;
+}
+function habitForm(){
+  return head(T('افزودن عادت','Add habit'),backBtn())
+  + `<form class="m-form" data-form="habit" novalidate>
+      <label class="m-field"><span>${esc(T('نام عادت','Habit name'))}</span><input class="m-input" name="name" maxlength="100" autocomplete="off" placeholder="${esc(T('مثال: ورزش، مطالعه کتاب','e.g. Exercise, reading'))}"></label>
+      <label class="m-field"><span>${esc(T('تکرار','Repeat'))}</span><select class="m-input" name="repeat"><option value="every">${esc(T('روزانه','Daily'))}</option><option value="day">${esc(T('فقط این روز','This day only'))}</option></select></label>
+      <div class="m-field"><span>${esc(T('رنگ','Color'))}</span><div class="m-colors">${COLORS.map((c,i)=>`<label class="m-colorpick"><input type="radio" name="color" value="${c}"${i===0?' checked':''} aria-label="${esc(c)}"><span style="background:${c}"></span></label>`).join('')}</div></div>
+      <p class="m-error" hidden></p>
+      <button type="submit" class="m-ui m-btnpri">${esc(T('افزودن','Add'))}</button>
+    </form>`;
+}
+
+function renderProgress(){
+  const today=fromKey(keyOf(new Date()));
+  const habitPct=windowPct(today,7,isHabit), planPct=windowPct(today,7,t=>!isHabit(t));
+  let on=0;for(let i=0;i<30;i++){if(activeOn(keyOf(addDays(today,-i))))on++}
+  const streakPct=Math.round(on/30*100);
+  const plansToday=dayTasks(keyOf(today)).filter(t=>!isHabit(t)).length;
+  const ranges=[['day',T('روز','Day')],['week',T('هفته','Week')],['month',T('ماه','Month')]];
+  return head(T('پیشرفت','Progress'),'')
+  + `<div class="m-seg m-seg-wide" role="group" aria-label="${esc(T('بازه زمانی','Time range'))}">${ranges.map(([v,l])=>`<button type="button" class="m-ui${progRange===v?' on':''}" data-range="${v}" aria-pressed="${progRange===v}">${esc(l)}</button>`).join('')}</div>`
+  + `<div class="m-card m-chartcard">${lineChart(rangePoints(progRange))}</div>`
+  + `<div class="m-rings">${ringItem(habitPct,T('عادت‌ها','Habits'),'🌱')}${ringItem(planPct,T('برنامه‌ها','Plans'),'📅')}${ringItem(streakPct,T('مداومت','Streak'),'🔥')}</div>`
+  + `<div class="m-card m-sum"><h3>${esc(T('آمار کلی','Overview'))}</h3>${sumRow('🌱',T('کل عادت‌ها','Total habits'),num(data.tasks.filter(isHabit).length))}${sumRow('✓',T('انجام‌شده','Completed'),num(totalChecks()))}${sumRow('📅',T('برنامه‌های امروز','Plans today'),num(plansToday))}${sumRow('🔥',T('مداومت فعال','Active streak'),`${num(activeStreak())} ${T('روز','days')}`)}</div>`;
+}
+
+function renderAccount(){
+  const a=curAcc(), initial=(a.name||currentAccount||'?').trim().charAt(0);
+  return head(T('حساب کاربری','Account'),backBtn())
+  + `<div class="m-profile"><div class="m-avatar" aria-hidden="true">${esc(initial)}</div><h2>${esc(a.name)}</h2><p>@${esc(currentAccount)}</p></div>`
+  + menuRow('accountInfo','ⓘ',T('اطلاعات حساب','Account info'))
+  + menuRow('password','🔒',T('تغییر رمز عبور','Change password'))
+  + menuRow('accounts','👥',T('حساب‌های من','My accounts'))
+  + `<button type="button" class="m-ui m-menu danger" data-act="logout"><span class="m-mi" aria-hidden="true">↗</span><span>${esc(T('خروج از حساب','Log out'))}</span></button>`;
+}
+function menuRow(view,ic,label){return `<button type="button" class="m-ui m-menu" data-view="${view}"><span class="m-mi" aria-hidden="true">${ic}</span><span>${esc(label)}</span><span class="m-go" aria-hidden="true">‹</span></button>`}
+function renderAccountInfo(){
+  const a=curAcc();
+  return head(T('اطلاعات حساب','Account info'),backBtn())
+  + `<form class="m-form" data-form="accountInfo" novalidate>
+      <label class="m-field"><span>${esc(T('نام نمایشی','Display name'))}</span><input class="m-input" name="name" maxlength="60" autocomplete="name" value="${esc(a.name)}"></label>
+      <label class="m-field"><span>${esc(T('نام کاربری (قابل تغییر نیست)','Username (cannot be changed)'))}</span><input class="m-input" value="${esc(currentAccount)}" disabled></label>
+      <p class="m-error" hidden></p>
+      <button type="submit" class="m-ui m-btnpri">${esc(T('ذخیره','Save'))}</button>
+    </form>`;
+}
+function renderPassword(){
+  return head(T('تغییر رمز عبور','Change password'),backBtn())
+  + `<form class="m-form" data-form="password" novalidate>
+      <label class="m-field"><span>${esc(T('رمز فعلی','Current password'))}</span><input class="m-input" type="password" name="old" autocomplete="current-password"></label>
+      <label class="m-field"><span>${esc(T('رمز جدید (حداقل ۴ نویسه)','New password (at least 4 characters)'))}</span><input class="m-input" type="password" name="next" autocomplete="new-password" minlength="4"></label>
+      <label class="m-field"><span>${esc(T('تکرار رمز جدید','Repeat new password'))}</span><input class="m-input" type="password" name="confirm" autocomplete="new-password"></label>
+      <p class="m-error" hidden></p>
+      <button type="submit" class="m-ui m-btnpri">${esc(T('تغییر رمز','Change password'))}</button>
+    </form>`;
+}
+function renderAccounts(){
+  const accs=getAccounts();
+  const names=Object.keys(accs).filter(u=>u!=='sobhan').sort();
+  const rows=names.map(u=>{
+    const isCur=u===currentAccount, a=accs[u]||{};
+    return `<button type="button" class="m-ui m-menu" ${isCur?'disabled':`data-switch="${esc(u)}"`}><span class="m-mi" aria-hidden="true">◉</span><span style="flex:1;min-width:0"><b style="display:block">${esc(a.name||u)}</b><small style="color:var(--muted)">@${esc(u)}</small></span><span class="m-go">${isCur?esc(T('فعلی','Current')):'‹'}</span></button>`;
+  }).join('');
+  return head(T('حساب‌های من','My accounts'),backBtn())
+  + `<p class="m-note">${esc(T('حساب‌های ذخیره‌شده روی همین مرورگر. برای ورود به حساب دیگر، از آن خارج می‌شوی و رمز آن حساب را وارد می‌کنی.','Accounts saved in this browser. To open another one, you log out and enter its password.'))}</p>`
+  + (rows||emptyMsg(T('حساب دیگری در این مرورگر نیست.','No other accounts in this browser.')));
+}
+function notifStatus(){
+  if(typeof Notification==='undefined')return T('این مرورگر اعلان را پشتیبانی نمی‌کند.','This browser does not support notifications.');
+  if(Notification.permission==='denied')return T('اعلان‌ها در تنظیمات مرورگر بسته شده‌اند.','Notifications are blocked in browser settings.');
+  return T('یادآوری هنگام باز بودن برنامه، در زمان تعیین‌شده برای هر برنامه نمایش داده می‌شود.','Reminders show while the app is open, at each plan’s time.');
+}
+function renderSettings(){
+  const dark=data.theme==='dark', en=data.lang==='en';
+  const seg=(act,opts)=>`<div class="m-seg m-seg-wide" role="group">${opts.map(([v,l,on])=>`<button type="button" class="m-ui${on?' on':''}" data-act="${act}" data-val="${v}" aria-pressed="${on}">${esc(l)}</button>`).join('')}</div>`;
+  return head(T('تنظیمات','Settings'),backBtn())
+  + `<section class="m-sect"><h2 class="m-sect-t">${esc(T('زبان','Language'))}</h2>${seg('set-lang',[['fa','فارسی',!en],['en','English',en]])}</section>`
+  + `<section class="m-sect"><h2 class="m-sect-t">${esc(T('ظاهر','Appearance'))}</h2>${seg('set-theme',[['light',T('روشن','Light'),!dark],['dark',T('تاریک','Dark'),dark]])}</section>`
+  + `<section class="m-sect"><h2 class="m-sect-t">${esc(T('اعلان‌ها','Notifications'))}</h2><div class="m-card" style="margin:0"><div class="m-row" style="margin:0;border:0;padding:0"><div class="m-txt"><b>${esc(T('یادآوری برنامه‌ها','Plan reminders'))}</b><span>${esc(notifStatus())}</span></div><button type="button" class="m-ui m-switch${data.notify?' on':''}" data-act="notify" role="switch" aria-checked="${!!data.notify}" aria-label="${esc(T('یادآوری برنامه‌ها','Plan reminders'))}"><span class="m-knob" aria-hidden="true"></span></button></div></div></section>`
+  + `<section class="m-sect"><h2 class="m-sect-t">${esc(T('داده‌ها و پشتیبان','Data & backup'))}</h2>`
+  + `<button type="button" class="m-ui m-menu" data-act="backup-export"><span class="m-mi" aria-hidden="true">⤓</span><span>${esc(T('پشتیبان‌گیری و بازیابی','Back up data'))}</span><span class="m-go" aria-hidden="true">‹</span></button>`
+  + `<button type="button" class="m-ui m-menu" data-act="backup-import"><span class="m-mi" aria-hidden="true">⤒</span><span>${esc(T('بازیابی از فایل پشتیبان','Restore from backup file'))}</span><span class="m-go" aria-hidden="true">‹</span></button>`
+  + `</section>`
+  + menuRow('about','ⓘ',T('درباره برنامه','About'));
+}
+function renderAbout(){
+  return head(T('درباره برنامه','About'),backBtn())
+  + `<div class="m-card"><div class="m-profile" style="margin:0"><div class="m-avatar" aria-hidden="true">✓</div><h2>${esc(T('هفت‌یار','HaftYar'))}</h2><p>${esc(T('نسخه ۲.۰ · پلنر هفتگی و پیگیری عادت‌ها','Version 2.0 · Weekly planner & habit tracker'))}</p></div></div>`
+  + `<p class="m-note">${esc(T('همه اطلاعات روی همین مرورگر ذخیره می‌شود. برای انتقال به دستگاه دیگر از پشتیبان‌گیری استفاده کن.','All data is stored in this browser. Use backup to move it to another device.'))}</p>`;
+}
+function renderHelp(){
+  const items=[
+    [T('افزودن عادت','Add a habit'),T('با دکمه + در صفحه عادت‌ها، عادت تازه بساز و رنگش را انتخاب کن.','Use + on the habits screen to create a habit and pick its color.')],
+    [T('تیک زدن','Checking off'),T('هر تیک فقط همان عادت یا برنامه را در همان روز ثبت می‌کند.','Each checkbox records only that item on that day.')],
+    [T('برنامه هفتگی','Weekly plan'),T('روزهای هفته را انتخاب کن و با + برنامه تازه اضافه کن.','Pick a day and use + to add a plan.')],
+    [T('پشتیبان','Backup'),T('از تنظیمات، فایل پشتیبان بگیر یا اطلاعات را از فایل بازیابی کن.','Export or restore your data from Settings.')]
+  ];
+  return head(T('راهنما','Help'),backBtn())
+  + items.map(([t,d])=>`<div class="m-card"><h3 style="margin:0 0 6px;font-size:14px">${esc(t)}</h3><p class="m-note">${esc(d)}</p></div>`).join('');
+}
+
+const VIEWS={dashboard:renderDashboard,habits:renderHabits,habitAdd:habitForm,plans:renderPlans,planAdd:()=>planForm(null),planDetail:()=>planForm(findTask(editId)),progress:renderProgress,account:renderAccount,accountInfo:renderAccountInfo,password:renderPassword,accounts:renderAccounts,settings:renderSettings,about:renderAbout,help:renderHelp};
+
+/* ---------- navigation & state ---------- */
+function updateNav(base){
+  const slot4=base==='account'?'account':'progress';
+  root.querySelectorAll('.m-nav-btn').forEach(b=>{
+    const v=b.dataset.nav==='slot4'?slot4:b.dataset.nav;
+    b.dataset.view=v;
+    b.classList.toggle('active',base===v);
+    b.setAttribute('aria-current',base===v?'page':'false');
+    b.querySelector('.m-nav-ic').innerHTML=NAV_ICON[v];
+    b.querySelector('.m-nav-lbl').textContent=T(NAV_LABEL[v][0],NAV_LABEL[v][1]);
+  });
+}
+function renderDrawer(){
+  drawerEl.classList.toggle('open',drawerOpen);
+  drawerEl.setAttribute('aria-hidden',String(!drawerOpen));
+  if(!drawerOpen){drawerEl.innerHTML='';return}
+  const a=curAcc(), initial=(a.name||currentAccount||'?').trim().charAt(0);
+  drawerEl.innerHTML=`<div class="m-scrim" data-act="close-drawer"></div><aside class="m-dpanel" role="dialog" aria-label="${esc(T('منو','Menu'))}">
+    <div class="m-profile small"><div class="m-avatar" aria-hidden="true">${esc(initial)}</div><h2 style="font-size:16px;margin:0">${esc(a.name)}</h2><p>@${esc(currentAccount)}</p></div>
+    ${menuRow('account','◉',T('حساب کاربری','Account'))}
+    ${menuRow('accounts','👥',T('حساب‌های من','My accounts'))}
+    ${menuRow('settings','⚙',T('تنظیمات','Settings'))}
+    ${menuRow('about','ⓘ',T('درباره برنامه','About'))}
+    ${menuRow('help','?',T('راهنما','Help'))}
+    <button type="button" class="m-ui m-menu danger" data-act="logout"><span class="m-mi" aria-hidden="true">↗</span><span>${esc(T('خروج از حساب','Log out'))}</span></button>
+  </aside>`;
+}
+function renderMobile(){
+  // Startup calls render() before the account state is initialised; only draw once the planner is visible.
+  if(!data||$m('plannerApp').hidden){root.classList.toggle('en',!!data&&data.lang==='en');return}
+  root.classList.toggle('en',data.lang==='en');
+  if(view==='planDetail'&&!findTask(editId))view='plans';
+  const base=NAV_OF[view]||'dashboard';
+  updateNav(base);
+  const build=VIEWS[view]||VIEWS.dashboard;
+  main.innerHTML=build();
+  renderDrawer();
+}
+window.renderMobile=renderMobile;
+
+function go(v){view=v;drawerOpen=false;window.scrollTo(0,0);render()}
+function goBack(){go(BACK[view]||'dashboard')}
+function selectDay(k){
+  selectedDate=k;
+  weekOffset=Math.round((weekStart(fromKey(k))-weekStart(fromKey(keyOf(new Date()))))/(7*864e5));
+  render();
+}
+function shiftWeek(n){selectDay(keyOf(addDays(fromKey(selectedDate),7*n)))}
+function deleteTask(id){
+  const t=findTask(id);
+  if(!t)return;
+  if(!confirm(T('این برنامه و سابقه تیک‌های آن حذف شود؟','Delete this plan and its checkmark history?')))return;
+  data.tasks=data.tasks.filter(x=>x.id!==id);
+  Object.keys(data.checks).forEach(k=>{if(data.checks[k])delete data.checks[k][id]});
+  save();
+  go(view==='planDetail'?'plans':view);
+}
+function switchAccount(u){
+  $m('logoutBtn').click();
+  if($m('plannerApp').hidden){
+    const i=$m('authUsername');
+    i.value=u;$m('authPassword').value='';$m('authPassword').focus();
+  }
+}
+function setLang(v){$m(v==='en'?'drawerEn':'drawerFa').click()}
+function setTheme(v){$m(v==='dark'?'drawerDark':'drawerLight').click()}
+
+/* ---------- backup ---------- */
+function exportBackup(){
+  const payload={app:'HaftYar',version:2,exportedAt:new Date().toISOString(),account:currentAccount,planner:{tasks:data.tasks,checks:data.checks}};
+  const blob=new Blob([JSON.stringify(payload,null,2)],{type:'application/json'});
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);a.download=`haftyar-backup-${keyOf(new Date())}.json`;
+  document.body.appendChild(a);a.click();a.remove();
+  setTimeout(()=>URL.revokeObjectURL(a.href),1000);
+}
+function importBackup(file){
+  if(!file)return;
+  const reader=new FileReader();
+  reader.onload=()=>{
+    let p;
+    try{p=JSON.parse(reader.result)}catch(_){alert(T('فایل پشتیبان معتبر نیست.','This backup file is not valid.'));return}
+    const pl=p&&p.planner;
+    if(!pl||!Array.isArray(pl.tasks)||!pl.checks||typeof pl.checks!=='object'){alert(T('فایل پشتیبان معتبر نیست.','This backup file is not valid.'));return}
+    if(!confirm(T('اطلاعات فعلی این حساب با فایل پشتیبان جایگزین شود؟','Replace this account’s current data with the backup?')))return;
+    data.tasks=pl.tasks.filter(t=>t&&typeof t.id==='string'&&typeof t.name==='string').map(t=>({...t,repeat:t.repeat==='day'?'day':'every',date:t.date||keyOf(new Date())}));
+    data.checks=pl.checks;
+    save();
+    alert(T('بازیابی انجام شد.','Restore complete.'));
+    go('settings');
+  };
+  reader.readAsText(file);
+}
+
+/* ---------- reminders (while the app is open) ---------- */
+setInterval(()=>{
+  if(!data||!data.notify||typeof Notification==='undefined'||Notification.permission!=='granted')return;
+  if($m('plannerApp').hidden)return;
+  const now=new Date(), hm=two(now.getHours())+':'+two(now.getMinutes()), k=keyOf(now);
+  tasksForDate(k).forEach(t=>{
+    const key=t.id+k+hm;
+    if(t.time===hm&&!checked(t,k)&&!lastNotified[key]){
+      lastNotified[key]=1;
+      try{new Notification(t.name,{body:T('وقت برنامه است','It is time for this plan')})}catch(_){}
+    }
+  });
+},30000);
+
+
+/* ---------- event delegation (attached once) ---------- */
+root.addEventListener('click',e=>{
+  const el=e.target.closest('[data-nav],[data-view],[data-day],[data-week],[data-act],[data-del],[data-back],[data-detail],[data-range],[data-switch]');
+  if(!el||!root.contains(el)||el.disabled)return;
+  if(el.dataset.nav){go(el.dataset.view);return}
+  if(el.dataset.back!==undefined){goBack();return}
+  if(el.dataset.view){go(el.dataset.view);return}
+  if(el.dataset.detail){editId=el.dataset.detail;go('planDetail');return}
+  if(el.dataset.range){progRange=el.dataset.range;render();return}
+  if(el.dataset.day){selectDay(el.dataset.day);return}
+  if(el.dataset.week){shiftWeek(Number(el.dataset.week));return}
+  if(el.dataset.del){deleteTask(el.dataset.del);return}
+  if(el.dataset.switch){switchAccount(el.dataset.switch);return}
+  switch(el.dataset.act){
+    case 'drawer':drawerOpen=true;render();break;
+    case 'close-drawer':drawerOpen=false;render();break;
+    case 'set-lang':setLang(el.dataset.val);break;
+    case 'set-theme':setTheme(el.dataset.val);break;
+    case 'theme-toggle':setTheme(data.theme==='dark'?'light':'dark');break;
+    case 'notify':
+      data.notify=!data.notify;save();
+      if(data.notify&&typeof Notification!=='undefined'&&Notification.permission==='default'){Notification.requestPermission().then(()=>render()).catch(()=>render())}
+      else render();
+      break;
+    case 'backup-export':exportBackup();break;
+    case 'backup-import':$m('mImport').click();break;
+    case 'logout':$m('logoutBtn').click();if($m('plannerApp').hidden){drawerOpen=false;view='dashboard';render()}break;
+  }
+});
+
+root.addEventListener('change',e=>{
+  const el=e.target;
+  if(el.id==='mImport'){importBackup(el.files&&el.files[0]);el.value='';return}
+  if(el.matches&&el.matches('input[type="checkbox"][data-task]')){
+    const t=findTask(el.dataset.task);
+    if(t)setChecked(t,el.dataset.date,el.checked);
+  }
+});
+
+root.addEventListener('submit',e=>{
+  const f=e.target;
+  const kind=f.dataset&&f.dataset.form;
+  if(!kind)return;
+  e.preventDefault();
+  const err=f.querySelector('.m-error');
+  const val=n=>(f.elements[n]?String(f.elements[n].value||''):'');
+  const fail=msg=>{if(err){err.textContent=msg;err.hidden=false}};
+  if(kind==='habit'){
+    const name=val('name').trim();
+    if(!name)return fail(T('لطفاً نام عادت را وارد کن.','Please enter a habit name.'));
+    data.tasks.push({id:newId(),name,date:selectedDate,repeat:val('repeat')==='day'?'day':'every',color:val('color')||COLORS[0]});
+    save();go('habits');
+  }
+  else if(kind==='plan'||kind==='planEdit'){
+    const name=val('name').trim();
+    if(!name)return fail(T('لطفاً نام برنامه را وارد کن.','Please enter a plan name.'));
+    const repeat=val('repeat')==='every'?'every':'day', time=val('time'), note=val('note').trim();
+    if(kind==='plan'){
+      data.tasks.push({id:newId(),name,date:selectedDate,repeat,time,note});
+      save();go('plans');
+    }else{
+      const t=findTask(editId);
+      if(!t)return go('plans');
+      Object.assign(t,{name,repeat,time,note});
+      save();go('plans');
+    }
+  }
+  else if(kind==='accountInfo'){
+    const name=val('name').trim();
+    if(!name)return fail(T('نام نمایشی نمی‌تواند خالی باشد.','Display name cannot be empty.'));
+    const accs=getAccounts();
+    if(!accs[currentAccount])return;
+    accs[currentAccount].name=name;
+    localStorage.setItem(authAccountsKey,JSON.stringify(accs));
+    go('account');
+  }
+  else if(kind==='password'){
+    const accs=getAccounts(), a=accs[currentAccount];
+    if(!a)return;
+    if(val('old')!==String(a.password||''))return fail(T('رمز فعلی درست نیست.','Current password is incorrect.'));
+    if(val('next').length<4)return fail(T('رمز جدید باید حداقل ۴ نویسه باشد.','New password must be at least 4 characters.'));
+    if(val('next')!==val('confirm'))return fail(T('تکرار رمز جدید با آن یکی نیست.','The new passwords do not match.'));
+    a.password=val('next');
+    localStorage.setItem(authAccountsKey,JSON.stringify(accs));
+    go('account');
+  }
+});
+
+root.addEventListener('keydown',e=>{
+  if(e.key==='Escape'&&drawerOpen){drawerOpen=false;render()}
+});
+window.addEventListener('keydown',e=>{if(e.key==='Escape'&&drawerOpen){drawerOpen=false;render()}});
+})();
+
+</script>
+<script>
+const $=id=>document.getElementById(id);
+const weekdays=['شنبه','یکشنبه','دوشنبه','سه‌شنبه','چهارشنبه','پنجشنبه','جمعه'];const weekdaysEn=['Sat','Sun','Mon','Tue','Wed','Thu','Fri'];
+let storeKey='haftyar_planner_v1';
+let data={tasks:[],checks:{},theme:'dark',lang:'fa'};
+try{const saved=JSON.parse(localStorage.getItem(storeKey)||'null');if(saved&&Array.isArray(saved.tasks)&&saved.checks)data={...data,...saved}}catch(e){}
+let selectedDate=keyOf(new Date());
+let weekOffset=0;
+function save(){try{localStorage.setItem(storeKey,JSON.stringify(data))}catch(e){}if(typeof window.haftyarQueueCloudSync==='function')window.haftyarQueueCloudSync()}
+function pad(n){return String(n).padStart(2,'0')}
+function keyOf(d){return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate())}
+function fromKey(k){const [y,m,d]=k.split('-').map(Number);return new Date(y,m-1,d,12)}
+function addDays(d,n){let x=new Date(d);x.setDate(x.getDate()+n);return x}
+function fmtNum(n){return Number(n).toLocaleString(data.lang==='en'?'en-US':'fa-IR')}
+function jalali(g_y,g_m,g_d){
+ let gdm=[0,31,(g_y%4===0&&g_y%100!==0)||g_y%400===0?29:28,31,30,31,30,31,31,30,31,30,31];
+ let gy=g_y-1600,gm=g_m-1,gd=g_d-1;
+ let g_day_no=365*gy+Math.floor((gy+3)/4)-Math.floor((gy+99)/100)+Math.floor((gy+399)/400);
+ for(let i=0;i<gm;i++)g_day_no+=gdm[i+1];
+ g_day_no+=gd;
+ let j_day_no=g_day_no-79;
+ let j_np=Math.floor(j_day_no/12053);j_day_no%=12053;
+ let jy=979+33*j_np+4*Math.floor(j_day_no/1461);j_day_no%=1461;
+ if(j_day_no>=366){jy+=Math.floor((j_day_no-1)/365);j_day_no=(j_day_no-1)%365}
+ let jm,jd;
+ if(j_day_no<186){jm=1+Math.floor(j_day_no/31);jd=1+j_day_no%31}
+ else{j_day_no-=186;jm=7+Math.floor(j_day_no/30);jd=1+j_day_no%30}
+ return {y:jy,m:jm,d:jd};
+}
+function jDate(d){let j=jalali(d.getFullYear(),d.getMonth()+1,d.getDate());return `${Number(j.y).toLocaleString(data.lang==="en"?"en-US":"fa-IR",{useGrouping:false})}/${Number(j.m).toLocaleString(data.lang==="en"?"en-US":"fa-IR",{minimumIntegerDigits:2,useGrouping:false})}/${Number(j.d).toLocaleString(data.lang==="en"?"en-US":"fa-IR",{minimumIntegerDigits:2,useGrouping:false})}`}
+function gDate(d){const f=n=>Number(n).toLocaleString(data.lang==='en'?'en-US':'fa-IR',{minimumIntegerDigits:2,useGrouping:false});return `${data.lang==='en'?d.getFullYear():fmtNum(d.getFullYear())}/${f(d.getMonth()+1)}/${f(d.getDate())}`}
+function weekdayIndex(d){return (d.getDay()+1)%7} // Saturday = 0
+function weekStart(d){return addDays(d,-weekdayIndex(d))}
+function tasksForDate(k){return data.tasks.filter(t=>t.repeat==='every'||t.date===k)}
+const AUTO_ICONS=[
+ [/ورزش|تمرین|باشگاه|دویدن|پیاده|sport|gym|run|workout|exercise|walk/i,'🏃'],
+ [/مدیت|مراقبه|یوگا|meditat|yoga/i,'🧘'],
+ [/انگلیسی|english/i,'🇬🇧'],
+ [/زبان|لغت|واژ|language|vocab/i,'🗣'],
+ [/کتاب|مطالعه|بخوان|خواندن|read|book/i,'📖'],
+ [/برنامه‌نویسی|برنامه نویسی|کدنویسی|coding|program|python|javascript/i,'💻'],
+ [/آب|water|نوشیدن/i,'💧'],
+ [/خواب|sleep/i,'😴'],
+ [/پول|پس‌انداز|پس انداز|بودجه|مالی|money|budget|saving/i,'💰'],
+ [/غذا|آشپز|پخت|سالاد|میوه|cook|meal|food|fruit|diet/i,'🥗'],
+ [/نوشتن|یادداشت|دفترچه|روزنوشت|journal|diary|write|writing/i,'✍️'],
+ [/موسیقی|آهنگ|گیتار|پیانو|music|guitar|piano/i,'🎵'],
+ [/نقاشی|طراحی|draw|paint|sketch/i,'🎨'],
+ [/جلسه|پروژه|اداری|meeting|work|project|office/i,'💼'],
+ [/خانواده|مادر|پدر|family|parent/i,'👨‍👩‍👧'],
+ [/تماس|زنگ|call|phone/i,'📞'],
+ [/تمیز|نظافت|خانه‌تکانی|clean/i,'🧹'],
+ [/خرید|shop|buy|groceries/i,'🛒'],
+ [/نماز|دعا|قرآن|pray|quran/i,'🙏'],
+ [/دارو|پزشک|دکتر|doctor|medic|vitamin/i,'💊'],
+ [/سفر|travel|trip/i,'✈️'],
+ [/امتحان|درس|تست|exam|study|lesson|course/i,'🎓'],
+ [/گیاه|باغچه|گل|plant|garden/i,'🌱'],
+ [/هدف|goal|target/i,'🎯'],
+ [/قدردانی|شکرگزاری|gratitude|grateful/i,'🌟'],
+];
+function autoIcon(name){const s=String(name||'');const hit=AUTO_ICONS.find(([re])=>re.test(s));return hit?hit[1]:'📝'}
+function iconOf(t){return autoIcon(t.name)}
+function checked(t,k){return !!(data.checks[k]&&data.checks[k][t.id])}
+function setChecked(t,k,v){if(!data.checks[k])data.checks[k]={};if(v)data.checks[k][t.id]=true;else delete data.checks[k][t.id];save();render()}
+function activeOn(k){return data.tasks.some(t=>checked(t,k))}
+function streakForTask(t){
+ let d=fromKey(keyOf(new Date())),s=0;
+ // A streak can start today, or yesterday if today hasn't been completed yet.
+ if(!checked(t,keyOf(d))){d=addDays(d,-1)}
+ while(checked(t,keyOf(d))){s++;d=addDays(d,-1);if(s>10000)break}
+ return s;
+}
+function activeStreak(){
+ let d=fromKey(keyOf(new Date())),s=0;
+ if(!activeOn(keyOf(d)))d=addDays(d,-1);
+ while(activeOn(keyOf(d))){s++;d=addDays(d,-1);if(s>10000)break}
+ return s;
+}
+function renderWeek(){
+ const start=weekStart(addDays(fromKey(keyOf(new Date())),weekOffset*7));
+ $('weekTitle').textContent=`${jDate(start)} تا ${jDate(addDays(start,6))}`;
+ const dates=[];
+ for(let i=0;i<7;i++){
+  const d=addDays(start,i),k=keyOf(d),ts=tasksForDate(k),done=ts.filter(t=>checked(t,k)).length;
+  dates.push({d,k,ts,done});
+ }
+ const grid=$('weekGrid');
+ grid.innerHTML='';
+ grid.className='habit-table';
+ // Header row: habit names on the left, then seven compact weekday/date columns.
+ const head=document.createElement('div');head.className='habit-table-row habit-table-head';
+ const habitHead=document.createElement('div');habitHead.className='habit-table-name';habitHead.textContent=data.lang==='en'?'Habits':'عادت‌های روزانه';head.appendChild(habitHead);
+ dates.forEach(({d,k,ts,done},i)=>{
+  const cell=document.createElement('button');cell.type='button';
+  cell.className='habit-day-head'+(k===selectedDate?' selected':'')+(k===keyOf(new Date())?' today':'');
+  const jd=jalali(d.getFullYear(),d.getMonth()+1,d.getDate());
+  const fullJalaliDate=`${fmtNum(jd.y)}/${fmtNum(jd.m)}/${fmtNum(jd.d)}`;
+  cell.innerHTML=`<span class="habit-weekday">${data.lang==='en'?weekdaysEn[i]:weekdays[i]}</span><span class="habit-date">${fullJalaliDate}</span>`;
+  cell.title=data.lang==='en'?`${jDate(d)} · ${fmtNum(done)} of ${fmtNum(ts.length)} completed`:`${jDate(d)} · ${fmtNum(done)} از ${fmtNum(ts.length)}`;
+  cell.onclick=()=>{selectedDate=k;render()};
+  head.appendChild(cell);
+ });
+ grid.appendChild(head);
+ // Each habit gets one row and one checkbox in each day column, just like the reference.
+ const weekTasks=[];
+ dates.forEach(({ts})=>ts.forEach(t=>{if(!weekTasks.some(x=>x.id===t.id))weekTasks.push(t)}));
+ if(!weekTasks.length){
+  const row=document.createElement('div');row.className='habit-table-row habit-table-empty';
+  const msg=document.createElement('div');msg.className='habit-table-name';msg.textContent=data.lang==='en'?'Add your first habit below':'اولین عادتت را از بخش پایین اضافه کن';
+  row.appendChild(msg);
+  dates.forEach(()=>{const c=document.createElement('div');c.className='habit-table-check blank';row.appendChild(c)});
+  grid.appendChild(row);
+ } else {
+  weekTasks.forEach((t,n)=>{
+   const row=document.createElement('div');row.className='habit-table-row';
+   const name=document.createElement('div');name.className='habit-table-name';name.innerHTML=`<span class="habit-index">${fmtNum(n+1)}</span><span class="habit-label"></span>`;
+   name.querySelector('.habit-label').textContent=t.name;
+   row.appendChild(name);
+   dates.forEach(({k,ts})=>{
+    const cell=document.createElement('div');cell.className='habit-table-check';
+    const dailyTask=ts.find(x=>x.id===t.id);
+    if(dailyTask){
+     const cb=document.createElement('input');cb.type='checkbox';cb.checked=checked(t,k);
+     cb.setAttribute('aria-label',`${t.name} - ${k}`);cb.title=t.name;
+     cb.onchange=()=>setChecked(t,k,cb.checked);
+     cell.appendChild(cb);
+    }else{
+     cell.classList.add('blank');
+     cell.setAttribute('aria-hidden','true');
+    }
+    row.appendChild(cell);
+   });
+   grid.appendChild(row);
+  });
+ }
+ // Keep the legacy matrix out of the layout if an older copy created it.
+ const oldMatrix=$('weekCheckGrid');if(oldMatrix)oldMatrix.remove();
+}
+function renderTasks(){
+ const d=fromKey(selectedDate),ts=tasksForDate(selectedDate),done=ts.filter(t=>checked(t,selectedDate)).length;
+ $('selectedTitle').textContent=data.lang==='en'?`Plans for ${['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'][d.getDay()]}`:`برنامه‌های ${weekdays[weekdayIndex(d)]}`;
+ $('selectedSub').textContent=data.lang==='en'?`Jalali: ${jDate(d)}  ·  Gregorian: ${gDate(d)}`:`شمسی: ${jDate(d)}  ·  میلادی: ${gDate(d)}`;
+ $('daySummary').textContent=data.lang==='en'?`${fmtNum(done)} of ${fmtNum(ts.length)} completed`:`${fmtNum(done)} از ${fmtNum(ts.length)} انجام شد`;
+ $('taskList').innerHTML='';
+ if(!ts.length){$('taskList').innerHTML=data.lang==='en'?'<div class="empty">No plans for this day yet.<br>Add your first plan using the field above.</div>':'<div class="empty">برای این روز هنوز برنامه‌ای نداری.<br>از کادر بالا اولین برنامه‌ات را اضافه کن.</div>';return}
+ ts.forEach((t,index)=>{
+  const row=document.createElement('div');row.className='task';
+  const number=document.createElement('span');number.className='task-number';number.textContent=String(index+1)+'.';
+  const cb=document.createElement('input');cb.type='checkbox';cb.checked=checked(t,selectedDate);cb.setAttribute('aria-label',data.lang==='en'?'Completed':'انجام شد');cb.onchange=()=>setChecked(t,selectedDate,cb.checked);
+  const name=document.createElement('div');name.className='task-name'+(cb.checked?' done':'');const ic=document.createElement('span');ic.className='task-icon';ic.textContent=iconOf(t);name.append(ic,document.createTextNode(t.name));
+  const meta=document.createElement('div');meta.className='task-meta';meta.textContent=data.lang==='en'?`Streak: ${streakForTask(t)} days`:`مداومت: ${fmtNum(streakForTask(t))} روز`;
+  const wrap=document.createElement('div');wrap.style.flex='1';wrap.append(name,meta);
+  const del=document.createElement('button');del.className='icon-btn';del.type='button';del.textContent='×';del.title=data.lang==='en'?'Delete plan':'حذف برنامه';del.onclick=()=>{if(confirm(data.lang==='en'?'Delete this plan and its checkmark history?':'این برنامه و سابقه تیک‌های آن حذف شود؟')){data.tasks=data.tasks.filter(x=>x.id!==t.id);Object.keys(data.checks).forEach(k=>delete data.checks[k][t.id]);save();render()}};
+  const ed=document.createElement('button');ed.className='icon-btn';ed.type='button';ed.textContent='✎';ed.title=data.lang==='en'?'Edit plan':'ویرایش برنامه';ed.onclick=()=>editTask(t);
+  row.append(number,cb,wrap,ed,del);$('taskList').appendChild(row);
+ });
+}
+function renderStats(){
+ const today=keyOf(new Date()),ts=tasksForDate(today),done=ts.filter(t=>checked(t,today)).length,p=ts.length?Math.round(done/ts.length*100):0;
+ $('todayCount').textContent=`${fmtNum(done)}/${fmtNum(ts.length)}`;$('todayPercent').textContent=fmtNum(p)+(data.lang==='en'?'%':'٪');$('todayProgress').style.width=p+'%';
+ $('activeStreak').textContent=fmtNum(activeStreak())+(data.lang==='en'?' days':' روز');
+ let total=0;Object.values(data.checks).forEach(day=>total+=Object.values(day||{}).filter(Boolean).length);$('totalChecks').textContent=fmtNum(total);
+ $('todayInfo').innerHTML=data.lang==='en'?`Today · ${jDate(new Date())}<br>${gDate(new Date())}`:`امروز · ${jDate(new Date())}<br>${gDate(new Date())}`;
+ const container=$('habitStats');container.innerHTML='';
+ if(!data.tasks.length){container.innerHTML=data.lang==='en'?'<div class="empty">Streak statistics will appear here after you add a plan.</div>':'<div class="empty">بعد از افزودن برنامه، آمار مداومت آن اینجا نمایش داده می‌شود.</div>';return}
+ data.tasks.forEach(t=>{
+  let streak=streakForTask(t),all=Object.values(data.checks).filter(day=>day&&day[t.id]).length;
+  const r=document.createElement('div');r.className='habit-row';
+  r.innerHTML=`<div class="habit-top"><strong></strong><span>${fmtNum(streak)} ${data.lang==='en'?'day streak':'روز پیاپی'}</span></div><div class="muted" style="margin-top:5px">${data.lang==='en'?'Total completed days:':'مجموع روزهای انجام‌شده:'} ${fmtNum(all)}</div><div class="mini-progress"><span style="width:${Math.min(100,streak/30*100)}%"></span></div>`;
+  r.querySelector('strong').textContent=iconOf(t)+' '+t.name;container.appendChild(r);
+ });
+}
+function editTask(t){
+ const en=data.lang==='en';
+ const name=prompt(en?'Plan name':'نام برنامه',t.name);if(name===null)return;
+ const n=name.trim();if(!n)return;
+ 
+ t.name=n;
+ save();render();
+}
+function fmtDigits(n){return Number(n).toLocaleString(data.lang==='en'?'en-US':'fa-IR',{useGrouping:false})}
+let chartRange='week',chartAnimT=1,chartRaf=0;
+const DJM=['فروردین','اردیبهشت','خرداد','تیر','مرداد','شهریور','مهر','آبان','آذر','دی','بهمن','اسفند'];
+const DJM_EN=['Farvardin','Ordibehesht','Khordad','Tir','Mordad','Shahrivar','Mehr','Aban','Azar','Dey','Bahman','Esfand'];
+function chartItems(){
+ const sel=fromKey(selectedDate);
+ if(chartRange==='day'){
+  return tasksForDate(selectedDate).map(t=>({label:iconOf(t),val:checked(t,selectedDate)?100:0,hl:true,title:t.name}));
+ }
+ let days;
+ if(chartRange==='week'){const st=weekStart(sel);days=Array.from({length:7},(_,i)=>addDays(st,i))}
+ else{
+  const mk=d=>{const j=jalali(d.getFullYear(),d.getMonth()+1,d.getDate());return j.y*100+j.m};
+  const key=mk(sel);let st=sel;while(mk(addDays(st,-1))===key)st=addDays(st,-1);
+  days=[];let x=st;while(mk(x)===key){days.push(x);x=addDays(x,1)}
+ }
+ return days.map((d,i)=>{
+  const k=keyOf(d),ts=tasksForDate(k),done=ts.filter(t=>checked(t,k)).length;
+  let label;
+  if(chartRange==='week')label=data.lang==='en'?weekdaysEn[i]:weekdays[i];
+  else{const j=jalali(d.getFullYear(),d.getMonth()+1,d.getDate());label=fmtNum(j.d)}
+  return {label,short:(data.lang==='en'?weekdaysEn[i]:weekdays[i].slice(0,2)),val:ts.length?done/ts.length*100:0,hl:k===selectedDate,title:jDate(d),empty:!ts.length};
+ });
+}
+function bodyChartText(style){return style.getPropertyValue('--text').trim()||'#273044'}
+function renderChart(){
+ const canvas=$('chart'),ctx=canvas.getContext('2d'),rect=canvas.getBoundingClientRect(),ratio=window.devicePixelRatio||1;
+ canvas.width=Math.max(1,rect.width*ratio);canvas.height=Math.max(1,rect.height*ratio);ctx.setTransform(ratio,0,0,ratio,0,0);
+ const en=data.lang==='en', w=rect.width, h=rect.height, style=getComputedStyle(document.body);
+ const muted=style.getPropertyValue('--muted'),line=style.getPropertyValue('--line'),accent=style.getPropertyValue('--accent');
+ ctx.clearRect(0,0,w,h);
+ const items=chartItems(), sel=fromKey(selectedDate);
+ // header and note for the selected period
+ const titles={day:en?'Day progress':'پیشرفت روز',week:en?'Week progress':'نمودار پیشرفت هفته',month:en?'Month progress':'نمودار پیشرفت ماه'};
+ $('chartTitle').textContent=titles[chartRange];
+ document.querySelectorAll('#chartPanel [data-range]').forEach(b=>{const on=b.dataset.range===chartRange;b.classList.toggle('on',on);b.setAttribute('aria-pressed',on)});
+ const note=$('chartNote');
+ if(chartRange==='day'){
+  const done=items.filter(i=>i.val===100).length;
+  note.textContent=items.length?(en?`${fmtNum(done)} of ${fmtNum(items.length)} plans completed on ${jDate(sel)}`:`${fmtNum(done)} از ${fmtNum(items.length)} برنامه در ${jDate(sel)} انجام شد`):(en?'No plans for this day.':'برای این روز برنامه‌ای نداری.');
+ }else{
+  const j=jalali(sel.getFullYear(),sel.getMonth()+1,sel.getDate());
+  note.textContent=chartRange==='month'?(en?`${DJM_EN[j.m-1]} ${fmtDigits(j.y)} · ${fmtNum(items.length)} days`:`${DJM[j.m-1]} ${fmtDigits(j.y)} · ${fmtNum(items.length)} روز`):(en?`${items[0].title} to ${items[items.length-1].title}`:`از ${items[0].title} تا ${items[items.length-1].title}`);
+ }
+ if(!items.length){ctx.fillStyle=muted;ctx.font='13px Tahoma';ctx.textAlign='center';ctx.fillText(en?'No data for this period':'داده‌ای برای این بازه نیست',w/2,h/2);return}
+ const padX=24,top=20,bottom=34,chartH=h-top-bottom,chartW=w-padX*2;
+ ctx.font='11px Tahoma';ctx.textAlign='right';ctx.fillStyle=muted;
+ for(let v=0;v<=100;v+=25){let y=top+chartH-(v/100)*chartH;ctx.strokeStyle=line;ctx.beginPath();ctx.moveTo(padX,y);ctx.lineTo(w-padX,y);ctx.stroke();ctx.fillText(v+(en?'%':'٪'),w-2,y+4)}
+ const n=items.length, step=chartW/n, maxBw=chartRange==='month'?16:(chartRange==='day'?44:34);
+ // Keep complete weekday names, fitting each label inside its own chart column.
+ const weekChartLabel=x=>x.label;
+ items.forEach((it,i)=>{
+  const bw=Math.min(maxBw,step*.62),x=padX+i*step+(step-bw)/2;
+  const bh=Math.max(it.val>0?3:0,chartH*(it.val/100)*chartAnimT),y=top+chartH-bh;
+  ctx.globalAlpha=it.hl?1:.45;
+  ctx.fillStyle=accent;ctx.beginPath();if(ctx.roundRect)ctx.roundRect(x,y,bw,Math.max(2,bh),5);else ctx.rect(x,y,bw,Math.max(2,bh));ctx.fill();
+  ctx.globalAlpha=1;
+  ctx.fillStyle=muted;ctx.textAlign='center';ctx.font=chartRange==='month'?'10px Tahoma':(chartRange==='day'?'16px sans-serif':(chartRange==='week'?'bold 7px Tahoma':'10px Tahoma'));
+  const showLabel=chartRange!=='month'||i%3===0||i===n-1||it.hl;
+  if(showLabel){
+   if(chartRange==='week')ctx.fillText(weekChartLabel(it),x+bw/2,h-12,Math.max(1,step-2));
+   else ctx.fillText(it.label,x+bw/2,h-12);
+  }
+  if(chartRange!=='month'){ctx.font='bold 11px Tahoma';ctx.fillStyle=bodyChartText(style);ctx.fillText(fmtNum(Math.round(it.val))+(en?'%':'٪'),x+bw/2,Math.max(12,y-7))}
+ });
+}
+function startChartAnim(){
+ cancelAnimationFrame(chartRaf);const t0=performance.now();chartAnimT=0;
+ const step=now=>{const p=Math.min(1,(now-t0)/260);chartAnimT=1-Math.pow(1-p,3);renderChart();if(p<1)chartRaf=requestAnimationFrame(step)};
+ chartRaf=requestAnimationFrame(step);
+}
+document.querySelectorAll('#chartPanel [data-range]').forEach(b=>b.addEventListener('click',()=>{chartRange=b.dataset.range;startChartAnim()}));
+
+/* ---- v3 account panel logic (same rules as the mobile account pages) ---- */
+let accTab='info';
+const accT=(fa,en)=>(data.lang==='en'?en:fa);
+function accRecord(){return getAccounts()[currentAccount]||{}}
+function accDisplayName(){const a=accRecord();return a.name||currentAccount||''}
+function accMsg(id,text,ok){const el=$(id);el.textContent=text;el.className='acc-msg'+(ok?' ok':'')}
+function renderAccount(){
+ const name=accDisplayName(), initial=(name||'?').trim().charAt(0)||'?';
+ $('accTitle').textContent=accT('حساب کاربری','Account');
+ $('accSub').textContent=accT('پروفایل و امنیت','Profile & security');
+ $('accAvatar').textContent=initial;
+ $('accName').textContent=name;
+ $('accUser').textContent='@'+currentAccount;
+ $('accTabInfo').textContent=accT('اطلاعات حساب','Account info');
+ $('accTabPass').textContent=accT('تغییر رمز عبور','Change password');
+ $('accTabList').textContent=accT('حساب‌های من','My accounts');
+ $('accLblName').textContent=accT('نام نمایشی','Display name');
+ $('accLblUser').textContent=accT('نام کاربری (قابل تغییر نیست)','Username (cannot be changed)');
+ $('accInfoSave').textContent=accT('ذخیره','Save');
+ $('accLblOld').textContent=accT('رمز فعلی','Current password');
+ $('accLblNew').textContent=accT('رمز جدید (حداقل ۴ نویسه)','New password (at least 4 characters)');
+ $('accLblConfirm').textContent=accT('تکرار رمز جدید','Repeat new password');
+ $('accPassSave').textContent=accT('تغییر رمز','Change password');
+ $('accLogout').textContent=accT('↗ خروج از حساب','↗ Log out');
+ document.querySelectorAll('.acc-tab').forEach(b=>{const on=b.dataset.acc===accTab;b.classList.toggle('active',on);b.setAttribute('aria-selected',String(on))});
+ $('accInfoForm').hidden=accTab!=='info';
+ $('accPassForm').hidden=accTab!=='password';
+ $('accListView').hidden=accTab!=='accounts';
+ if(accTab==='accounts')renderAccountList();
+}
+function renderAccountList(){
+ const accs=getAccounts();
+ const names=Object.keys(accs).filter(u=>u!=='sobhan').sort();
+ const box=$('accListView'); box.innerHTML='';
+ if(!names.length){box.innerHTML=`<p class="acc-empty">${accT('حساب دیگری در این مرورگر نیست.','No other accounts in this browser.')}</p>`;return}
+ names.forEach(u=>{
+  const row=document.createElement('div'); row.className='acc-row';
+  const who=document.createElement('div'); who.className='acc-who';
+  const b=document.createElement('strong'); b.textContent=(accs[u]&&accs[u].name)||u;
+  const s=document.createElement('small'); s.textContent='@'+u;
+  who.append(b,s); row.appendChild(who);
+  if(u===currentAccount){const c=document.createElement('span');c.className='acc-cur';c.textContent=accT('فعلی','Current');row.appendChild(c)}
+  else{const sw=document.createElement('button');sw.type='button';sw.textContent=accT('ورود','Switch');sw.onclick=()=>accSwitch(u);row.appendChild(sw)}
+  box.appendChild(row);
+ });
+}
+function accSwitch(u){
+ closeAccount();
+ $('logoutBtn').click();
+ if(!$('authScreen').hidden){$('authUsername').value=u;$('authPassword').value='';$('authPassword').focus()}
+}
+function openAccount(){
+ accTab='info';
+ $('accNameInput').value=accDisplayName();
+ $('accUserInput').value=currentAccount;
+ accMsg('accInfoMsg','');accMsg('accPassMsg','');
+ $('accPassForm').reset();
+ renderAccount();
+ $('accModal').hidden=false;$('accBackdrop').classList.add('open');
+ $('accNameInput').focus();
+}
+function closeAccount(){$('accModal').hidden=true;$('accBackdrop').classList.remove('open')}
+document.querySelectorAll('.acc-tab').forEach(b=>b.addEventListener('click',()=>{accTab=b.dataset.acc;accMsg('accInfoMsg','');accMsg('accPassMsg','');renderAccount()}));
+$('accClose').onclick=closeAccount;
+$('accBackdrop').onclick=closeAccount;
+$('accLogout').onclick=()=>{closeAccount();$('logoutBtn').click()};
+$('sidebarAccountBtn').onclick=()=>openAccount();
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('accModal').hidden)closeAccount()});
+$('accInfoForm').addEventListener('submit',e=>{
+ e.preventDefault();
+ const name=$('accNameInput').value.trim();
+ if(!name)return accMsg('accInfoMsg',accT('نام نمایشی نمی‌تواند خالی باشد.','Display name cannot be empty.'));
+ const accs=getAccounts(); if(!accs[currentAccount])return;
+ accs[currentAccount].name=name;
+ localStorage.setItem(authAccountsKey,JSON.stringify(accs));
+ accMsg('accInfoMsg',accT('ذخیره شد.','Saved.'),true);
+ render(); renderAccount();
+});
+$('accPassForm').addEventListener('submit',e=>{
+ e.preventDefault();
+ const accs=getAccounts(), a=accs[currentAccount]; if(!a)return;
+ const f=e.target, old=f.elements.old.value, next=f.elements.next.value, confirm=f.elements.confirm.value;
+ if(old!==String(a.password||''))return accMsg('accPassMsg',accT('رمز فعلی درست نیست.','Current password is incorrect.'));
+ if(next.length<4)return accMsg('accPassMsg',accT('رمز جدید باید حداقل ۴ نویسه باشد.','New password must be at least 4 characters.'));
+ if(next!==confirm)return accMsg('accPassMsg',accT('تکرار رمز جدید با آن یکی نیست.','The new passwords do not match.'));
+ a.password=next;
+ localStorage.setItem(authAccountsKey,JSON.stringify(accs));
+ f.reset();
+ accMsg('accPassMsg',accT('رمز عبور تغییر کرد.','Password changed.'),true);
+});
+
+function applyLanguage(){
+ const en=data.lang==='en';
+ document.documentElement.lang=en?'en':'fa';document.documentElement.dir=en?'ltr':'rtl';
+ const textMap={
+ 'رفتن به امروز':'Today','حالت تیره':'Dark mode','حالت روشن':'Light mode','برنامه هفتگی':'Weekly planner',
+ 'برنامه‌های امروز':'Today’s plans','برنامه‌های':'Plans for','＋ افزودن':'＋ Add','فقط این روز':'This day only',
+ 'تمام روزها':'Every day','امروز':'Today','برنامه‌های امروز':'Today’s plans','نمودار پیشرفت هفته':'Weekly progress',
+ 'درصد انجام روزانه':'Daily completion','مداومت برنامه‌ها':'Habit streaks','زنجیره روزهای متوالی':'Consecutive days',
+ 'درباره ذخیره‌سازی':'Data & backup','دانلود نسخه پشتیبان':'Download backup','بازیابی نسخه پشتیبان':'Restore backup',
+ 'پلنر هفتگی و پیگیری عادت‌ها':'Weekly planner & habit tracker',
+ 'قدم‌های کوچک، پیشرفت مداوم ✨':'Small steps, consistent progress ✨',
+ 'برنامه‌ات را بنویس، انجامش بده و روند پیشرفتت را ببین.':'Plan it, check it off, and watch your progress.',
+ 'برنامه‌های امروز':'Today’s plans','کارهای انجام‌شده از کل کارها':'Completed tasks out of total',
+ 'درصد انجام امروز':'Today’s completion','روزهای فعال پیاپی':'Active days in a row','مجموع تیک‌ها':'Total checkmarks',
+ 'هر روز را انتخاب کن تا برنامه‌های همان روز را ببینی. تاریخ شمسی و میلادی کنار هم نمایش داده می‌شوند.':'Select a day to view its plans. Persian and Gregorian dates are shown together.',
+ 'برنامه‌ای نداری':'No plans for this day yet.','مداومت:':'Streak:','روز پیاپی':'days in a row',
+ 'مجموع روزهای انجام‌شده:':'Total completed days:','درصد انجام روزانه':'Daily completion',
+ 'برنامه‌ها به‌صورت خودکار در همین مرورگر ذخیره می‌شوند و با بستن صفحه پاک نمی‌شوند.':'Plans are saved automatically in this browser and remain after closing the page.',
+ 'پلنر شخصی آفلاین':'Offline personal planner','هفت‌یار':'HaftYar',
+ 'پنل مدیریت هفت‌یار':'HaftYar Admin Panel','حساب‌های ذخیره‌شده در همین مرورگر':'Accounts saved in this browser','به‌روزرسانی فهرست':'Refresh list','برای حفظ حریم خصوصی، رمزهای عبور در این فهرست نمایش داده نمی‌شوند. این نسخه حساب‌ها را فقط روی همین مرورگر نگه می‌دارد؛ کاربران دستگاه‌ها یا مرورگرهای دیگر اینجا دیده نمی‌شوند.':'For privacy, passwords are not shown here. This version stores accounts only in this browser; accounts on other devices or browsers will not appear here.','بازگشت به برنامه':'Back to planner','خروج از حساب':'Log out','حذف برنامه':'Delete plan','انجام شد':'Completed','این برنامه و سابقه تیک‌های آن حذف شود؟':'Delete this plan and its checkmark history?','شمسی:':'Jalali:','میلادی:':'Gregorian:','از':'of','انجام شد':'completed','روز':'days','روز پیاپی':'days in a row','تاریخ شمسی و میلادی کنار هم نمایش داده می‌شوند.':'Jalali and Gregorian dates are shown together.','برای ثبت انجام هر عادت، تیک همان روز را بزن. برای دیدن برنامه‌های یک روز، روی نام روز بالای جدول بزن.':'Check a day to mark a habit complete. Select a weekday name to view that day’s plans.','بعد از افزودن برنامه، آمار مداومت آن اینجا نمایش داده می‌شود.':'Streak statistics will appear here after you add a plan.','برای این روز هنوز برنامه‌ای نداری.':'No plans for this day yet.','از کادر بالا اولین برنامه‌ات را اضافه کن.':'Add your first plan using the field above.','نام کاربری:':'Username:','حالت تیره':'Dark mode','حالت روشن':'Light mode'
+ };
+ document.querySelectorAll('button:not(#langBtn):not(#themeBtn):not(.m-ui),.brand h1,.panel h3,.stat .label,.stat .hint,.welcome h2,.welcome p,.brand p,.calendar-note,.footer').forEach(el=>{
+  if(el.dataset.faText===undefined)el.dataset.faText=el.textContent;
+  const fa=el.dataset.faText;
+  if(en){let out=fa;for(const [a,b] of Object.entries(textMap))out=out.replaceAll(a,b);el.textContent=out;}
+  else el.textContent=fa;
+ });
+ $('langBtn').innerHTML=`<span class="lang-choice ${!en?'active':''}">فا</span><span class="lang-choice ${en?'active':''}">En</span>`;$('langBtn').dataset.lang=data.lang;$('langBtn').title=en?'Switch to Persian':'Switch to English';
+ $('taskInput').placeholder=en?'e.g. Read English for 20 minutes…':'مثلاً: ۲۰ دقیقه انگلیسی بخوانم…';
+ const opts=$('repeatSelect').options;opts[0].text=en?'This day only':'فقط این روز';opts[1].text=en?'Every day':'تمام روزها';
+ document.querySelectorAll('#hySidebar [data-fa],#settingsDrawer [data-fa]').forEach(el=>{el.textContent=en?el.dataset.en:el.dataset.fa});
+ $('drawerFa').textContent='فارسی';$('drawerEn').textContent='English';
+ syncHySettings();
+}
+function render(){document.body.classList.toggle('dark',data.theme==='dark');const darkMode=data.theme==='dark';$('themeBtn').innerHTML=`<span class="sun-icon" aria-hidden="true">${darkMode?'🌙':'☀️'}</span><span class="theme-switch ${darkMode?'on':''}" aria-hidden="true"><i></i></span>`;$('themeBtn').title=data.lang==='en'?(darkMode?'Switch to light mode':'Switch to dark mode'):(darkMode?'تغییر به حالت روشن':'تغییر به حالت تیره');$('themeBtn').setAttribute('aria-label',$('themeBtn').title);applyLanguage();renderWeek();renderTasks();renderStats();renderChart();renderMobile();document.title=data.lang==='en'?'HaftYar | Weekly Planner':'هفت‌یار | پلنر هفتگی';}
+$('addForm').addEventListener('submit',e=>{e.preventDefault();const name=$('taskInput').value.trim();if(!name)return;data.tasks.push({id:String(Date.now())+Math.random().toString(16).slice(2),name,date:selectedDate,repeat:'every'});save();$('taskInput').value='';render()});
+$('prevWeek').onclick=()=>{weekOffset--;selectedDate=keyOf(addDays(fromKey(selectedDate),-7));render()};
+$('nextWeek').onclick=()=>{weekOffset++;selectedDate=keyOf(addDays(fromKey(selectedDate),7));render()};
+
+function openHySettings(){ $('settingsDrawer').classList.add('open');$('settingsBackdrop').classList.add('open');$('settingsDrawer').setAttribute('aria-hidden','false');syncHySettings(); }
+function closeHySettings(){ $('settingsDrawer').classList.remove('open');$('settingsBackdrop').classList.remove('open');$('settingsDrawer').setAttribute('aria-hidden','true'); }
+function syncHySettings(){ $('drawerFa').classList.toggle('active',data.lang==='fa');$('drawerEn').classList.toggle('active',data.lang==='en');$('drawerLight').classList.toggle('active',data.theme!=='dark');$('drawerDark').classList.toggle('active',data.theme==='dark'); }
+$('openSettings').onclick=openHySettings;$('closeSettings').onclick=closeHySettings;$('settingsBackdrop').onclick=closeHySettings;
+
+function openInfoPage(kind){
+ const en=data.lang==='en';
+ const isAbout=kind==='about';
+ $('infoIcon').textContent=isAbout?'ⓘ':'?';
+ $('infoTitle').textContent=isAbout?(en?'About HaftYar':'درباره برنامه'):(en?'Help':'راهنما');
+ $('infoSubtitle').textContent=isAbout?(en?'Version 2.0 · Weekly planner & habit tracker':'نسخه ۲.۰ · پلنر هفتگی و پیگیری عادت‌ها'):(en?'Quick guide to using your planner':'راهنمای سریع استفاده از برنامه');
+ const items=isAbout?[
+  [en?'HaftYar':'هفت‌یار',en?'A simple space for weekly planning, daily tasks and habit tracking.':'فضایی ساده برای برنامه‌ریزی هفتگی، کارهای روزانه و پیگیری عادت‌ها.'],
+  [en?'Your data':'اطلاعات شما',en?'Your plans and checkmarks are stored in this browser. Use backup in Settings before moving to another device.':'برنامه‌ها و تیک‌ها در همین مرورگر ذخیره می‌شوند. پیش از انتقال به دستگاه دیگر، از بخش پشتیبان‌گیری استفاده کن.']
+ ]:[
+  [en?'Add a plan':'افزودن برنامه',en?'Choose a day, type your task and press Add. Your changes are saved automatically.':'روز موردنظر را انتخاب کن، برنامه را بنویس و دکمه افزودن را بزن. تغییرات خودکار ذخیره می‌شوند.'],
+  [en?'Weekly plan and checkmarks':'برنامه هفتگی و تیک‌ها',en?'Use the weekday cards to switch days. Check a task when it is done; progress and streaks update automatically.':'از کارت‌های روزهای هفته برای جابه‌جایی بین روزها استفاده کن. بعد از انجام هر کار تیکش را بزن تا آمار پیشرفت به‌روز شود.'],
+  [en?'Habits and progress':'عادت‌ها و پیشرفت',en?'Open the habits and progress areas to review your habit checkmarks and weekly results.':'برای بررسی تیک عادت‌ها و نتیجه هفتگی، بخش عادت‌ها و پیشرفت را باز کن.'],
+  [en?'Backup':'پشتیبان‌گیری',en?'Open Settings and export a backup file. Keep it somewhere safe so you can restore your data later.':'از تنظیمات فایل پشتیبان بگیر و آن را در جای امن نگه دار تا بعداً بتوانی اطلاعات را بازیابی کنی.']
+ ];
+ $('infoBody').innerHTML=items.map(([title,desc])=>`<div class="hy-info-item"><h3>${title}</h3><p>${desc}</p></div>`).join('');
+ $('infoBackdrop').hidden=false;$('infoModal').hidden=false;
+}
+function closeInfoPage(){$('infoBackdrop').hidden=true;$('infoModal').hidden=true}
+$('openHelp').onclick=()=>openInfoPage('help');
+$('openAbout').onclick=()=>openInfoPage('about');
+$('closeInfo').onclick=closeInfoPage;$('infoBackdrop').onclick=closeInfoPage;
+$('sidebarAccountBtn').onclick=openAccount;
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeHySettings();closeInfoPage()}});
+$('drawerFa').onclick=()=>{data.lang='fa';save();render();syncHySettings()};$('drawerEn').onclick=()=>{data.lang='en';save();render();syncHySettings()};
+$('drawerLight').onclick=()=>{data.theme='light';save();render();syncHySettings()};$('drawerDark').onclick=()=>{data.theme='dark';save();render();syncHySettings()};$('drawerLogout').onclick=()=>$('logoutBtn').click();
+document.querySelectorAll('.hy-nav[data-target]').forEach(btn=>btn.addEventListener('click',()=>{document.querySelectorAll('.hy-nav').forEach(x=>x.classList.remove('active'));btn.classList.add('active');const target=btn.dataset.target;if(target==='dashboard'){window.scrollTo({top:0,behavior:'smooth'});return}const el=$(target);if(el)el.scrollIntoView({behavior:'smooth',block:'start'})}));
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeHySettings()});
+
+$('todayBtn').onclick=()=>{weekOffset=0;selectedDate=keyOf(new Date());render()};
+$('themeBtn').onclick=()=>{data.theme=data.theme==='dark'?'light':'dark';save();render()};$('langBtn').onclick=()=>{data.lang=data.lang==='en'?'fa':'en';save();render()};
+window.addEventListener('resize',renderChart);
+render();
+$('plannerApp').hidden=true;
+
+
+// Local-browser account gate (not a server-backed authentication system).
+const authAccountsKey='haftyar_local_accounts_v1';
+let authMode='login',authLang=localStorage.getItem('haftyar_auth_lang')||'fa',currentAccount='';
+function authText(fa,en){return authLang==='en'?en:fa}
+function updateAuthLanguage(){
+ document.documentElement.lang=authLang;document.documentElement.dir=authLang==='en'?'ltr':'rtl';
+ document.querySelectorAll('#authScreen [data-fa][data-en]').forEach(el=>{el.textContent=authLang==='en'?el.dataset.en:el.dataset.fa});
+ $('authName').placeholder=authLang==='en'?$('authName').dataset.enPlaceholder:$('authName').dataset.faPlaceholder;
+ $('authUsername').placeholder=authLang==='en'?$('authUsername').dataset.enPlaceholder:$('authUsername').dataset.faPlaceholder;
+ $('authLang').textContent=authLang==='en'?'فارسی ↗':'English ↗';
+ $('authTitle').textContent=authMode==='login'?authText('به نسخه بهتر خودت خوش اومدی','Welcome to your better self'):authText('حساب هفت‌یار خودت رو بساز','Create your HaftYar account');
+ $('authDesc').textContent=authMode==='login'?authText('برنامه‌هات رو مرتب کن، پیشرفتت رو ببین و هر روز یک قدم جلوتر برو.','Organize your plans, track your progress, and move forward one day at a time.'):authText('یک فضای شخصی بساز و قدم‌های کوچیکت رو دنبال کن.','Create your own space and keep track of your small wins.');
+ $('loginTab').classList.toggle('active',authMode==='login');$('signupTab').classList.toggle('active',authMode==='signup');
+ $('nameLabel').hidden=$('authName').hidden=authMode!=='signup';$('authName').required=authMode==='signup';
+ $('authPassword').autocomplete=authMode==='login'?'current-password':'new-password';
+ setAuthSubmitLabel(authMode==='login'?authText('ورود به هفت‌یار','Enter HaftYar'):authText('ساخت حساب و شروع','Create account & start'));
+ $('authMessage').className='auth-message';$('authMessage').textContent='';
+}
+function setAuthSubmitLabel(label){const b=$('authSubmit');let sp=b.querySelector('span:not(.auth-arrow)');if(!sp){b.innerHTML='<span></span><span class="auth-arrow">↗</span>';sp=b.querySelector('span')}sp.textContent=label}
+function showAuthMessage(msg,ok=false){$('authMessage').textContent=msg;$('authMessage').className='auth-message show'+(ok?' ok':'')}
+function getAccounts(){try{const value=JSON.parse(localStorage.getItem(authAccountsKey)||'{}');return value&&typeof value==='object'&&!Array.isArray(value)?value:{}}catch(e){return {}}}
+function loadAccountData(username){storeKey='haftyar_planner_'+username;data={tasks:[],checks:{},theme:'light',lang:authLang};try{const saved=JSON.parse(localStorage.getItem(storeKey)||'null');if(saved&&Array.isArray(saved.tasks)&&saved.checks)data={...data,...saved}}catch(e){}data.lang=authLang;save()}
+function enterPlanner(username,name){currentAccount=username;localStorage.setItem('haftyar_active_account',username);$('plannerApp').classList.remove('admin-mode');$('adminPanel').hidden=true;$('adminBackBtn').hidden=true;$('todayBtn').hidden=false;$('langBtn').hidden=false;$('themeBtn').hidden=false;$('logoutBtn').hidden=false;loadAccountData(username);$('authScreen').hidden=true;$('plannerApp').hidden=false;render();}
+$('loginTab').onclick=()=>{authMode='login';$('authName').required=false;$('authName').hidden=true;updateAuthLanguage()};$('signupTab').onclick=()=>{authMode='signup';$('authName').required=true;$('authName').hidden=false;updateAuthLanguage()};
+$('authLang').onclick=()=>{authLang=authLang==='fa'?'en':'fa';localStorage.setItem('haftyar_auth_lang',authLang);updateAuthLanguage()};
+$('authForm').addEventListener('submit',e=>{e.preventDefault();const username=$('authUsername').value.trim().toLowerCase(),password=$('authPassword').value;const accounts=getAccounts();
+ if(!/^[a-z0-9_.-]{3,24}$/.test(username)){showAuthMessage(authText('نام کاربری باید ۳ تا ۲۴ حرف انگلیسی، عدد یا . _ - باشد.','Username must be 3–24 characters using letters, numbers, dot, underscore or hyphen.'));return}
+ if(authMode==='signup'){const name=$('authName').value.trim();if(!name){showAuthMessage(authText('لطفاً نام نمایشی رو وارد کن.','Please enter a display name.'));return}if(accounts[username]){showAuthMessage(authText('این نام کاربری قبلاً گرفته شده؛ یکی دیگر انتخاب کن.','That username is already taken. Please choose another.'));return}accounts[username]={name,password};try{localStorage.setItem(authAccountsKey,JSON.stringify(accounts));enterPlanner(username,name)}catch(err){showAuthMessage(authText('ذخیره حساب در این مرورگر ممکن نیست؛ فضای ذخیره‌سازی را بررسی کن.','Could not save the account in this browser. Check browser storage settings.'))}}
+ else {if(!accounts[username]||accounts[username].password!==password){showAuthMessage(authText('نام کاربری یا رمز عبور درست نیست. اگر حساب نداری، حساب بساز.','Username or password is incorrect. Create an account if you are new.'));return}enterPlanner(username,accounts[username].name)}
+});
+
+const adminUsername='sobhan',adminPassword='sobhan9099s';
+function renderAdminAccounts(){
+ const accounts=getAccounts(),names=Object.keys(accounts).filter(u=>u!==adminUsername).sort();
+ const host=$('adminAccountList');
+ if(!names.length){host.innerHTML='<div class="admin-empty">هنوز حساب کاربری‌ای در این مرورگر ساخته نشده است.</div>';return}
+ host.innerHTML=names.map(u=>`<div class="admin-account"><div><strong>${escapeAdmin(accounts[u].name||u)}</strong><small>نام کاربری: ${escapeAdmin(u)}</small></div><button class="danger" data-delete-user="${escapeAdmin(u)}">حذف حساب</button></div>`).join('');
+ host.querySelectorAll('[data-delete-user]').forEach(btn=>btn.onclick=()=>{const u=btn.dataset.deleteUser;if(!confirm('حساب «'+u+'» و اطلاعات برنامه‌ریزی همین حساب از این مرورگر حذف شود؟'))return;const a=getAccounts();delete a[u];localStorage.setItem(authAccountsKey,JSON.stringify(a));localStorage.removeItem('haftyar_planner_'+u);renderAdminAccounts()});
+}
+function escapeAdmin(value){return String(value).replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]))}
+function enterAdmin(){currentAccount='';localStorage.removeItem('haftyar_active_account');$('authScreen').hidden=true;$('plannerApp').hidden=false;$('plannerApp').classList.add('admin-mode');$('adminPanel').hidden=false;$('adminBackBtn').hidden=false;$('todayBtn').hidden=true;$('langBtn').hidden=true;$('themeBtn').hidden=true;renderAdminAccounts()}
+function leaveAdmin(){ $('plannerApp').classList.remove('admin-mode');$('adminPanel').hidden=true;$('adminBackBtn').hidden=true;$('todayBtn').hidden=false;$('langBtn').hidden=false;$('themeBtn').hidden=false;$('plannerApp').hidden=true;$('authScreen').hidden=false;authMode='login';updateAuthLanguage() }
+$('refreshAccountsBtn').onclick=renderAdminAccounts;
+$('adminBackBtn').onclick=leaveAdmin;
+$('logoutBtn').onclick=()=>{if(!confirm(authText('از حساب خارج بشی؟ برنامه‌ها و تیک‌هایت حذف نمی‌شوند.','Log out? Your plans and checkmarks will not be deleted.')))return;localStorage.removeItem('haftyar_active_account');currentAccount='';$('plannerApp').hidden=true;$('plannerApp').classList.remove('admin-mode');$('adminPanel').hidden=true;$('authScreen').hidden=false;authMode='login';updateAuthLanguage()};
+// Add a dedicated admin route from the normal login form. Admin password is never shown in the management list.
+const originalAuthSubmit=$('authForm');
+originalAuthSubmit.addEventListener('submit',e=>{
+ const username=$('authUsername').value.trim().toLowerCase(),password=$('authPassword').value;
+ if(authMode==='login'&&username===adminUsername&&password===adminPassword){e.preventDefault();e.stopImmediatePropagation();enterAdmin()}
+},true);
+updateAuthLanguage();
+// Restore the last signed-in account automatically on this browser.
+try{const remembered=localStorage.getItem('haftyar_active_account'),accounts=getAccounts();if(remembered&&accounts[remembered])enterPlanner(remembered,accounts[remembered].name)}catch(e){}
+</script>
+
+
+<script>
+/* HaftYar Supabase integration. Public/publishable key only; never place service_role keys in this file. */
+(function(){
+ const SUPABASE_URL='https://tbzogvzvbwpxpmyccnmk.supabase.co';
+ const SUPABASE_PUBLISHABLE_KEY='sb_publishable_L6H6I_gzZEeELbNpO_iS_Q_O1jbtErS';
+ const loadLib=()=>new Promise((resolve,reject)=>{
+   if(window.supabase&&window.supabase.createClient)return resolve();
+   const sc=document.createElement('script');sc.src='https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2';sc.onload=resolve;sc.onerror=()=>reject(new Error('کتابخانه اتصال آنلاین بارگذاری نشد. اینترنت را بررسی کن.'));document.head.appendChild(sc);
+ });
+ let client=null, remoteUser=null, syncTimer=null;
+ const $=id=>document.getElementById(id);
+ const say=(msg,ok=false)=>{const el=$('authMessage');el.textContent=msg;el.className='auth-message show'+(ok?' ok':'')};
+ const norm=u=>String(u||'').trim().toLowerCase();
+ function updateFields(){
+   const signup=authMode==='signup';
+   const userLabel=$('authUsername').previousElementSibling;
+   if(userLabel){userLabel.hidden=false;$('authUsername').hidden=false;$('authUsername').required=true;}
+   $('authUsername').autocomplete='username';
+   if(typeof updateAuthLanguage==='function')updateAuthLanguage();
+   // updateAuthLanguage unhides labels in older markup; reapply field visibility
+   $('authUsername').hidden=false;$('authUsername').required=true;if(userLabel)userLabel.hidden=false;
+ }
+ async function setup(){await loadLib();client=window.supabase.createClient(SUPABASE_URL,SUPABASE_PUBLISHABLE_KEY,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}});}
+ async function syncFromCloud(){
+   if(!client||!remoteUser)return false;
+   const {data:row,error}=await client.from('planner_data').select('data,updated_at').eq('user_id',remoteUser.id).maybeSingle();
+   if(error){console.warn('HaftYar cloud read:',error.message);return false;}
+   if(row&&row.data&&Array.isArray(row.data.tasks)&&row.data.checks){
+     let localData=null;try{localData=JSON.parse(localStorage.getItem(storeKey)||'null')}catch(e){}
+     const cloudHasContent=row.data.tasks.length>0||Object.values(row.data.checks||{}).some(v=>v&&Object.keys(v).length>0);
+     const localHasContent=localData&&Array.isArray(localData.tasks)&&(localData.tasks.length>0||Object.values(localData.checks||{}).some(v=>v&&Object.keys(v).length>0));
+     // Preserve existing device data if the cloud row is still empty; otherwise cloud is the cross-device source of truth.
+     if(!cloudHasContent&&localHasContent){data={...data,...localData};data.lang=authLang;return false;}
+     data={...data,...row.data};data.lang=authLang;localStorage.setItem(storeKey,JSON.stringify(data));render();return true;
+   }
+   return false;
+ }
+ let cloudWriteQueue=Promise.resolve();
+ async function syncToCloud(){
+   if(!client||!remoteUser)return;
+   const userId=remoteUser.id;
+   const snapshot=JSON.parse(JSON.stringify(data));
+   cloudWriteQueue=cloudWriteQueue.catch(()=>{}).then(async()=>{
+     // Never write one account's data under another account's user_id.
+     if(!client||!remoteUser||remoteUser.id!==userId)return;
+     const {error}=await client.from('planner_data').upsert({user_id:userId,data:snapshot,updated_at:new Date().toISOString()},{onConflict:'user_id'});
+     if(error){console.warn('HaftYar cloud save:',error.message);throw error;}
+   });
+   try{await cloudWriteQueue;}catch(e){console.warn('HaftYar cloud sync failed:',e.message);}
+ }
+ async function flushCloudSync(){clearTimeout(syncTimer);if(remoteUser)await syncToCloud();}
+ window.haftyarCloudSync=flushCloudSync;
+ window.haftyarQueueCloudSync=function(){if(remoteUser){clearTimeout(syncTimer);syncTimer=setTimeout(()=>{syncToCloud();},400);}};
+ // Save locally immediately and synchronize changes to the user's private cloud row.
+ window.save=function(){
+   try{localStorage.setItem(storeKey,JSON.stringify(data));}catch(e){console.warn('HaftYar local save:',e.message);}
+   window.haftyarQueueCloudSync();
+ };
+ document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='hidden')flushCloudSync();});
+ window.addEventListener('pagehide',()=>{flushCloudSync();});
+ async function enterCloud(user,username,name){
+   remoteUser=user;currentAccount=username;
+   try{localStorage.setItem('haftyar_active_account',username);}catch(e){}
+   storeKey='haftyar_planner_'+username;
+   data={tasks:[],checks:{},theme:'light',lang:authLang};
+   try{const saved=JSON.parse(localStorage.getItem(storeKey)||'null');if(saved&&Array.isArray(saved.tasks)&&saved.checks)data={...data,...saved};}catch(e){}
+   $('plannerApp').classList.remove('admin-mode');$('adminPanel').hidden=true;$('adminBackBtn').hidden=true;$('todayBtn').hidden=false;$('langBtn').hidden=false;$('themeBtn').hidden=false;$('logoutBtn').hidden=false;
+   $('authScreen').hidden=true;$('plannerApp').hidden=false;
+   const hadCloudData=await syncFromCloud();
+   if(!hadCloudData)await syncToCloud();
+   render();
+ }
+ document.addEventListener('DOMContentLoaded',()=>{});
+ const originalUpdate=window.updateAuthLanguage;
+ window.addEventListener('load',async()=>{
+   try{await setup();}catch(e){console.error(e);say(e.message);return;}
+   const tabs=[$('loginTab'),$('signupTab')];tabs.forEach(b=>b.addEventListener('click',()=>setTimeout(updateFields,0)));
+   updateFields();
+   // Restore the existing Supabase session on refresh instead of showing the login screen.
+   try{
+     const {data:sessionResult,error:sessionError}=await client.auth.getSession();
+     if(sessionError)throw sessionError;
+     const session=sessionResult&&sessionResult.session;
+     if(session&&session.user){
+       const meta=session.user.user_metadata||{};
+       const savedUsername=norm(meta.username)||norm((session.user.email||'').split('@')[0]);
+       const savedName=meta.display_name||savedUsername;
+       if(savedUsername)await enterCloud(session.user,savedUsername,savedName);
+     }else{
+       // Do not let the older local-only login logic bypass cloud authentication.
+       remoteUser=null;currentAccount='';localStorage.removeItem('haftyar_active_account');
+       $('plannerApp').hidden=true;$('authScreen').hidden=false;
+     }
+   }catch(err){console.warn('HaftYar session restore:',err.message);}
+   $('authForm').addEventListener('submit',async e=>{
+     e.preventDefault();e.stopImmediatePropagation();
+     const username=norm($('authUsername').value),password=$('authPassword').value,name=$('authName').value.trim();
+     if(!/^[a-z0-9_.-]{3,24}$/.test(username)){say('نام کاربری باید ۳ تا ۲۴ حرف انگلیسی، عدد یا . _ - باشد.');return;}
+     // Supabase Auth uses an internal synthetic email so the UI needs only username + password.
+     const email=username+'@accounts.haftyar.app';
+     if(password.length<6){say('رمز عبور باید حداقل ۶ نویسه داشته باشد.');return;}
+     const btn=$('authSubmit');btn.disabled=true;
+     try{
+       if(authMode==='signup'){
+         if(!/^[a-z0-9_.-]{3,24}$/.test(username)){say('نام کاربری باید ۳ تا ۲۴ حرف انگلیسی، عدد یا . _ - باشد.');return;}
+         if(!name){say('لطفاً نام نمایشی را وارد کن.');return;}
+         const {data:res,error}=await client.auth.signUp({email,password,options:{data:{username,display_name:name}}});
+         if(error){
+           if(/already registered|already exists|user already|duplicate/i.test(error.message||''))throw new Error('این نام کاربری قبلاً ثبت شده است؛ نام دیگری انتخاب کن.');
+           throw error;
+         }
+         if(res.user&&!res.session){
+           // A duplicate signup can be intentionally obscured by some Auth configurations.
+           say('ثبت‌نام انجام شد اما نشست ورود ساخته نشد. در Supabase تأیید ایمیل باید خاموش باشد و محدودیت ایمیل هم نباید فعال باشد.');
+           return;
+         }
+         if(res.session&&res.user){await enterCloud(res.user,username,name);say('حساب ساخته شد و به هفت‌یار وارد شدی.',true);}
+         else say('ثبت‌نام ثبت شد؛ اگر وارد برنامه نشدی، در Supabase باید تأیید ایمیل خاموش باشد.',true);
+       }else{
+         const {data:res,error}=await client.auth.signInWithPassword({email,password});
+         if(error)throw error;
+         const meta=res.user.user_metadata||{};const uname=norm(meta.username)||email.split('@')[0];const disp=meta.display_name||uname;
+         await enterCloud(res.user,uname,disp);say('ورود موفق بود.',true);
+       }
+     }catch(err){say(err.message||'خطا در اتصال به حساب آنلاین.');}
+     finally{btn.disabled=false;}
+   },true);
+   // Username-only accounts have no recovery email; remove the email-based recovery control.
+   $('authResetBtn')?.remove();
+   client.auth.onAuthStateChange(async(event,session)=>{
+     if(event==='SIGNED_OUT'){remoteUser=null;}
+   });
+ });
+ // Confirm once, save cloud data, then sign out. A cancelled confirmation keeps the session.
+ const logout=$('logoutBtn');
+ if(logout)logout.addEventListener('click',async e=>{
+   e.preventDefault();e.stopImmediatePropagation();
+   if(!confirm(authText('از حساب خارج بشی؟ برنامه‌ها و تیک‌هایت حذف نمی‌شوند.','Log out? Your plans and checkmarks will not be deleted.')))return;
+   logout.disabled=true;
+   try{await flushCloudSync();if(client)await client.auth.signOut();}
+   catch(err){console.warn('HaftYar sign out:',err.message);}
+   remoteUser=null;currentAccount='';localStorage.removeItem('haftyar_active_account');
+   $('plannerApp').hidden=true;$('plannerApp').classList.remove('admin-mode');$('adminPanel').hidden=true;$('authScreen').hidden=false;authMode='login';updateAuthLanguage();logout.disabled=false;
+ },true);
+})();
+</script>
+
+<style>
+/* A little extra space between weekday names in the weekly calendar */
+.layout aside .weekly-wide .week-grid{column-gap:6px !important;}
+@media(max-width:560px){.layout aside .weekly-wide .week-grid{column-gap:5px !important;}}
+</style>
+</body>
+</html>
