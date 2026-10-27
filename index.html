@@ -579,6 +579,23 @@ body:not(.dark){--bg:#f3f5fb;--panel:#ffffff;--text:#172033;--muted:#5a6680;--li
 body:not(.dark){background:var(--bg);color:var(--text)}
 body.dark{--bg:#070d20;--panel:#0d1731;--text:#eef2ff;--muted:#a4b1d2;--line:#26365c;--accent:#715cff;--accent2:#9b80ff;--shadow:0 12px 35px #0005}
 body.dark{background:radial-gradient(ellipse at 50% -20%,#182858 0,transparent 48%),#070d20;color:var(--text)}
+
+/* Mobile header language/theme controls mirror the desktop buttons; only these controls are changed. */
+@media(max-width:767px){
+ #mobileRoot .m-topbar{gap:6px}
+ #mobileRoot .m-header-controls{gap:5px;min-width:0}
+ #mobileRoot .m-lang-control{display:flex;align-items:center;justify-content:center;gap:2px;min-width:76px;padding:3px;border-radius:999px;background:#101a35;border:1px solid #26365c;color:#c8d3f1}
+ #mobileRoot .m-lang-choice{display:grid;place-items:center;min-width:27px;height:27px;border-radius:999px;font-size:11px;font-weight:700;transition:all .2s ease}
+ #mobileRoot .m-lang-choice.active{background:linear-gradient(120deg,#6048f1,#8b5ff4);color:#fff;box-shadow:0 3px 12px #6048f155}
+ #mobileRoot .m-theme-control{display:flex;align-items:center;justify-content:center;gap:5px;min-width:0;padding:4px 3px;background:transparent;border:0;color:var(--text)}
+ #mobileRoot .m-theme-control .sun-icon{font-size:20px;line-height:1;color:#e0a21b;display:inline-block;min-width:20px;text-align:center}
+ #mobileRoot .m-theme-control .theme-switch{width:42px;height:26px;border-radius:99px;padding:2px;display:flex;align-items:center;justify-content:flex-start;direction:ltr;background:#e4e9f5;border:2px solid #7b86a4;box-sizing:border-box;transition:background .25s ease,border-color .25s ease}
+ #mobileRoot .m-theme-control .theme-switch i{display:block;width:18px;height:18px;flex:0 0 18px;border-radius:50%;background:linear-gradient(135deg,#fff,#d8deed);box-shadow:0 1px 5px #11182735;transform:translateX(0);transition:transform .25s ease}
+ #mobileRoot .m-theme-control .theme-switch.on{background:#27205b;border-color:#7767ff}
+ #mobileRoot .m-theme-control .theme-switch.on i{transform:translateX(14px);background:linear-gradient(135deg,#fff,#bcb5ff);box-shadow:0 0 10px #8b72ff88}
+ body.dark #mobileRoot .m-theme-control .sun-icon{color:#aeb9db}
+}
+
 /* ---- HaftYar mobile v2 (max-width:767px only) ---- */
 
 /* ===================================================================
@@ -909,7 +926,7 @@ body:not(.dark) #plannerApp .chart-wrap {min-height:145px;}
  </aside>
 </div>
 
-<div class="footer">هفت‌یار · پلنر شخصی آفلاین</div>
+<div class="footer">هفت‌یار<br><span style="display:inline-block;margin-top:5px;direction:ltr">Designed &amp; Developed by Sobhan Sameiei</span></div>
 </div>
 <div id="mobileRoot">
  <main id="mMain" class="m-main"></main>
@@ -1074,8 +1091,9 @@ function renderDashboard(){
   const bars=dayVals(7).map(v=>`<span style="height:${Math.max(10,v.val)}%" title="${esc(pct(v.val))}"></span>`).join('');
   return `<div class="m-topbar">
     <button type="button" class="m-ui m-iconbtn" data-act="drawer" aria-label="${esc(T('منو','Menu'))}">☰</button>
-    <div class="m-topgroup">
-      <div class="m-seg" role="group" aria-label="${esc(T('زبان','Language'))}"><button type="button" class="m-ui${en?'':' on'}" data-act="set-lang" data-val="fa" aria-pressed="${!en}">فا</button><button type="button" class="m-ui${en?' on':''}" data-act="set-lang" data-val="en" aria-pressed="${en}">EN</button></div>
+    <div class="m-topgroup m-header-controls">
+      <button type="button" class="m-ui m-lang-control" data-act="set-lang" data-val="${en?'fa':'en'}" aria-label="${esc(T('تغییر زبان','Change language'))}"><span class="m-lang-choice${!en?' active':''}">فا</span><span class="m-lang-choice${en?' active':''}">EN</span></button>
+      <button type="button" class="m-ui m-theme-control" data-act="theme-toggle" aria-label="${esc(T('تغییر پوسته','Toggle theme'))}"><span class="sun-icon">${dark?'☾':'☼'}</span><span class="theme-switch${dark?' on':''}"><i></i></span></button>
     </div>
   </div>
   <h1 class="m-hello">${esc(T('سلام','Hi'))} ${esc(curAcc().name)}</h1>
@@ -1221,7 +1239,8 @@ function renderSettings(){
 function renderAbout(){
   return head(T('درباره برنامه','About'),backBtn())
   + `<div class="m-card"><div class="m-profile" style="margin:0"><div class="m-avatar" aria-hidden="true">✓</div><h2>${esc(T('هفت‌یار','HaftYar'))}</h2><p>${esc(T('نسخه ۲.۰ · پلنر هفتگی و پیگیری عادت‌ها','Version 2.0 · Weekly planner & habit tracker'))}</p></div></div>`
-  + `<p class="m-note">${esc(T('همه اطلاعات روی همین مرورگر ذخیره می‌شود. برای انتقال به دستگاه دیگر از پشتیبان‌گیری استفاده کن.','All data is stored in this browser. Use backup to move it to another device.'))}</p>`;
+  + `<p class="m-note">${esc(T('همه اطلاعات روی همین مرورگر ذخیره می‌شود. برای انتقال به دستگاه دیگر از پشتیبان‌گیری استفاده کن.','All data is stored in this browser. Use backup to move it to another device.'))}</p>`
+  + `<p class="m-note" style="text-align:center;direction:ltr;margin-top:14px">Designed &amp; Developed by Sobhan Sameiei</p>`;
 }
 function renderHelp(){
   const items=[
@@ -1934,6 +1953,11 @@ try{const remembered=localStorage.getItem('haftyar_active_account'),accounts=get
  let client=null, remoteUser=null, syncTimer=null;
  const $=id=>document.getElementById(id);
  const say=(msg,ok=false)=>{const el=$('authMessage');el.textContent=msg;el.className='auth-message show'+(ok?' ok':'')};
+ function cloudStatus(msg,kind='info'){
+   let el=$('haftyarCloudStatus');
+   if(!el){el=document.createElement('div');el.id='haftyarCloudStatus';el.style.cssText='position:fixed;z-index:99999;left:12px;bottom:12px;max-width:min(92vw,360px);padding:10px 14px;border-radius:12px;font:13px/1.5 system-ui,sans-serif;box-shadow:0 4px 18px #0002;background:#eef2ff;color:#243047;direction:rtl;';document.body.appendChild(el);}
+   el.textContent=msg;el.style.background=kind==='ok'?'#dcfce7':kind==='error'?'#fee2e2':'#eef2ff';el.style.color=kind==='error'?'#991b1b':kind==='ok'?'#166534':'#243047';
+ }
  const norm=u=>String(u||'').trim().toLowerCase();
  function updateFields(){
    const signup=authMode==='signup';
@@ -1947,34 +1971,38 @@ try{const remembered=localStorage.getItem('haftyar_active_account'),accounts=get
  async function setup(){await loadLib();client=window.supabase.createClient(SUPABASE_URL,SUPABASE_PUBLISHABLE_KEY,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}});}
  async function syncFromCloud(){
    if(!client||!remoteUser)return false;
+   cloudStatus('در حال دریافت اطلاعات از فضای ابری…');
    const {data:row,error}=await client.from('planner_data').select('data,updated_at').eq('user_id',remoteUser.id).maybeSingle();
-   if(error){console.warn('HaftYar cloud read:',error.message);return false;}
+   if(error){console.error('HaftYar cloud read:',error);cloudStatus('دریافت آنلاین ناموفق بود: '+error.message,'error');return false;}
    if(row&&row.data&&Array.isArray(row.data.tasks)&&row.data.checks){
      let localData=null;try{localData=JSON.parse(localStorage.getItem(storeKey)||'null')}catch(e){}
      const cloudHasContent=row.data.tasks.length>0||Object.values(row.data.checks||{}).some(v=>v&&Object.keys(v).length>0);
      const localHasContent=localData&&Array.isArray(localData.tasks)&&(localData.tasks.length>0||Object.values(localData.checks||{}).some(v=>v&&Object.keys(v).length>0));
-     // Preserve existing device data if the cloud row is still empty; otherwise cloud is the cross-device source of truth.
-     if(!cloudHasContent&&localHasContent){data={...data,...localData};data.lang=authLang;return false;}
-     data={...data,...row.data};data.lang=authLang;localStorage.setItem(storeKey,JSON.stringify(data));render();return true;
+     if(!cloudHasContent&&localHasContent){data={...data,...localData};data.lang=authLang;cloudStatus('اطلاعات این دستگاه پیدا شد؛ در حال ذخیرهٔ آن در فضای ابری…');return false;}
+     data={...data,...row.data};data.lang=authLang;
+     try{localStorage.setItem(storeKey,JSON.stringify(data));}catch(e){}
+     render();return true;
    }
    return false;
  }
  let cloudWriteQueue=Promise.resolve();
  async function syncToCloud(){
-   if(!client||!remoteUser)return;
+   if(!client||!remoteUser)return false;
    const userId=remoteUser.id;
-   const snapshot=JSON.parse(JSON.stringify(data));
+   let snapshot;try{snapshot=JSON.parse(JSON.stringify(data));}catch(e){cloudStatus('اطلاعات برنامه قابل آماده‌سازی برای ذخیره نیست.','error');return false;}
+   cloudStatus('در حال ذخیرهٔ تغییرات آنلاین…');
    cloudWriteQueue=cloudWriteQueue.catch(()=>{}).then(async()=>{
-     // Never write one account's data under another account's user_id.
-     if(!client||!remoteUser||remoteUser.id!==userId)return;
+     if(!client||!remoteUser||remoteUser.id!==userId)return false;
      const {error}=await client.from('planner_data').upsert({user_id:userId,data:snapshot,updated_at:new Date().toISOString()},{onConflict:'user_id'});
-     if(error){console.warn('HaftYar cloud save:',error.message);throw error;}
+     if(error)throw error;
+     return true;
    });
-   try{await cloudWriteQueue;}catch(e){console.warn('HaftYar cloud sync failed:',e.message);}
+   try{const ok=await cloudWriteQueue;return !!ok;}
+   catch(e){console.error('HaftYar cloud sync failed:',e);cloudStatus('ذخیرهٔ آنلاین ناموفق بود: '+(e.message||'خطای اتصال')+' — تنظیمات جدول و دسترسی Supabase را بررسی کن.','error');return false;}
  }
  async function flushCloudSync(){clearTimeout(syncTimer);if(remoteUser)await syncToCloud();}
  window.haftyarCloudSync=flushCloudSync;
- window.haftyarQueueCloudSync=function(){if(remoteUser){clearTimeout(syncTimer);syncTimer=setTimeout(()=>{syncToCloud();},400);}};
+ window.haftyarQueueCloudSync=function(){if(remoteUser){clearTimeout(syncTimer);syncTimer=setTimeout(()=>{syncToCloud();},500);}};
  // Save locally immediately and synchronize changes to the user's private cloud row.
  window.save=function(){
    try{localStorage.setItem(storeKey,JSON.stringify(data));}catch(e){console.warn('HaftYar local save:',e.message);}
@@ -1991,13 +2019,13 @@ try{const remembered=localStorage.getItem('haftyar_active_account'),accounts=get
    $('plannerApp').classList.remove('admin-mode');$('adminPanel').hidden=true;$('adminBackBtn').hidden=true;$('todayBtn').hidden=false;$('langBtn').hidden=false;$('themeBtn').hidden=false;$('logoutBtn').hidden=false;
    $('authScreen').hidden=true;$('plannerApp').hidden=false;
    const hadCloudData=await syncFromCloud();
-   if(!hadCloudData)await syncToCloud();
+   if(!hadCloudData){const saved=await syncToCloud();if(!saved)cloudStatus('اطلاعات فعلاً فقط روی این دستگاه است؛ خطای ذخیرهٔ آنلاین را بررسی کن.','error');}
    render();
  }
  document.addEventListener('DOMContentLoaded',()=>{});
  const originalUpdate=window.updateAuthLanguage;
  window.addEventListener('load',async()=>{
-   try{await setup();}catch(e){console.error(e);say(e.message);return;}
+   try{await setup();}catch(e){console.error(e);say(e.message);cloudStatus('اتصال به فضای ابری برقرار نشد: '+e.message,'error');return;}
    const tabs=[$('loginTab'),$('signupTab')];tabs.forEach(b=>b.addEventListener('click',()=>setTimeout(updateFields,0)));
    updateFields();
    // Restore the existing Supabase session on refresh instead of showing the login screen.
@@ -2015,7 +2043,7 @@ try{const remembered=localStorage.getItem('haftyar_active_account'),accounts=get
        remoteUser=null;currentAccount='';localStorage.removeItem('haftyar_active_account');
        $('plannerApp').hidden=true;$('authScreen').hidden=false;
      }
-   }catch(err){console.warn('HaftYar session restore:',err.message);}
+   }catch(err){console.warn('HaftYar session restore:',err.message);cloudStatus('بازیابی ورود آنلاین ناموفق بود: '+err.message,'error');}
    $('authForm').addEventListener('submit',async e=>{
      e.preventDefault();e.stopImmediatePropagation();
      const username=norm($('authUsername').value),password=$('authPassword').value,name=$('authName').value.trim();
@@ -2076,3 +2104,4 @@ try{const remembered=localStorage.getItem('haftyar_active_account'),accounts=get
 </style>
 </body>
 </html>
+
