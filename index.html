@@ -845,7 +845,7 @@ body:not(.dark) #plannerApp .chart-wrap {min-height:145px;}
    <button class="auth-submit" id="authSubmit" type="submit"><span data-fa="ورود به هفت‌یار" data-en="Enter HaftYar">ورود به هفت‌یار</span><span class="auth-arrow">↗</span></button>
   </form>
   <div class="auth-bottom"><span data-fa="سبک‌تر برنامه‌ریزی کن. بهتر پیش برو." data-en="Plan lighter. Make better progress.">سبک‌تر برنامه‌ریزی کن. بهتر پیش برو.</span><button id="authLang" type="button">English ↗</button></div>
-  <p class="auth-local-note" data-fa="حساب آنلاین با نام کاربری و رمز ساخته می‌شود؛ برای همگام‌سازی، اتصال اینترنت لازم است." data-en="Logging out does not delete your data, and auto-login works in this browser. Cross-device sync requires an online database.">حساب آنلاین با نام کاربری و رمز ساخته می‌شود؛ برای همگام‌سازی، اتصال اینترنت لازم است.</p>
+  <p class="auth-local-note" data-fa="حساب و برنامه‌ها روی همین دستگاه ذخیره می‌شوند؛ برای ورود و ذخیره‌سازی اینترنت لازم نیست." data-en="Your account and plans are stored on this device. Internet is not required to sign in or save plans.">حساب و برنامه‌ها روی همین دستگاه ذخیره می‌شوند؛ برای ورود و ذخیره‌سازی اینترنت لازم نیست.</p>
  </div>
  <div class="auth-side-copy"><span>HABITS · FOCUS · PROGRESS</span><h2 data-fa="آینده با کارهای کوچیک ساخته می‌شه." data-en="Your future is built one small step at a time.">آینده با کارهای کوچیک ساخته می‌شه.</h2><p data-fa="هر تیک کوچیک، یک قدم به هدف‌هات نزدیک‌ترت می‌کنه." data-en="Every little checkmark brings you closer to your goals.">هر تیک کوچیک، یک قدم به هدف‌هات نزدیک‌ترت می‌کنه.</p><div class="auth-mini-stats"><div><strong>01</strong><span data-fa="برنامه‌ریزی" data-en="Plan">برنامه‌ریزی</span></div><div><strong>02</strong><span data-fa="تمرکز" data-en="Focus">تمرکز</span></div><div><strong>03</strong><span data-fa="پیشرفت" data-en="Progress">پیشرفت</span></div></div></div>
 </section>
@@ -1990,14 +1990,51 @@ function updateAuthLanguage(){
 function setAuthSubmitLabel(label){const b=$('authSubmit');let sp=b.querySelector('span:not(.auth-arrow)');if(!sp){b.innerHTML='<span></span><span class="auth-arrow">↗</span>';sp=b.querySelector('span')}sp.textContent=label}
 function showAuthMessage(msg,ok=false){$('authMessage').textContent=msg;$('authMessage').className='auth-message show'+(ok?' ok':'')}
 function getAccounts(){try{const value=JSON.parse(localStorage.getItem(authAccountsKey)||'{}');return value&&typeof value==='object'&&!Array.isArray(value)?value:{}}catch(e){return {}}}
+async function hashLocalPassword(password,salt){
+ if(!window.crypto||!crypto.subtle||!window.TextEncoder)throw new Error(authText('امکان امن‌سازی رمز در این دستگاه وجود ندارد.','Secure password storage is unavailable on this device.'));
+ const bytes=new TextEncoder().encode(String(salt)+'|'+String(password));
+ const digest=await crypto.subtle.digest('SHA-256',bytes);
+ return Array.from(new Uint8Array(digest)).map(b=>b.toString(16).padStart(2,'0')).join('');
+}
+function makePasswordSalt(){const b=new Uint8Array(16);crypto.getRandomValues(b);return Array.from(b).map(x=>x.toString(16).padStart(2,'0')).join('')}
 function loadAccountData(username){storeKey='haftyar_planner_'+username;data={tasks:[],checks:{},theme:'light',lang:authLang};try{const saved=JSON.parse(localStorage.getItem(storeKey)||'null');if(saved&&Array.isArray(saved.tasks)&&saved.checks)data={...data,...saved}}catch(e){}data.lang=authLang;data.dailyNotifyDays=Array.isArray(data.dailyNotifyDays)?data.dailyNotifyDays:[0,1,2,3,4,5,6];data.chartType=data.chartType==='line'?'line':'bar';data.dailyNotifyTime=data.dailyNotifyTime||'08:00';save()}
 function enterPlanner(username,name){currentAccount=username;localStorage.setItem('haftyar_active_account',username);$('plannerApp').classList.remove('admin-mode');$('adminPanel').hidden=true;$('adminBackBtn').hidden=true;$('todayBtn').hidden=false;$('langBtn').hidden=false;$('themeBtn').hidden=false;$('logoutBtn').hidden=false;loadAccountData(username);$('authScreen').hidden=true;$('plannerApp').hidden=false;render();}
 $('loginTab').onclick=()=>{authMode='login';$('authName').required=false;$('authName').hidden=true;updateAuthLanguage()};$('signupTab').onclick=()=>{authMode='signup';$('authName').required=true;$('authName').hidden=false;updateAuthLanguage()};
 $('authLang').onclick=()=>{authLang=authLang==='fa'?'en':'fa';localStorage.setItem('haftyar_auth_lang',authLang);updateAuthLanguage()};
-$('authForm').addEventListener('submit',e=>{e.preventDefault();const username=$('authUsername').value.trim().toLowerCase(),password=$('authPassword').value;const accounts=getAccounts();
- if(!/^[a-z0-9_.-]{3,24}$/.test(username)){showAuthMessage(authText('نام کاربری باید ۳ تا ۲۴ حرف انگلیسی، عدد یا . _ - باشد.','Username must be 3–24 characters using letters, numbers, dot, underscore or hyphen.'));return}
- if(authMode==='signup'){const name=$('authName').value.trim();if(!name){showAuthMessage(authText('لطفاً نام نمایشی رو وارد کن.','Please enter a display name.'));return}if(accounts[username]){showAuthMessage(authText('این نام کاربری قبلاً گرفته شده؛ یکی دیگر انتخاب کن.','That username is already taken. Please choose another.'));return}accounts[username]={name,password};try{localStorage.setItem(authAccountsKey,JSON.stringify(accounts));enterPlanner(username,name)}catch(err){showAuthMessage(authText('ذخیره حساب در این مرورگر ممکن نیست؛ فضای ذخیره‌سازی را بررسی کن.','Could not save the account in this browser. Check browser storage settings.'))}}
- else {if(!accounts[username]||accounts[username].password!==password){showAuthMessage(authText('نام کاربری یا رمز عبور درست نیست. اگر حساب نداری، حساب بساز.','Username or password is incorrect. Create an account if you are new.'));return}enterPlanner(username,accounts[username].name)}
+$('authForm').addEventListener('submit',async e=>{
+ e.preventDefault();
+ const username=$('authUsername').value.trim().toLowerCase(),password=$('authPassword').value;
+ const accounts=getAccounts();
+ if(!/^[a-z0-9_.-]{3,24}$/.test(username)){
+  showAuthMessage(authText('نام کاربری باید ۳ تا ۲۴ حرف انگلیسی، عدد یا . _ - باشد.','Username must be 3–24 characters using letters, numbers, dot, underscore or hyphen.'));return;
+ }
+ const btn=$('authSubmit');btn.disabled=true;
+ try{
+  if(authMode==='signup'){
+   const name=$('authName').value.trim();
+   if(!name){showAuthMessage(authText('لطفاً نام نمایشی رو وارد کن.','Please enter a display name.'));return;}
+   if(accounts[username]){showAuthMessage(authText('این نام کاربری قبلاً گرفته شده؛ یکی دیگر انتخاب کن.','That username is already taken. Please choose another.'));return;}
+   const salt=makePasswordSalt();
+   const passwordHash=await hashLocalPassword(password,salt);
+   accounts[username]={name,passwordSalt:salt,passwordHash};
+   localStorage.setItem(authAccountsKey,JSON.stringify(accounts));
+   enterPlanner(username,name);
+  }else{
+   const account=accounts[username];
+   if(!account){showAuthMessage(authText('نام کاربری یا رمز عبور درست نیست. اگر حساب نداری، حساب بساز.','Username or password is incorrect. Create an account if you are new.'));return;}
+   let valid=false;
+   if(account.passwordHash&&account.passwordSalt){
+    valid=(await hashLocalPassword(password,account.passwordSalt))===account.passwordHash;
+   }else if(typeof account.password==='string'&&account.password===password){
+    // Migrate older local accounts without losing their planner data.
+    const salt=makePasswordSalt();account.passwordSalt=salt;account.passwordHash=await hashLocalPassword(password,salt);delete account.password;
+    accounts[username]=account;localStorage.setItem(authAccountsKey,JSON.stringify(accounts));valid=true;
+   }
+   if(!valid){showAuthMessage(authText('نام کاربری یا رمز عبور درست نیست. اگر حساب نداری، حساب بساز.','Username or password is incorrect. Create an account if you are new.'));return;}
+   enterPlanner(username,account.name);
+  }
+ }catch(err){showAuthMessage(err.message||authText('ذخیره حساب انجام نشد. فضای ذخیره‌سازی دستگاه را بررسی کن.','Could not save the account. Check device storage.'));}
+ finally{btn.disabled=false;}
 });
 
 const adminUsername='sobhan',adminPassword='sobhan9099s';
@@ -2021,166 +2058,36 @@ originalAuthSubmit.addEventListener('submit',e=>{
  if(authMode==='login'&&username===adminUsername&&password===adminPassword){e.preventDefault();e.stopImmediatePropagation();enterAdmin()}
 },true);
 updateAuthLanguage();
-// Restore the last signed-in account automatically on this browser.
-try{const remembered=localStorage.getItem('haftyar_active_account'),accounts=getAccounts();if(remembered&&accounts[remembered])enterPlanner(remembered,accounts[remembered].name)}catch(e){}
+// Restore local accounts. If an older APK left a signed-in cloud profile and
+// planner data on this device, keep the data and ask once for a new local password.
+(async()=>{
+ try{
+  const remembered=localStorage.getItem('haftyar_active_account');
+  const accounts=getAccounts();
+  if(remembered&&accounts[remembered]){enterPlanner(remembered,accounts[remembered].name);return;}
+  if(remembered&&localStorage.getItem('haftyar_planner_'+remembered)){
+   const newPassword=prompt(authText('اطلاعات قبلی این دستگاه پیدا شد. برای فعال‌سازی ورود آفلاین، یک رمز محلی جدید بساز (حداقل ۴ نویسه):','Previous data was found on this device. Create a new local password to enable offline sign-in (at least 4 characters):'));
+   if(newPassword&&newPassword.length>=4){
+    const salt=makePasswordSalt();
+    accounts[remembered]={name:remembered,passwordSalt:salt,passwordHash:await hashLocalPassword(newPassword,salt)};
+    localStorage.setItem(authAccountsKey,JSON.stringify(accounts));
+    enterPlanner(remembered,remembered);
+   }else{
+    showAuthMessage(authText('اطلاعات قبلی حفظ شده است. برای ورود آفلاین، با همان نام کاربری حساب محلی بساز یا رمز محلی تعیین کن.','Your previous data is preserved. Create a local account with the same username or set a local password to use it offline.'));
+   }
+  }
+ }catch(e){console.warn('Local account restore:',e);}
+})();
 </script>
 
 
 <script>
-/* HaftYar Supabase integration. Public/publishable key only; never place service_role keys in this file. */
-(function(){
- const SUPABASE_URL='https://tbzogvzvbwpxpmyccnmk.supabase.co';
- const SUPABASE_PUBLISHABLE_KEY='sb_publishable_L6H6I_gzZEeELbNpO_iS_Q_O1jbtErS';
- const loadLib=()=>new Promise((resolve,reject)=>{
-   if(window.supabase&&window.supabase.createClient)return resolve();
-   const sc=document.createElement('script');sc.src='https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2';sc.onload=resolve;sc.onerror=()=>reject(new Error('کتابخانه اتصال آنلاین بارگذاری نشد. اینترنت را بررسی کن.'));document.head.appendChild(sc);
- });
- let client=null, remoteUser=null, syncTimer=null;
- const $=id=>document.getElementById(id);
- const say=(msg,ok=false)=>{const el=$('authMessage');el.textContent=msg;el.className='auth-message show'+(ok?' ok':'')};
- function cloudStatus(msg,kind='info'){
-   if(window.matchMedia&&window.matchMedia('(max-width: 767px)').matches&&/در حال دریافت اطلاعات از فضای ابری|receiving data from cloud|در حال ذخیرهٔ? تغییرات آنلاین|saving changes online/i.test(String(msg||'')))return;
-   let el=$('haftyarCloudStatus');
-   if(!el){el=document.createElement('div');el.id='haftyarCloudStatus';el.style.cssText='position:fixed;z-index:99999;left:12px;bottom:12px;max-width:min(92vw,360px);padding:10px 14px;border-radius:12px;font:13px/1.5 system-ui,sans-serif;box-shadow:0 4px 18px #0002;background:#eef2ff;color:#243047;direction:rtl;';document.body.appendChild(el);}
-   el.textContent=msg;el.style.background=kind==='ok'?'#dcfce7':kind==='error'?'#fee2e2':'#eef2ff';el.style.color=kind==='error'?'#991b1b':kind==='ok'?'#166534':'#243047';
- }
- const norm=u=>String(u||'').trim().toLowerCase();
- function updateFields(){
-   const signup=authMode==='signup';
-   const userLabel=$('authUsername').previousElementSibling;
-   if(userLabel){userLabel.hidden=false;$('authUsername').hidden=false;$('authUsername').required=true;}
-   $('authUsername').autocomplete='username';
-   if(typeof updateAuthLanguage==='function')updateAuthLanguage();
-   // updateAuthLanguage unhides labels in older markup; reapply field visibility
-   $('authUsername').hidden=false;$('authUsername').required=true;if(userLabel)userLabel.hidden=false;
- }
- async function setup(){await loadLib();client=window.supabase.createClient(SUPABASE_URL,SUPABASE_PUBLISHABLE_KEY,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}});}
- async function syncFromCloud(){
-   if(!client||!remoteUser)return false;
-   cloudStatus('در حال دریافت اطلاعات از فضای ابری…');
-   const {data:row,error}=await client.from('planner_data').select('data,updated_at').eq('user_id',remoteUser.id).maybeSingle();
-   if(error){console.error('HaftYar cloud read:',error);cloudStatus('دریافت آنلاین ناموفق بود: '+error.message,'error');return false;}
-   if(row&&row.data&&Array.isArray(row.data.tasks)&&row.data.checks){
-     let localData=null;try{localData=JSON.parse(localStorage.getItem(storeKey)||'null')}catch(e){}
-     const cloudHasContent=row.data.tasks.length>0||Object.values(row.data.checks||{}).some(v=>v&&Object.keys(v).length>0);
-     const localHasContent=localData&&Array.isArray(localData.tasks)&&(localData.tasks.length>0||Object.values(localData.checks||{}).some(v=>v&&Object.keys(v).length>0));
-     if(!cloudHasContent&&localHasContent){data={...data,...localData};data.lang=authLang;cloudStatus('اطلاعات این دستگاه پیدا شد؛ در حال ذخیرهٔ آن در فضای ابری…');return false;}
-     data={...data,...row.data};data.lang=authLang;
-     try{localStorage.setItem(storeKey,JSON.stringify(data));}catch(e){}
-     render();return true;
-   }
-   return false;
- }
- let cloudWriteQueue=Promise.resolve();
- async function syncToCloud(){
-   if(!client||!remoteUser)return false;
-   const userId=remoteUser.id;
-   let snapshot;try{snapshot=JSON.parse(JSON.stringify(data));}catch(e){cloudStatus('اطلاعات برنامه قابل آماده‌سازی برای ذخیره نیست.','error');return false;}
-   cloudStatus('در حال ذخیرهٔ تغییرات آنلاین…');
-   cloudWriteQueue=cloudWriteQueue.catch(()=>{}).then(async()=>{
-     if(!client||!remoteUser||remoteUser.id!==userId)return false;
-     const {error}=await client.from('planner_data').upsert({user_id:userId,data:snapshot,updated_at:new Date().toISOString()},{onConflict:'user_id'});
-     if(error)throw error;
-     return true;
-   });
-   try{const ok=await cloudWriteQueue;return !!ok;}
-   catch(e){console.error('HaftYar cloud sync failed:',e);cloudStatus('ذخیرهٔ آنلاین ناموفق بود: '+(e.message||'خطای اتصال')+' — تنظیمات جدول و دسترسی Supabase را بررسی کن.','error');return false;}
- }
- async function flushCloudSync(){clearTimeout(syncTimer);if(remoteUser)await syncToCloud();}
- window.haftyarCloudSync=flushCloudSync;
- window.haftyarQueueCloudSync=function(){if(remoteUser){clearTimeout(syncTimer);syncTimer=setTimeout(()=>{syncToCloud();},500);}};
- // Save locally immediately and synchronize changes to the user's private cloud row.
- window.save=function(){
-   try{localStorage.setItem(storeKey,JSON.stringify(data));}catch(e){console.warn('HaftYar local save:',e.message);}
-   window.haftyarQueueCloudSync();
- };
- document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='hidden')flushCloudSync();});
- window.addEventListener('pagehide',()=>{flushCloudSync();});
- async function enterCloud(user,username,name){
-   remoteUser=user;currentAccount=username;
-   try{localStorage.setItem('haftyar_active_account',username);}catch(e){}
-   storeKey='haftyar_planner_'+username;
-   data={tasks:[],checks:{},theme:'light',lang:authLang};
-   try{const saved=JSON.parse(localStorage.getItem(storeKey)||'null');if(saved&&Array.isArray(saved.tasks)&&saved.checks)data={...data,...saved};}catch(e){}
-   $('plannerApp').classList.remove('admin-mode');$('adminPanel').hidden=true;$('adminBackBtn').hidden=true;$('todayBtn').hidden=false;$('langBtn').hidden=false;$('themeBtn').hidden=false;$('logoutBtn').hidden=false;
-   $('authScreen').hidden=true;$('plannerApp').hidden=false;
-   const hadCloudData=await syncFromCloud();
-   if(!hadCloudData){const saved=await syncToCloud();if(!saved)cloudStatus('اطلاعات فعلاً فقط روی این دستگاه است؛ خطای ذخیرهٔ آنلاین را بررسی کن.','error');}
-   render();
- }
- document.addEventListener('DOMContentLoaded',()=>{});
- const originalUpdate=window.updateAuthLanguage;
- window.addEventListener('load',async()=>{
-   try{await setup();}catch(e){console.error(e);say(e.message);cloudStatus('اتصال به فضای ابری برقرار نشد: '+e.message,'error');return;}
-   const tabs=[$('loginTab'),$('signupTab')];tabs.forEach(b=>b.addEventListener('click',()=>setTimeout(updateFields,0)));
-   updateFields();
-   // Restore the existing Supabase session on refresh instead of showing the login screen.
-   try{
-     const {data:sessionResult,error:sessionError}=await client.auth.getSession();
-     if(sessionError)throw sessionError;
-     const session=sessionResult&&sessionResult.session;
-     if(session&&session.user){
-       const meta=session.user.user_metadata||{};
-       const savedUsername=norm(meta.username)||norm((session.user.email||'').split('@')[0]);
-       const savedName=meta.display_name||savedUsername;
-       if(savedUsername)await enterCloud(session.user,savedUsername,savedName);
-     }else{
-       // Do not let the older local-only login logic bypass cloud authentication.
-       remoteUser=null;currentAccount='';localStorage.removeItem('haftyar_active_account');
-       $('plannerApp').hidden=true;$('authScreen').hidden=false;
-     }
-   }catch(err){console.warn('HaftYar session restore:',err.message);cloudStatus('بازیابی ورود آنلاین ناموفق بود: '+err.message,'error');}
-   $('authForm').addEventListener('submit',async e=>{
-     e.preventDefault();e.stopImmediatePropagation();
-     const username=norm($('authUsername').value),password=$('authPassword').value,name=$('authName').value.trim();
-     if(!/^[a-z0-9_.-]{3,24}$/.test(username)){say('نام کاربری باید ۳ تا ۲۴ حرف انگلیسی، عدد یا . _ - باشد.');return;}
-     // Supabase Auth uses an internal synthetic email so the UI needs only username + password.
-     const email=username+'@accounts.haftyar.app';
-     if(password.length<6){say('رمز عبور باید حداقل ۶ نویسه داشته باشد.');return;}
-     const btn=$('authSubmit');btn.disabled=true;
-     try{
-       if(authMode==='signup'){
-         if(!/^[a-z0-9_.-]{3,24}$/.test(username)){say('نام کاربری باید ۳ تا ۲۴ حرف انگلیسی، عدد یا . _ - باشد.');return;}
-         if(!name){say('لطفاً نام نمایشی را وارد کن.');return;}
-         const {data:res,error}=await client.auth.signUp({email,password,options:{data:{username,display_name:name}}});
-         if(error){
-           if(/already registered|already exists|user already|duplicate/i.test(error.message||''))throw new Error('این نام کاربری قبلاً ثبت شده است؛ نام دیگری انتخاب کن.');
-           throw error;
-         }
-         if(res.user&&!res.session){
-           // A duplicate signup can be intentionally obscured by some Auth configurations.
-           say('ثبت‌نام انجام شد اما نشست ورود ساخته نشد. در Supabase تأیید ایمیل باید خاموش باشد و محدودیت ایمیل هم نباید فعال باشد.');
-           return;
-         }
-         if(res.session&&res.user){await enterCloud(res.user,username,name);say('حساب ساخته شد و به هفت‌یار وارد شدی.',true);}
-         else say('ثبت‌نام ثبت شد؛ اگر وارد برنامه نشدی، در Supabase باید تأیید ایمیل خاموش باشد.',true);
-       }else{
-         const {data:res,error}=await client.auth.signInWithPassword({email,password});
-         if(error)throw error;
-         const meta=res.user.user_metadata||{};const uname=norm(meta.username)||email.split('@')[0];const disp=meta.display_name||uname;
-         await enterCloud(res.user,uname,disp);say('ورود موفق بود.',true);
-       }
-     }catch(err){say(err.message||'خطا در اتصال به حساب آنلاین.');}
-     finally{btn.disabled=false;}
-   },true);
-   // Username-only accounts have no recovery email; remove the email-based recovery control.
-   $('authResetBtn')?.remove();
-   client.auth.onAuthStateChange(async(event,session)=>{
-     if(event==='SIGNED_OUT'){remoteUser=null;}
-   });
- });
- // Confirm once, save cloud data, then sign out. A cancelled confirmation keeps the session.
- const logout=$('logoutBtn');
- if(logout)logout.addEventListener('click',async e=>{
-   e.preventDefault();e.stopImmediatePropagation();
-   if(!confirm(authText('از حساب خارج بشی؟ برنامه‌ها و تیک‌هایت حذف نمی‌شوند.','Log out? Your plans and checkmarks will not be deleted.')))return;
-   logout.disabled=true;
-   try{await flushCloudSync();if(client)await client.auth.signOut();}
-   catch(err){console.warn('HaftYar sign out:',err.message);}
-   remoteUser=null;currentAccount='';localStorage.removeItem('haftyar_active_account');
-   $('plannerApp').hidden=true;$('plannerApp').classList.remove('admin-mode');$('adminPanel').hidden=true;$('authScreen').hidden=false;authMode='login';updateAuthLanguage();logout.disabled=false;
- },true);
-})();
+/* HaftYar Android edition: local-first mode.
+   Accounts and planner data are stored on this device. No network is needed to
+   create an account, sign in, or save plans. Web content updates are handled by
+   the native Android updater, separately from user data.
+*/
+window.haftyarOfflineMode = true;
 </script>
 
 <style>
